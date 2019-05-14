@@ -1,7 +1,7 @@
 import './style.scss'
 import React from 'react'
 import { render } from 'react-dom'
-import {WordProfileComplete} from '../../../../stories/src/index'
+import { WordProfileComplete } from '../../../../stories/src/index'
 import { sentryAnt } from './ants/sentry.js'
 sentryAnt()
 
