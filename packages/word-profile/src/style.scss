@@ -4,6 +4,8 @@ $back: $BACK_14;
 
 html{
   background:$back;
-  margin: 0;
   overflow: hidden;
+}
+body{
+  margin: 0 !important;
 }
