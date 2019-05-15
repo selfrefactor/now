@@ -19,7 +19,7 @@
 		"test": "jest",
 		"dev": "jest src --watch --onlyChanged",
 		"in": "NODE_ENV=development parcel -p 8080 index.html ",
-		"now": "now alias dist-vlipwlvtzh.now.sh word-profile",
+		"now": "now alias dist-nuldyfitgb.now.sh word-profile",
     "deploy": "now dist --public",
 		"build": "NODE_ENV=production parcel build index.html --no-minify --public-url /"
 	},
