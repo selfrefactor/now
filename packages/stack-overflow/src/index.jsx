@@ -1,8 +1,6 @@
 import './style.scss'
 import React, { useReducer } from 'react'
-import { render, createPortal } from 'react-dom'
-import { BAR_INCREMENT } from './constants'
-import { fooInc } from './actions'
+import { render } from 'react-dom'
 import {
   getCurrentState,
   setCurrentState,
@@ -12,7 +10,7 @@ import {
 
 import { handleNext } from './handles/next.js'
 import { Grid, Cell } from '../../../../stories/src/Grid/component.js'
-import {  once, shuffle } from 'rambdax'
+import {  once, shuffle, getter, setter } from 'rambdax'
 import { sentryAnt, captureExceptionAnt } from './ants/sentry.js'
 sentryAnt()
 
@@ -34,19 +32,24 @@ function rootReducer(state, action){
   }
 }
 
+let portalHolder
+
 function appendPortal({accepted_answer_id, link}){
   const answer = `${link}/${accepted_answer_id}#${accepted_answer_id}`
   const parrent = document.getElementById('portal')
-
+  if(portalHolder !== undefined){
+    parrent.removeChild(portalHolder)
+  }
   const portal = document.createElement('portal');
   portal.src = answer;
 
   parrent.appendChild(portal)
+  portalHolder = portal
 }
 
 const asyncSideEffects = {
   ANY : async (state, action, getState) => {
-    console.log(1);
+    console.log(2);
     
     const dataRaw = await window.fetch(
       'http://localhost:3030/stack-overflow'
@@ -102,15 +105,17 @@ function Root(){
       </Cell>
 
       <Cell 
-        evalStyled='outline: 1px solid grey'
-        height= {5}
-        width= {32}
+        evalStyled='width:100%;outline: 1px solid grey'
+        height= {2}
+        width= {4}
         topLeft= {{
-          x: 0,
-          y: 0,
+          x: 14,
+          y: 1,
         }}
       >
-        <span onClick={handleNext}>Any</span>
+        <div className='button' onClick={handleNext}>
+          <div>Any</div>
+        </div>
       </Cell>
 
     </Grid>
