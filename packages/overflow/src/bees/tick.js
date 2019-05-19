@@ -1,14 +1,12 @@
 import {dispatcher} from 'reduxed'
 import { delay } from 'rambdax'
 
-const TICK = 10000
-
-export async function tickBee(getCurrentState, tick = TICK){
+export async function tickBee(getCurrentState, tick, tag){
   while(true){
     if(getCurrentState().play){
-      dispatcher({type:'NEXT'})
+      dispatcher({type:'NEXT', payload: tag})
     }
     
-    await delay(tick)
+    await delay(tick * 60000)
   }
 }

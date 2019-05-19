@@ -12,22 +12,28 @@ import { clickBee } from './bees/click.js'
 import { appendPortalBee } from './bees/appendPortal.js'
 import { tickBee } from './bees/tick.js'
 import { Grid, Cell } from '../../../../stories/src/Grid/component.js'
-import {  once, shuffle, getter, setter, _ } from 'rambdax'
+import {  once, shuffle, _, defaultTo, filter, headObject } from 'rambdax'
+import {  takeArguments } from 'string-fn'
 import { sentryAnt, captureExceptionAnt } from './ants/sentry.js'
 sentryAnt()
 
 const allReducers = []
 const initialState = {
-  play: true
+  play: true,
+  currentInstance: {}
 }
 
 function rootReducer(state, action){
-  
   switch (action.type){
   case 'CLICK':
     return {
       ...state,
       play : !state.play,
+    }
+  case 'SET_CURRENT':
+    return {
+      ...state,
+      currentInstance: action.payload
     }
   default:
     return state
@@ -36,15 +42,19 @@ function rootReducer(state, action){
 
 const asyncSideEffects = {
   NEXT : async (state, action, getState) => {
+    console.log(getState().currentInstance);
+    
     const dataRaw = await window.fetch(
-      'http://localhost:3010/stack-overflow'
+      `http://localhost:3030/stack-overflow/${action.payload}`
     )
     const data = await dataRaw.json()
-    if(data.length === 0) return false
-
-    appendPortalBee(shuffle(data)[0])
+    console.log(data.length);
+      
+    if(data.length === 0)      return false
+    const currentInstance = shuffle(data)[0]  
+    appendPortalBee(currentInstance)
     
-    return false
+    return {type: 'SET_CURRENT', payload: currentInstance}
   }
 }
 
@@ -56,17 +66,26 @@ const reducer = createReducer(
   captureExceptionAnt,
 )
 
-// called in render method as `componentDidMount(dispatch)`
-// ============================================
 const componentDidMountFn = (dispatchInstance) => {
   componentDidMountRaw(dispatchInstance)
+  
   const child = document.createElement('div')
   const childSecond = document.createElement('div')
   child.id = 'portal'
   childSecond.id = 'portal-second'
   document.body.appendChild(child)
   document.body.appendChild(childSecond)
-  tickBee(getCurrentState)
+
+  const {play,...rest} = takeArguments(window.location.href,'?',true)
+  const playValue = defaultTo(3, play)
+
+  const filtered = filter(Boolean, rest)
+  if(Object.keys(filtered).length !== 1){
+    return tickBee(getCurrentState, playValue, 'all')
+  }
+
+  const {prop} = headObject(filtered)
+  tickBee(getCurrentState, playValue, prop)
 }
 const componentDidMount = once(componentDidMountFn)
 
