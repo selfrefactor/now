@@ -10,7 +10,7 @@ import {
 
 import { handleNext } from './handles/next.js'
 import { Grid, Cell } from '../../../../stories/src/Grid/component.js'
-import {  once, shuffle, getter, setter } from 'rambdax'
+import {  once, shuffle, getter, setter, _ } from 'rambdax'
 import { sentryAnt, captureExceptionAnt } from './ants/sentry.js'
 sentryAnt()
 
@@ -32,25 +32,22 @@ function rootReducer(state, action){
   }
 }
 
-let portalHolder
-
 function appendPortal({accepted_answer_id, link}){
   const answer = `${link}/${accepted_answer_id}#${accepted_answer_id}`
   const parrent = document.getElementById('portal')
-  if(portalHolder !== undefined){
-    parrent.removeChild(portalHolder)
+  
+  if(getter(_.PORTAL)){
+    parrent.removeChild(getter(_.PORTAL))
   }
   const portal = document.createElement('portal');
   portal.src = answer;
 
   parrent.appendChild(portal)
-  portalHolder = portal
+  setter(_.PORTAL, portal)
 }
 
 const asyncSideEffects = {
   ANY : async (state, action, getState) => {
-    console.log(2);
-    
     const dataRaw = await window.fetch(
       'http://localhost:3030/stack-overflow'
     )
