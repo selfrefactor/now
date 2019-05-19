@@ -50,6 +50,7 @@
   "devDependencies": {
     "@babel/core": "^7.4.4",
     "@types/react": "^16.8.16",
+    "@types/node": "^12.0.2",
     "babel-preset-env": "^7.0.0-beta.3",
     "babel-preset-react": "^7.0.0-beta.3",
     "env": "https://github.com/selfrefactor/env#0.2.0",

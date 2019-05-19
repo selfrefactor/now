@@ -5,6 +5,7 @@ import {
   getCurrentState,
   setCurrentState,
   createReducer,
+  dispatcher,
   componentDidMountRaw,
 } from 'reduxed'
 
@@ -20,10 +21,15 @@ sentryAnt()
 const allReducers = []
 const initialState = {
   play: true,
-  currentInstance: {}
+  currentInstance: {
+    tags: [],
+    link: ''
+  }
 }
 
 function rootReducer(state, action){
+  console.log(state,action);
+  
   switch (action.type){
   case 'CLICK':
     return {
@@ -53,8 +59,9 @@ const asyncSideEffects = {
     if(data.length === 0)      return false
     const currentInstance = shuffle(data)[0]  
     appendPortalBee(currentInstance)
+    dispatcher({type: 'SET_CURRENT', payload: currentInstance})
     
-    return {type: 'SET_CURRENT', payload: currentInstance}
+    return false
   }
 }
 
@@ -100,20 +107,24 @@ function Root(){
   const buttonText = store.play ?
     'STOP' :
     'PLAY'  
-
+  const tags = store.currentInstance.tags.join(', ')
+  const link = store.currentInstance.link
+    console.log({tags, link})
   return (
     <Grid>
-      
+
       <Cell 
-        evalStyled='outline: 1px solid pink'
-        height= {20}
-        width= {20}
+        evalStyled='width:100%;outline: 1px solid grey;z-index:1000;background: #dae1fafa'
+        height= {2}
+        width= {2}
         topLeft= {{
-          x: 5,
-          y: 5,
+          x: 8,
+          y: 0,
         }}
       >
-        
+        <div className='button' onClick={clickBee}>
+          <div>{buttonText}</div>
+        </div>
       </Cell>
 
       <Cell 
@@ -121,12 +132,42 @@ function Root(){
         height= {2}
         width= {2}
         topLeft= {{
-          x: 14,
+          x: 11,
+          y: 0,
+        }}
+      >
+          <div className='button' onClick={clickBee}>
+            <div>Next</div>
+          </div>
+      </Cell>
+
+      <Cell 
+        evalStyled='width:100%;outline: 1px solid grey;z-index:1000;background: #dae1fafa'
+        height= {2}
+        width= {7}
+        topLeft= {{
+          x: 15,
           y: 0,
         }}
       >
         <div className='button' onClick={clickBee}>
-          <div>{buttonText}</div>
+          <div>{tags}</div>
+        </div>
+      </Cell>
+
+      <Cell 
+        evalStyled='width:100%;outline: 1px solid grey;z-index:1000;background: #cae1faaa'
+        height= {2}
+        width= {4}
+        topLeft= {{
+          x: 23,
+          y: 0,
+        }}
+      >
+        <div className='button'>
+          <div>
+            <a href={link} target="blank" >Link</a>
+          </div>
         </div>
       </Cell>
 
