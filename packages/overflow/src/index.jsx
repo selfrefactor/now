@@ -19,6 +19,7 @@ import {
 } from 'rambdax'
 
 import { clickBee } from './bees/click.js'
+import { next } from './actions'
 import { appendPortalBee } from './bees/appendPortal.js'
 import { tickBee } from './bees/tick.js'
 import { Grid, Cell } from '../../../../stories/src/Grid/component.js'
@@ -38,7 +39,7 @@ const initialState = {
 const allReducers = []
 
 function rootReducer(state, action){
-  console.log(state, action) 
+  console.log(state, action)
 
   switch (action.type){
   case _.CLICK:
@@ -63,8 +64,6 @@ function rootReducer(state, action){
 
 const asyncSideEffects = {
   NEXT : async (state, action, getState) => {
-    console.log(getState().currentInstance)
-
     const dataRaw = await window.fetch(
       `http://toteff.eu.ngrok.io/stack-overflow/${ action.payload }`
     )
@@ -122,11 +121,10 @@ const componentDidMountFn = async (dispatchInstance) => {
     `http://toteff.eu.ngrok.io/stack-overflow/${ tag }`
   )
   const data = await dataRaw.json()
-    console.log(data);
-    
+
   if (data.length === 0) throw new Error('empty data')
 
-  return tickBee(getCurrentState, playValue, tag, data)
+  return tickBee(getCurrentState, playValue, data)
 }
 
 const componentDidMount = once(componentDidMountFn)
@@ -171,7 +169,7 @@ function Root(){
         } }
         width={ 2 }
       >
-        <div className="button" onClick={ clickBee }>
+        <div className="button" onClick={ next }>
           <div>Next</div>
         </div>
       </Cell>

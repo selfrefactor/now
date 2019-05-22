@@ -33,7 +33,7 @@
   "scripts": {
     "now": "now alias dist-otnfqdifti.now.sh overflow",
     "deploy": "now dist --public",
-		"build": "NODE_ENV=production parcel build index.html --no-minify --public-url /",
+    "build": "NODE_ENV=production parcel build index.html --no-minify --public-url /",
     "test": "jest",
     "in": "NODE_ENV=development parcel -p 8080 index.html "
   },
@@ -66,6 +66,7 @@
   "commitMessage": {
     "feature": [
       "refactor"
-    ]
+    ],
+    "workInProgress": "ping server once"
   }
 }

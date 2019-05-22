@@ -1,11 +1,8 @@
 import { dispatcher, pipe } from 'reduxed'
 import { delay } from 'rambdax'
 
-export async function tickBee(getCurrentState, tick, tag, data){
-  const nextAction = {
-    type    : 'NEXT',
-    payload : tag,
-  }
+export async function tickBee(getCurrentState, tick, data){
+  const nextAction = { type : 'NEXT' }
 
   pipe(
     {
