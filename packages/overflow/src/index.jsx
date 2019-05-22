@@ -7,31 +7,40 @@ import {
   createReducer,
   dispatcher,
   componentDidMountRaw,
-} from 'reduxed'
+} from './reduxed'
+import {
+  _,
+  defaultTo,
+  delay,
+  filter,
+  headObject,
+  once,
+  shuffle,
+} from 'rambdax'
 
 import { clickBee } from './bees/click.js'
 import { appendPortalBee } from './bees/appendPortal.js'
 import { tickBee } from './bees/tick.js'
 import { Grid, Cell } from '../../../../stories/src/Grid/component.js'
-import {  once, shuffle, _, defaultTo, filter, headObject } from 'rambdax'
-import {  takeArguments } from 'string-fn'
+import { takeArguments } from 'string-fn'
 import { sentryAnt, captureExceptionAnt } from './ants/sentry.js'
-sentryAnt()
 
-const allReducers = []
 const initialState = {
-  play: true,
-  currentInstance: {
-    tags: [],
-    link: ''
-  }
+  play            : true,
+  auto            : false,
+  autoInterval    : 10000,
+  currentInstance : {
+    tags : [],
+    link : '',
+  },
 }
+const allReducers = []
 
 function rootReducer(state, action){
-  console.log(state,action);
-  
+  console.log(state, action)
+
   switch (action.type){
-  case 'CLICK':
+  case _.CLICK:
     return {
       ...state,
       play : !state.play,
@@ -39,7 +48,7 @@ function rootReducer(state, action){
   case 'SET_CURRENT':
     return {
       ...state,
-      currentInstance: action.payload
+      currentInstance : action.payload,
     }
   default:
     return state
@@ -48,21 +57,25 @@ function rootReducer(state, action){
 
 const asyncSideEffects = {
   NEXT : async (state, action, getState) => {
-    console.log(getState().currentInstance);
-    
+    console.log(getState().currentInstance)
+
     const dataRaw = await window.fetch(
-      `http://localhost:3030/stack-overflow/${action.payload}`
+      `http://toteff.eu.ngrok.io/stack-overflow/${ action.payload }`
     )
     const data = await dataRaw.json()
-    console.log(data.length);
-      
-    if(data.length === 0)      return false
-    const currentInstance = shuffle(data)[0]  
+
+    if (data.length === 0) throw new Error('empty data')
+
+    const currentInstance = shuffle(data)[ 0 ]
+
     appendPortalBee(currentInstance)
-    dispatcher({type: 'SET_CURRENT', payload: currentInstance})
-    
+    dispatcher({
+      type    : 'SET_CURRENT',
+      payload : currentInstance,
+    })
+
     return false
-  }
+  },
 }
 
 const reducer = createReducer(
@@ -73,9 +86,20 @@ const reducer = createReducer(
   captureExceptionAnt,
 )
 
-const componentDidMountFn = (dispatchInstance) => {
+const getTag = filtered => {
+  if (Object.keys(filtered).length !== 1){
+    return 'all'
+  }
+
+  const { prop } = headObject(filtered)
+
+  return prop
+}
+
+const componentDidMountFn = async (dispatchInstance) => {
+  sentryAnt()
   componentDidMountRaw(dispatchInstance)
-  
+
   const child = document.createElement('div')
   const childSecond = document.createElement('div')
   child.id = 'portal'
@@ -83,17 +107,21 @@ const componentDidMountFn = (dispatchInstance) => {
   document.body.appendChild(child)
   document.body.appendChild(childSecond)
 
-  const {play,...rest} = takeArguments(window.location.href,'?',true)
+  const { play, ...rest } = takeArguments(window.location.href, '?', true)
   const playValue = defaultTo(3, play)
 
-  const filtered = filter(Boolean, rest)
-  if(Object.keys(filtered).length !== 1){
-    return tickBee(getCurrentState, playValue, 'all')
-  }
+  const tag = getTag(filter(Boolean, rest))
 
-  const {prop} = headObject(filtered)
-  tickBee(getCurrentState, playValue, prop)
+  const dataRaw = await window.fetch(
+    `http://toteff.eu.ngrok.io/stack-overflow/${ tag }`
+  )
+  const data = await dataRaw.json()
+
+  if (data.length === 0) throw new Error('empty data')
+
+  return tickBee(getCurrentState, playValue, tag, data)
 }
+
 const componentDidMount = once(componentDidMountFn)
 
 function Root(){
@@ -106,67 +134,67 @@ function Root(){
 
   const buttonText = store.play ?
     'STOP' :
-    'PLAY'  
+    'PLAY'
   const tags = store.currentInstance.tags.join(', ')
-  const link = store.currentInstance.link
-    console.log({tags, link})
+  const { link } = store.currentInstance
+
   return (
     <Grid>
 
-      <Cell 
-        evalStyled='width:100%;outline: 1px solid grey;z-index:1000;background: #dae1fafa'
-        height= {2}
-        width= {2}
-        topLeft= {{
-          x: 8,
-          y: 0,
-        }}
+      <Cell
+        evalStyled="width:100%;outline: 1px solid grey;z-index:1000;background: #dae1fafa"
+        height={ 2 }
+        topLeft={ {
+          x : 8,
+          y : 0,
+        } }
+        width={ 2 }
       >
-        <div className='button' onClick={clickBee}>
+        <div className="button" onClick={ clickBee }>
           <div>{buttonText}</div>
         </div>
       </Cell>
 
-      <Cell 
-        evalStyled='width:100%;outline: 1px solid grey;z-index:1000;background: #dae1fafa'
-        height= {2}
-        width= {2}
-        topLeft= {{
-          x: 11,
-          y: 0,
-        }}
+      <Cell
+        evalStyled="width:100%;outline: 1px solid grey;z-index:1000;background: #dae1fafa"
+        height={ 2 }
+        topLeft={ {
+          x : 11,
+          y : 0,
+        } }
+        width={ 2 }
       >
-          <div className='button' onClick={clickBee}>
-            <div>Next</div>
-          </div>
+        <div className="button" onClick={ clickBee }>
+          <div>Next</div>
+        </div>
       </Cell>
 
-      <Cell 
-        evalStyled='width:100%;outline: 1px solid grey;z-index:1000;background: #dae1fafa'
-        height= {2}
-        width= {7}
-        topLeft= {{
-          x: 15,
-          y: 0,
-        }}
+      <Cell
+        evalStyled="width:100%;outline: 1px solid grey;z-index:1000;background: #dae1fafa"
+        height={ 2 }
+        topLeft={ {
+          x : 15,
+          y : 0,
+        } }
+        width={ 7 }
       >
-        <div className='button' onClick={clickBee}>
+        <div className="button" onClick={ clickBee }>
           <div>{tags}</div>
         </div>
       </Cell>
 
-      <Cell 
-        evalStyled='width:100%;outline: 1px solid grey;z-index:1000;background: #cae1faaa'
-        height= {2}
-        width= {4}
-        topLeft= {{
-          x: 23,
-          y: 0,
-        }}
+      <Cell
+        evalStyled="width:100%;outline: 1px solid grey;z-index:1000;background: #cae1faaa"
+        height={ 2 }
+        topLeft={ {
+          x : 23,
+          y : 0,
+        } }
+        width={ 4 }
       >
-        <div className='button'>
+        <div className="button">
           <div>
-            <a href={link} target="blank" >Link</a>
+            <a href={ link } target="blank" >Link</a>
           </div>
         </div>
       </Cell>

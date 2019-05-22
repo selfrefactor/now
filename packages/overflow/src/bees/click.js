@@ -1,5 +1,5 @@
-import {dispatcher} from 'reduxed'
+import { dispatcher } from '../reduxed'
 
 export function clickBee(){
-  dispatcher({type:'CLICK'})
+  dispatcher({ type : 'CLICK' })
 }
