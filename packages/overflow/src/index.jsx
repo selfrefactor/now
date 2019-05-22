@@ -11,7 +11,7 @@ import {
 import {
   _,
   defaultTo,
-  delay,
+  nextIndex,
   filter,
   headObject,
   once,
@@ -34,12 +34,13 @@ const initialState = {
     tags : [],
     link : '',
   },
+  index: 0,
   data : [],
 }
 const allReducers = []
 
 function rootReducer(state, action){
-  console.log(state, action)
+  // console.log(state, action)
 
   switch (action.type){
   case _.CLICK:
@@ -64,15 +65,13 @@ function rootReducer(state, action){
 
 const asyncSideEffects = {
   NEXT : async (state, action, getState) => {
-    const dataRaw = await window.fetch(
-      `http://toteff.eu.ngrok.io/stack-overflow/${ action.payload }`
+    const {data, index} = getState()
+    const newIndex = nextIndex(
+      index,
+      data.length
     )
-    const data = await dataRaw.json()
-
-    if (data.length === 0) throw new Error('empty data')
-
-    const currentInstance = shuffle(data)[ 0 ]
-
+    const currentInstance = data[newIndex]
+      
     appendPortalBee(currentInstance)
     dispatcher({
       type    : 'SET_CURRENT',
@@ -80,6 +79,15 @@ const asyncSideEffects = {
     })
 
     return false
+
+    /**
+     * TODO retun state from here instead of above
+     */
+    // return {
+    //   ...state,
+    //   currentInstance,
+    //   index: newIndex
+    // }
   },
 }
 
@@ -116,15 +124,16 @@ const componentDidMountFn = async (dispatchInstance) => {
   const playValue = defaultTo(3, play)
 
   const tag = getTag(filter(Boolean, rest))
-
+  
   const dataRaw = await window.fetch(
+    // `http://localhost:3040/stack-overflow/${ tag }`
     `http://toteff.eu.ngrok.io/stack-overflow/${ tag }`
   )
   const data = await dataRaw.json()
 
   if (data.length === 0) throw new Error('empty data')
 
-  return tickBee(getCurrentState, playValue, data)
+  return tickBee(getCurrentState, playValue, shuffle(data))
 }
 
 const componentDidMount = once(componentDidMountFn)
@@ -136,7 +145,8 @@ function Root(){
   )
   setCurrentState(store)
   componentDidMount(dispatch)
-
+  console.log('render', store.currentInstance);
+    
   const buttonText = store.play ?
     'STOP' :
     'PLAY'

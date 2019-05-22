@@ -18,6 +18,7 @@
   "name": "overflow",
   "version": "1.0.0",
   "main": "src/index.jsx",
+  "browserslist": "last 2 Chrome versions",
   "homepage": "https://github.com/selfrefactor/now#readme",
   "directories": {
     "lib": "lib"
@@ -67,6 +68,6 @@
     "feature": [
       "refactor"
     ],
-    "workInProgress": "ping server once"
+    "workInProgress": ""
   }
 }
