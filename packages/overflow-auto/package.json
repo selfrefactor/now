@@ -15,6 +15,13 @@
       "<rootDir>/node_modules/helpers/jest/prepare.js"
     ]
   },
+  "scripts": {
+    "now": "now alias dist-bmhkbnyfxx.now.sh overflow-auto",
+    "deploy": "now dist --public",
+    "build": "NODE_ENV=production parcel build index.html --no-minify --public-url /",
+    "test": "jest",
+    "in": "NODE_ENV=development parcel -p 8080 index.html "
+  },
   "name": "overflow",
   "version": "1.0.0",
   "main": "src/index.jsx",
@@ -31,13 +38,6 @@
     "url": "git+https://github.com/selfrefactor/now.git"
   },
   "license": "MIT",
-  "scripts": {
-    "now": "now alias dist-otnfqdifti.now.sh overflow",
-    "deploy": "now dist --public",
-    "build": "NODE_ENV=production parcel build index.html --no-minify --public-url /",
-    "test": "jest",
-    "in": "NODE_ENV=development parcel -p 8080 index.html "
-  },
   "dependencies": {
     "@sentry/browser": "^5.1.2",
     "colors": "https://github.com/selfrefactor/colors#1.3.0",
