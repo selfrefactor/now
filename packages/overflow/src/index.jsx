@@ -7,7 +7,7 @@ import {
   createReducer,
   dispatcher,
   componentDidMountRaw,
-} from './reduxed'
+} from 'reduxed'
 import {
   _,
   defaultTo,
@@ -33,11 +33,12 @@ const initialState = {
     tags : [],
     link : '',
   },
+  data : [],
 }
 const allReducers = []
 
 function rootReducer(state, action){
-  console.log(state, action)
+  console.log(state, action) 
 
   switch (action.type){
   case _.CLICK:
@@ -45,10 +46,15 @@ function rootReducer(state, action){
       ...state,
       play : !state.play,
     }
-  case 'SET_CURRENT':
+  case _.SET_CURRENT:
     return {
       ...state,
       currentInstance : action.payload,
+    }
+  case _.SET_DATA:
+    return {
+      ...state,
+      data : action.payload,
     }
   default:
     return state
@@ -116,7 +122,8 @@ const componentDidMountFn = async (dispatchInstance) => {
     `http://toteff.eu.ngrok.io/stack-overflow/${ tag }`
   )
   const data = await dataRaw.json()
-
+    console.log(data);
+    
   if (data.length === 0) throw new Error('empty data')
 
   return tickBee(getCurrentState, playValue, tag, data)

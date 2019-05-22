@@ -6340,9 +6340,9 @@ realpath-native@^1.1.0:
   dependencies:
     util.promisify "^1.0.0"
 
-"reduxed@https://github.com/selfrefactor/reduxed#0.4.1":
+"reduxed@https://github.com/selfrefactor/reduxed#0.4.2":
   version "0.2.0"
-  resolved "https://github.com/selfrefactor/reduxed#280e545cfb4fdf28311086b9f13e551d089ed3b7"
+  resolved "https://github.com/selfrefactor/reduxed#4493e440f9cb75b27639605fedf84e35fa026281"
 
 reflect.ownkeys@^0.2.0:
   version "0.2.0"

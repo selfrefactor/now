@@ -1,4 +1,5 @@
-import { dispatcher, pipe } from '../../../../../reduxed/src/index'
+import { dispatcher, pipe } from 'reduxed'
+import { delay } from 'rambdax'
 
 export async function tickBee(getCurrentState, tick, tag, data){
   const nextAction = {
