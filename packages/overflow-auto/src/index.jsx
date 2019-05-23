@@ -10,9 +10,11 @@ import {
 } from 'reduxed'
 import {
   _,
+  log,
   defaultTo,
   nextIndex,
   filter,
+  delay,
   headObject,
   once,
   shuffle,
@@ -27,36 +29,36 @@ import { takeArguments } from 'string-fn'
 import { sentryAnt, captureExceptionAnt } from './ants/sentry.js'
 
 const initialState = {
-  play            : true,
-  auto            : false,
-  autoInterval    : 10000,
-  currentInstance : {
-    tags : [],
-    link : '',
+  play: true,
+  auto: false,
+  autoInterval: 10000,
+  currentInstance: {
+    tags: [],
+    link: '',
   },
   index: 0,
-  data : [],
+  data: [],
 }
 const allReducers = []
 
 function rootReducer(state, action){
-  // console.log(state, action)
+  console.log(state, action)
 
   switch (action.type){
   case _.CLICK:
     return {
       ...state,
-      play : !state.play,
+      play: !state.play,
     }
   case _.SET_CURRENT:
     return {
       ...state,
-      currentInstance : action.payload,
+      ...action.payload,
     }
   case _.SET_DATA:
     return {
       ...state,
-      data : action.payload,
+      data: action.payload,
     }
   default:
     return state
@@ -64,18 +66,26 @@ function rootReducer(state, action){
 }
 
 const asyncSideEffects = {
-  NEXT : async (state, action, getState) => {
-    const {data, index} = getState()
-    const newIndex = nextIndex(
+  // todo {state,action, ...})
+  NEXT: async (state, action, getState) => {
+    const { data, index } = getState()
+    const newIndex = nextIndex(index, data.length)
+    log({
       index,
-      data.length
-    )
-    const currentInstance = data[newIndex]
-      
+      newIndex,
+      l: data.length,
+    })
+
+    const currentInstance = data[ newIndex ]
+    log(currentInstance)
+
     appendPortalBee(currentInstance)
     dispatcher({
-      type    : 'SET_CURRENT',
-      payload : currentInstance,
+      type: 'SET_CURRENT',
+      payload: {
+        currentInstance,
+        index: newIndex,
+      },
     })
 
     return false
@@ -96,7 +106,7 @@ const reducer = createReducer(
   allReducers,
   getCurrentState,
   asyncSideEffects,
-  captureExceptionAnt,
+  captureExceptionAnt
 )
 
 const getTag = filtered => {
@@ -109,7 +119,7 @@ const getTag = filtered => {
   return prop
 }
 
-const componentDidMountFn = async (dispatchInstance) => {
+const componentDidMountFn = async dispatchInstance => {
   sentryAnt()
   componentDidMountRaw(dispatchInstance)
 
@@ -124,7 +134,7 @@ const componentDidMountFn = async (dispatchInstance) => {
   const playValue = defaultTo(3, play)
 
   const tag = getTag(filter(Boolean, rest))
-  
+
   const dataRaw = await window.fetch(
     // `http://localhost:3040/stack-overflow/${ tag }`
     `http://toteff.eu.ngrok.io/stack-overflow/${ tag }`
@@ -145,75 +155,72 @@ function Root(){
   )
   setCurrentState(store)
   componentDidMount(dispatch)
-  console.log('render', store.currentInstance);
-    
-  const buttonText = store.play ?
-    'STOP' :
-    'PLAY'
+
+  const buttonText = store.play ? 'STOP' : 'PLAY'
   const tags = store.currentInstance.tags.join(', ')
   const { link } = store.currentInstance
 
   return (
     <Grid>
-
       <Cell
-        evalStyled="width:100%;outline: 1px solid grey;z-index:1000;background: #dae1fafa"
-        height={ 2 }
-        topLeft={ {
-          x : 8,
-          y : 0,
-        } }
-        width={ 2 }
+        evalStyled='width:100%;outline: 1px solid grey;z-index:1000;background: #dae1fafa'
+        height={2}
+        topLeft={{
+          x: 8,
+          y: 0,
+        }}
+        width={2}
       >
-        <div className="button" onClick={ clickBee }>
+        <div className='button' onClick={clickBee}>
           <div>{buttonText}</div>
         </div>
       </Cell>
 
       <Cell
-        evalStyled="width:100%;outline: 1px solid grey;z-index:1000;background: #dae1fafa"
-        height={ 2 }
-        topLeft={ {
-          x : 11,
-          y : 0,
-        } }
-        width={ 2 }
+        evalStyled='width:100%;outline: 1px solid grey;z-index:1000;background: #dae1fafa'
+        height={2}
+        topLeft={{
+          x: 11,
+          y: 0,
+        }}
+        width={2}
       >
-        <div className="button" onClick={ next }>
+        <div className='button' onClick={next}>
           <div>Next</div>
         </div>
       </Cell>
 
       <Cell
-        evalStyled="width:100%;outline: 1px solid grey;z-index:1000;background: #dae1fafa"
-        height={ 2 }
-        topLeft={ {
-          x : 15,
-          y : 0,
-        } }
-        width={ 7 }
+        evalStyled='width:100%;outline: 1px solid grey;z-index:1000;background: #dae1fafa'
+        height={2}
+        topLeft={{
+          x: 15,
+          y: 0,
+        }}
+        width={7}
       >
-        <div className="button" onClick={ clickBee }>
+        <div className='button' onClick={clickBee}>
           <div>{tags}</div>
         </div>
       </Cell>
 
       <Cell
-        evalStyled="width:100%;outline: 1px solid grey;z-index:1000;background: #cae1faaa"
-        height={ 2 }
-        topLeft={ {
-          x : 23,
-          y : 0,
-        } }
-        width={ 4 }
+        evalStyled='width:100%;outline: 1px solid grey;z-index:1000;background: #cae1faaa'
+        height={2}
+        topLeft={{
+          x: 23,
+          y: 0,
+        }}
+        width={4}
       >
-        <div className="button">
+        <div className='button'>
           <div>
-            <a href={ link } target="blank" >Link</a>
+            <a href={link} target='blank'>
+              Link
+            </a>
           </div>
         </div>
       </Cell>
-
     </Grid>
   )
 }
