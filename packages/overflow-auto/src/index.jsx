@@ -11,6 +11,7 @@ import {
 import {
   _,
   log,
+  logInit,
   defaultTo,
   nextIndex,
   filter,
@@ -27,22 +28,25 @@ import { tickBee } from './bees/tick.js'
 import { Grid, Cell } from '../../../../stories/src/Grid/component.js'
 import { takeArguments } from 'string-fn'
 import { sentryAnt, captureExceptionAnt } from './ants/sentry.js'
+logInit({ logFlag: false })
 
 const initialState = {
   play: true,
   auto: false,
+  tag: 'all',
   autoInterval: 10000,
   currentInstance: {
     tags: [],
     link: '',
   },
   index: 0,
+  limitIndex: 1,
   data: [],
 }
 const allReducers = []
 
 function rootReducer(state, action){
-  console.log(state, action)
+  log(state, action)
 
   switch (action.type){
   case _.CLICK:
@@ -58,23 +62,51 @@ function rootReducer(state, action){
   case _.SET_DATA:
     return {
       ...state,
-      data: action.payload,
+      ...action.payload,
     }
   default:
     return state
   }
 }
 
+async function whenNewLimit(limitIndex, tag){
+  log(limitIndex, tag)
+
+  const dataRaw = await fetchData(tag, Math.floor(limitIndex * 20) + 30)
+
+  const data = shuffle(dataRaw)
+  const payload = {
+    limitIndex: limitIndex + 1,
+    data,
+    index: 0,
+    currentInstance: data[ 0 ],
+  }
+  log({ payload })
+
+  dispatcher({
+    type: _.SET_DATA,
+    payload,
+  })
+}
+
 const asyncSideEffects = {
   // todo {state,action, ...})
   NEXT: async (state, action, getState) => {
-    const { data, index } = getState()
-    const newIndex = nextIndex(index, data.length)
+    const { data, index, limitIndex, tag } = getState()
+    const newIndex = nextIndex(index, data)
     log({
       index,
       newIndex,
       l: data.length,
     })
+    const shouldRequest =
+      data.length % 10 === 0 && Math.floor(data.length / 10) === limitIndex
+
+    if (newIndex === 0 || shouldRequest){
+      await whenNewLimit(limitIndex, tag)
+
+      return false
+    }
 
     const currentInstance = data[ newIndex ]
     log(currentInstance)
@@ -119,6 +151,19 @@ const getTag = filtered => {
   return prop
 }
 
+export async function fetchData(tag, limit){
+  const limitPart = limit ? `/${ limit }` : ''
+
+  const dataRaw = await window.fetch(
+    `http://toteff.eu.ngrok.io/stack-overflow/${ tag }${ limitPart }`
+  )
+  const data = await dataRaw.json()
+
+  if (data.length === 0) throw new Error('empty data')
+
+  return data
+}
+
 const componentDidMountFn = async dispatchInstance => {
   sentryAnt()
   componentDidMountRaw(dispatchInstance)
@@ -135,15 +180,9 @@ const componentDidMountFn = async dispatchInstance => {
 
   const tag = getTag(filter(Boolean, rest))
 
-  const dataRaw = await window.fetch(
-    // `http://localhost:3040/stack-overflow/${ tag }`
-    `http://toteff.eu.ngrok.io/stack-overflow/${ tag }`
-  )
-  const data = await dataRaw.json()
+  const data = await fetchData(tag)
 
-  if (data.length === 0) throw new Error('empty data')
-
-  return tickBee(getCurrentState, playValue, shuffle(data))
+  return tickBee(getCurrentState, playValue, shuffle(data), tag)
 }
 
 const componentDidMount = once(componentDidMountFn)
