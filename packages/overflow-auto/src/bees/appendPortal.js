@@ -18,7 +18,7 @@ export async function appendPortalBee({ accepted_answer_id, link }){
   parentSecond.appendChild(portalSecond)
   setter(_.PORTAL_SECOND, portalSecond)
 
-  await delay(500)
+  await delay(800)
   parent.appendChild(portal)
   setter(_.PORTAL, portal)
 }

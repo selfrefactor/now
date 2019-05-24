@@ -15,7 +15,6 @@ import {
   defaultTo,
   nextIndex,
   filter,
-  delay,
   headObject,
   once,
   shuffle,
@@ -28,13 +27,12 @@ import { tickBee } from './bees/tick.js'
 import { Grid, Cell } from '../../../../stories/src/Grid/component.js'
 import { takeArguments } from 'string-fn'
 import { sentryAnt, captureExceptionAnt } from './ants/sentry.js'
-logInit({ logFlag: false })
+logInit({ logFlag: true })
 
 const initialState = {
   play: true,
   auto: false,
   tag: 'all',
-  autoInterval: 10000,
   currentInstance: {
     tags: [],
     link: '',
@@ -54,6 +52,11 @@ function rootReducer(state, action){
       ...state,
       play: !state.play,
     }
+  case _.SET:
+    return {
+      ...state,
+      ...action.payload,
+    }
   case _.SET_CURRENT:
     return {
       ...state,
@@ -72,7 +75,10 @@ function rootReducer(state, action){
 async function whenNewLimit(limitIndex, tag){
   log(limitIndex, tag)
 
-  const dataRaw = await fetchData(tag, Math.floor(limitIndex * 20) + 30)
+  const dataRaw = await fetchData(
+    tag,
+    Math.floor(limitIndex * 20) + 30,
+  )
 
   const data = shuffle(dataRaw)
   const payload = {
@@ -84,7 +90,7 @@ async function whenNewLimit(limitIndex, tag){
   log({ payload })
 
   dispatcher({
-    type: _.SET_DATA,
+    type: _.SET,
     payload,
   })
 }
@@ -93,6 +99,7 @@ const asyncSideEffects = {
   // todo {state,action, ...})
   NEXT: async (state, action, getState) => {
     const { data, index, limitIndex, tag } = getState()
+
     const newIndex = nextIndex(index, data)
     log({
       index,
@@ -109,7 +116,7 @@ const asyncSideEffects = {
     }
 
     const currentInstance = data[ newIndex ]
-    log(currentInstance)
+    log({ currentInstance })
 
     appendPortalBee(currentInstance)
     dispatcher({
@@ -153,10 +160,10 @@ const getTag = filtered => {
 
 export async function fetchData(tag, limit){
   const limitPart = limit ? `/${ limit }` : ''
+  const requestUrl = `https://toteff.eu.ngrok.io/stack-overflow/${ tag }${ limitPart }`
+  log({ requestUrl })
 
-  const dataRaw = await window.fetch(
-    `http://toteff.eu.ngrok.io/stack-overflow/${ tag }${ limitPart }`
-  )
+  const dataRaw = await window.fetch(requestUrl)
   const data = await dataRaw.json()
 
   if (data.length === 0) throw new Error('empty data')
@@ -175,14 +182,22 @@ const componentDidMountFn = async dispatchInstance => {
   document.body.appendChild(child)
   document.body.appendChild(childSecond)
 
-  const { play, ...rest } = takeArguments(window.location.href, '?', true)
+  const { play, ...rest } = takeArguments(
+    window.location.href,
+    '?',
+    true
+  )
   const playValue = defaultTo(3, play)
-
   const tag = getTag(filter(Boolean, rest))
 
-  const data = await fetchData(tag)
+  const data = await fetchData(tag, 40)
 
-  return tickBee(getCurrentState, playValue, shuffle(data), tag)
+  return tickBee(
+    getCurrentState,
+    playValue,
+    shuffle(data),
+    tag,
+  )
 }
 
 const componentDidMount = once(componentDidMountFn)
