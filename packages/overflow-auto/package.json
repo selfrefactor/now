@@ -16,7 +16,7 @@
     ]
   },
   "scripts": {
-    "now": "now alias dist-mzufhdppty.now.sh overflow-auto",
+    "now": "now alias dist-xsxgrkvmzn.now.sh overflow-auto",
     "deploy": "now dist --public",
     "build": "NODE_ENV=production parcel build index.html --no-minify --public-url /",
     "test": "jest",
