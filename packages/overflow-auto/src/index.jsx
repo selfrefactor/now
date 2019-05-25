@@ -115,6 +115,7 @@ const asyncSideEffects = {
     const currentInstance = data[ newIndex ]
     log({ currentInstance })
 
+
     appendPortalBee(currentInstance)
     dispatcher({
       type: 'SET_CURRENT',
@@ -161,8 +162,6 @@ export async function fetchData(tag, limit){
 }
 
 const componentDidMountFn = async dispatchInstance => {
-  console.log(1)
-
   sentryAnt()
   componentDidMountRaw(dispatchInstance)
 
