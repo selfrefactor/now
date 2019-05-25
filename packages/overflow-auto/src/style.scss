@@ -1,56 +1,46 @@
+@import url(https://fonts.googleapis.com/css?family=Patrick+Hand);
 @import '../node_modules/colors/colors';
 
-$back: #43a3;
+$back: $BACK_7;
+$left-width: 84vw;
+$right-width: 86vw;
+$top: 1vh;
+$total-height: 98vh;
 
 html{
-  background:$back;
+  font-family: 'Patrick Hand', cursive !important;
+  background:#FAFAFA;
   overflow: hidden;
 }
 portal{
-  width: 98vw;
-  height: 60vh;
+  width: $left-width;
+  height: $total-height;
 }
 portal#second{
-  width: 98vw;
-  height: 40vh;
+  width: $right-width;
+  height: $total-height;
 }
 .button{
   cursor: pointer;
+  border-top-left-radius: 15%;
+  border-top-right-radius:20%;
+  border-bottom-left-radius: 15%;
+  border-bottom-right-radius: 20%;
+  background: $BACK_OPACITY_1;
+  border: 1px ridge $SPECIAL_4;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 #portal{
-  top: 1vh;
-  left: 1vw;
+  top: $top;
+  left: -19vw;
   position: absolute;
-  width: 98vw;
-  height: 58vh;
 }
 #portal-second{
-  top: 60vh;
-  left: 1vw;
-  position: fixed;
-  width: 98vw;
-  height: 38vh;
-}
-.foo{
-  background: $BACK_12;
-}
-
-.navagation{
-  &__container{
-    background: $BACK_5;
-    color: $DARK_RED_2;
-    position: fixed;
-    height: 10vh;
-    bottom: 0;
-    width: 100vw;
-    span{
-      background: $GREY_2;
-      padding: 20px;
-      margin: 20px;
-    }
-  }
+  top: $top;
+  border-left: 1px ridge $SPECIAL_2;
+  left: 40vw;
+  position: absolute;
 }

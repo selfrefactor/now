@@ -75,10 +75,7 @@ function rootReducer(state, action){
 async function whenNewLimit(limitIndex, tag){
   log(limitIndex, tag)
 
-  const dataRaw = await fetchData(
-    tag,
-    Math.floor(limitIndex * 20) + 30,
-  )
+  const dataRaw = await fetchData(tag, Math.floor(limitIndex * 20) + 30)
 
   const data = shuffle(dataRaw)
   const payload = {
@@ -128,15 +125,9 @@ const asyncSideEffects = {
     })
 
     return false
-
     /**
      * TODO retun state from here instead of above
      */
-    // return {
-    //   ...state,
-    //   currentInstance,
-    //   index: newIndex
-    // }
   },
 }
 
@@ -149,9 +140,7 @@ const reducer = createReducer(
 )
 
 const getTag = filtered => {
-  if (Object.keys(filtered).length !== 1){
-    return 'all'
-  }
+  if (Object.keys(filtered).length !== 1) return 'all'
 
   const { prop } = headObject(filtered)
 
@@ -182,22 +171,13 @@ const componentDidMountFn = async dispatchInstance => {
   document.body.appendChild(child)
   document.body.appendChild(childSecond)
 
-  const { play, ...rest } = takeArguments(
-    window.location.href,
-    '?',
-    true
-  )
+  const { play, ...rest } = takeArguments(window.location.href, '?', true)
   const playValue = defaultTo(3, play)
   const tag = getTag(filter(Boolean, rest))
 
   const data = await fetchData(tag, 40)
 
-  return tickBee(
-    getCurrentState,
-    playValue,
-    shuffle(data),
-    tag,
-  )
+  return tickBee(getCurrentState, playValue, shuffle(data), tag)
 }
 
 const componentDidMount = once(componentDidMountFn)
@@ -212,12 +192,14 @@ function Root(){
 
   const buttonText = store.play ? 'STOP' : 'PLAY'
   const tags = store.currentInstance.tags.join(', ')
-  const { link } = store.currentInstance
+  const { link, accepted_answer_id } = store.currentInstance
+
+  const answer = `${ link }/${ accepted_answer_id }#${ accepted_answer_id }`
 
   return (
     <Grid>
       <Cell
-        evalStyled='width:100%;outline: 1px solid grey;z-index:1000;background: #dae1fafa'
+        evalStyled='width:100%;z-index:1000;'
         height={2}
         topLeft={{
           x: 8,
@@ -231,7 +213,7 @@ function Root(){
       </Cell>
 
       <Cell
-        evalStyled='width:100%;outline: 1px solid grey;z-index:1000;background: #dae1fafa'
+        evalStyled='width:100%;z-index:1000;'
         height={2}
         topLeft={{
           x: 11,
@@ -245,7 +227,7 @@ function Root(){
       </Cell>
 
       <Cell
-        evalStyled='width:100%;outline: 1px solid grey;z-index:1000;background: #dae1fafa'
+        evalStyled='width:100%;z-index:1000;'
         height={2}
         topLeft={{
           x: 15,
@@ -259,7 +241,7 @@ function Root(){
       </Cell>
 
       <Cell
-        evalStyled='width:100%;outline: 1px solid grey;z-index:1000;background: #cae1faaa'
+        evalStyled='width:100%;z-index:1000;'
         height={2}
         topLeft={{
           x: 23,
@@ -269,7 +251,7 @@ function Root(){
       >
         <div className='button'>
           <div>
-            <a href={link} target='blank'>
+            <a href={answer} target='blank'>
               Link
             </a>
           </div>
