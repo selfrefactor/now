@@ -1,73 +1,73 @@
 {
-	"jest": {
-		"snapshotSerializers": [
-			"enzyme-to-json/serializer"
-		],
-		"setupFiles": [
-			"<rootDir>/node_modules/helpers/jest/reactShim.js",
-			"<rootDir>/node_modules/helpers/jest/enzyme.js"
-		],
-		"moduleFileExtensions": [
-			"jsx",
-			"js"
-		],
-		"setupFilesAfterEnv": [
-			"<rootDir>/node_modules/helpers/jest/prepare.js"
-		]
-	},
-	"scripts": {
-		"now": "now alias dist-coboydjukb.now.sh overflow-auto",
-		"deploy": "now dist --public",
-		"build": "NODE_ENV=production parcel build index.html --no-minify --public-url /",
-		"test": "jest",
-		"in": "NODE_ENV=development parcel -p 8080 index.html "
-	},
-	"name": "overflow",
-	"version": "1.0.0",
-	"main": "src/index.jsx",
-	"browserslist": "last 2 Chrome versions",
-	"homepage": "https://github.com/selfrefactor/now#readme",
-	"directories": {
-		"lib": "lib"
-	},
-	"files": [
-		"lib"
-	],
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/selfrefactor/now.git"
-	},
-	"license": "MIT",
-	"dependencies": {
-		"@sentry/browser": "^5.3.0",
-		"colors": "https://github.com/selfrefactor/colors#1.4.0",
-		"reduxed": "https://github.com/selfrefactor/reduxed#0.4.2",
-		"create-action": "https://github.com/selfrefactor/create-action#0.5.0",
-		"rambdax": "^2.8.1",
-		"react": "^16.9.0-alpha.0",
-		"react-dom": "^16.9.0-alpha.0",
-		"string-fn": "^2.8.1"
-	},
-	"devDependencies": {
-		"@babel/core": "^7.4.5",
-		"@types/react": "^16.8.18",
-		"@types/node": "^12.0.2",
-		"babel-preset-env": "^7.0.0-beta.3",
-		"babel-preset-react": "^7.0.0-beta.3",
-		"env": "https://github.com/selfrefactor/env#0.2.1",
-		"enzyme": "^3.9.0",
-		"enzyme-adapter-react-16": "^1.13.1",
-		"enzyme-to-json": "^3.3.5",
-		"helpers": "https://github.com/selfrefactor/helpers#0.5.0",
-		"jest": "^24.8.0",
-		"parcel-bundler": "^1.12.3",
-		"sass": "^1.20.1",
-		"typescript": "^3.5.0-rc"
-	},
-	"commitMessage": {
-		"feature": [
-			"refactor"
-		],
-		"workInProgress": ""
-	}
+  "jest": {
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "setupFiles": [
+      "<rootDir>/node_modules/helpers/jest/reactShim.js",
+      "<rootDir>/node_modules/helpers/jest/enzyme.js"
+    ],
+    "moduleFileExtensions": [
+      "jsx",
+      "js"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/node_modules/helpers/jest/prepare.js"
+    ]
+  },
+  "scripts": {
+    "now": "now alias dist-coboydjukb.now.sh overflow-auto",
+    "deploy": "now dist --public",
+    "build": "NODE_ENV=production parcel build index.html --no-minify --public-url /",
+    "test": "jest",
+    "in": "NODE_ENV=development parcel -p 8080 index.html "
+  },
+  "name": "overflow",
+  "version": "1.0.0",
+  "main": "src/index.jsx",
+  "browserslist": "last 2 Chrome versions",
+  "homepage": "https://github.com/selfrefactor/now#readme",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/selfrefactor/now.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@sentry/browser": "^5.3.0",
+    "colors": "https://github.com/selfrefactor/colors#1.4.0",
+    "reduxed": "https://github.com/selfrefactor/reduxed#0.4.2",
+    "create-action": "https://github.com/selfrefactor/create-action#0.5.0",
+    "rambdax": "^2.8.1",
+    "react": "^16.9.0-alpha.0",
+    "react-dom": "^16.9.0-alpha.0",
+    "string-fn": "^2.8.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@types/react": "^16.8.18",
+    "@types/node": "^12.0.2",
+    "babel-preset-env": "^7.0.0-beta.3",
+    "babel-preset-react": "^7.0.0-beta.3",
+    "env": "https://github.com/selfrefactor/env#0.2.1",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.13.1",
+    "enzyme-to-json": "^3.3.5",
+    "helpers": "https://github.com/selfrefactor/helpers#0.5.0",
+    "jest": "^24.8.0",
+    "parcel-bundler": "^1.12.3",
+    "sass": "^1.20.1",
+    "typescript": "^3.5.0-rc"
+  },
+  "commitMessage": {
+    "feature": [
+      "refactor"
+    ],
+    "workInProgress": "set up chromebook"
+  }
 }

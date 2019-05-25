@@ -3,7 +3,7 @@
 
 $back: $BACK_7;
 $left-width: 84vw;
-$right-width: 86vw;
+$right-width: 70vw;
 $top: 1vh;
 $total-height: 98vh;
 
@@ -35,7 +35,7 @@ portal#second{
 }
 #portal{
   top: $top;
-  left: -19vw;
+  left: -14vw;
   position: absolute;
 }
 #portal-second{
