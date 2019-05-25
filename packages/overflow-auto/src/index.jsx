@@ -161,6 +161,8 @@ export async function fetchData(tag, limit){
 }
 
 const componentDidMountFn = async dispatchInstance => {
+  console.log(1)
+
   sentryAnt()
   componentDidMountRaw(dispatchInstance)
 
