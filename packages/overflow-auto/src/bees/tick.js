@@ -2,10 +2,10 @@ import { dispatcher, pipe } from 'reduxed'
 import { delay } from 'rambdax'
 
 export async function tickBee(
-  getCurrentState,
   tick,
   data,
   tag,
+  auto
 ){
   const nextAction = { type : 'NEXT' }
   const setDataAction = {
@@ -21,12 +21,12 @@ export async function tickBee(
     nextAction
   )
 
+  if(auto!== true) return console.log('no auto mode. exit')
+
   await delay(tick * 60000)
 
   while (true){
-    if (getCurrentState().play){
-      dispatcher(nextAction)
-    }
+    dispatcher(nextAction)
 
     await delay(tick * 60000)
   }

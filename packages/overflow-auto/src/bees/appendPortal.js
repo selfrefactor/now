@@ -1,4 +1,4 @@
-import { setter, getter, _ } from 'rambdax'
+import { setter, getter, _ , delay } from 'rambdax'
 
 function work(parent, src, id){
   const portal = document.createElement('portal')
@@ -28,5 +28,6 @@ export async function appendPortalBee({ accepted_answer_id, link }){
   }
 
   work(parent, link)
+  await delay(500)
   work(parentSecond, answer, 'second')
 }

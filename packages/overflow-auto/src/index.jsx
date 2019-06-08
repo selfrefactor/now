@@ -30,7 +30,6 @@ import { sentryAnt, captureExceptionAnt } from './ants/sentry.js'
 logInit({ logFlag: true })
 
 const initialState = {
-  play: true,
   auto: false,
   tag: 'all',
   currentInstance: {
@@ -47,11 +46,6 @@ function rootReducer(state, action){
   log(state, action)
 
   switch (action.type){
-  case _.CLICK:
-    return {
-      ...state,
-      play: !state.play,
-    }
   case _.SET:
     return {
       ...state,
@@ -172,13 +166,13 @@ const componentDidMountFn = async dispatchInstance => {
   document.body.appendChild(child)
   document.body.appendChild(childSecond)
 
-  const { play, ...rest } = takeArguments(window.location.href, '?', true)
+  const { play, auto, ...rest } = takeArguments(window.location.href, '?', true)
   const playValue = defaultTo(3, play)
   const tag = getTag(filter(Boolean, rest))
 
   const data = await fetchData(tag, 40)
 
-  return tickBee(getCurrentState, playValue, shuffle(data), tag)
+  return tickBee(playValue, shuffle(data), tag, auto)
 }
 
 const componentDidMount = once(componentDidMountFn)
@@ -191,7 +185,6 @@ function Root(){
   setCurrentState(store)
   componentDidMount(dispatch)
 
-  const buttonText = store.play ? 'STOP' : 'PLAY'
   const tags = store.currentInstance.tags.join(', ')
   const { link, accepted_answer_id } = store.currentInstance
 
@@ -199,20 +192,6 @@ function Root(){
 
   return (
     <Grid>
-      <Cell
-        evalStyled='width:100%;z-index:1000;'
-        height={2}
-        topLeft={{
-          x: 8,
-          y: 0,
-        }}
-        width={2}
-      >
-        <div className='button' onClick={clickBee}>
-          <div>{buttonText}</div>
-        </div>
-      </Cell>
-
       <Cell
         evalStyled='width:100%;z-index:1000;'
         height={2}
