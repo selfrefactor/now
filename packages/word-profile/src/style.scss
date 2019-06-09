@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Arvo);
+@import url(https://fonts.googleapis.com/css?family=Cousine);
 @import '../node_modules/colors/colors';
 
 $back: $BACK_14;
@@ -6,7 +6,7 @@ $back: $BACK_14;
 html{
   background:$back;
   overflow: hidden;
-  font-family: 'Arvo', serif;
+  font-family: 'Cousine', monospace;
 }
 body{
   margin: 0 !important;
