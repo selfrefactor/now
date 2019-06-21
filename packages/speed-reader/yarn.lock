@@ -2494,10 +2494,6 @@ cosmiconfig@^5.0.0:
     js-yaml "^3.13.0"
     parse-json "^4.0.0"
 
-"create-action@https://github.com/selfrefactor/create-action#0.5.0":
-  version "0.1.0"
-  resolved "https://github.com/selfrefactor/create-action#0688b96cf3ce8d35134386161e80987a73c84252"
-
 create-ecdh@^4.0.0:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/create-ecdh/-/create-ecdh-4.0.3.tgz#c9111b6f33045c4697f144787f9254cdc77c45ff"
@@ -6202,11 +6198,6 @@ rambdax@^1.2.0:
   resolved "https://registry.yarnpkg.com/rambdax/-/rambdax-1.9.0.tgz#ff35fd91368fa83d75bc5206b9d7e892752aa406"
   integrity sha512-fpYhT2mrUejiAsHXKsU/suvJeosyCCpT6MKXg8bFs1ZclbWrxctO8x3dEMJrsvvH2cPQDhSn1WofRHsPmg4jLA==
 
-rambdax@^2.6.1:
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/rambdax/-/rambdax-2.6.1.tgz#f7afb4c016313651a5a029af1246c72dc25f44f1"
-  integrity sha512-X8wLNdNVQRoKXEzEQvstpN1V8RJhaFOlibFNvG8Prwr1DaN7ToLlc4NFR0IcfxY67m/N/3YVfuvX/JSy4EpQGQ==
-
 randexp@0.4.6:
   version "0.4.6"
   resolved "https://registry.yarnpkg.com/randexp/-/randexp-0.4.6.tgz#e986ad5e5e31dae13ddd6f7b3019aa7c87f60ca3"
@@ -6334,10 +6325,6 @@ realpath-native@^1.1.0:
   integrity sha512-wlgPA6cCIIg9gKz0fgAPjnzh4yR/LnXovwuo9hvyGvx3h8nX4+/iLZplfUWasXpqD8BdnGnP5njOFjkUwPzvjA==
   dependencies:
     util.promisify "^1.0.0"
-
-"reduxed@https://github.com/selfrefactor/reduxed#0.3.2":
-  version "0.2.0"
-  resolved "https://github.com/selfrefactor/reduxed#ed5874b519bd8dfb71211090375f10597a8f83c5"
 
 reflect.ownkeys@^0.2.0:
   version "0.2.0"
