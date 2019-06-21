@@ -15,7 +15,7 @@
 			"<rootDir>/node_modules/helpers/jest/prepare.js"
 		]
 	},
-	"name": "parcel-starter",
+	"name": "speed-reader",
 	"version": "1.0.0",
 	"main": "src/index.jsx",
 	"homepage": "https://github.com/selfrefactor/now#readme",
@@ -34,15 +34,12 @@
 		"in": "NODE_ENV=development parcel -p 8080 index.html ",
     "build": "NODE_ENV=production parcel build index.html --no-minify --public-url /",
     "deploy": "now dist --public",
-		"now": "now alias dist-cyyywmqaob.now.sh foo-bar",
+		"now": "now alias dist-cyyywmqaob.now.sh speed-reader",
 		"test": "jest"
 	},
 	"dependencies": {
 		"@sentry/browser": "^5.1.2",
 		"colors": "https://github.com/selfrefactor/colors#1.3.0",
-		"reduxed": "https://github.com/selfrefactor/reduxed#0.3.2",
-		"create-action": "https://github.com/selfrefactor/create-action#0.5.0",
-		"rambdax": "^2.6.1",
 		"react": "^16.9.0-alpha.0",
 		"react-dom": "^16.9.0-alpha.0",
 		"string-fn": "^2.7.1"
