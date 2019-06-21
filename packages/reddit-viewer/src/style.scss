@@ -1,0 +1,11 @@
+@import '../node_modules/colors/colors';
+
+html{
+  background:$BACK_10;
+}
+
+body{
+  overflow-x: hidden;
+  overflow-y: hidden;
+  margin: 0;
+}
