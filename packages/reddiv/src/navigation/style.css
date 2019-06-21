@@ -1,0 +1,31 @@
+@import url(https://fonts.googleapis.com/css?family=Bungee+Inline);
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  background-color: #b0bec5;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+@media screen and (min-width: 1200px) {
+  font-size: 20px;
+}
+
+@media screen and (min-width: 900px) {
+  font-size: 18px;
+}
