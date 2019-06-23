@@ -1,27 +1,11 @@
 @import '../node_modules/colors/colors';
-
-$back: #43a3;
+@import url(https://fonts.googleapis.com/css?family=Fira+Mono:400&subset=cyrillic);
 
 html{
-  background:$back;
+  background:$BACK_7;
+  overflow: hidden;
 }
 
-.foo{
-  background: $BACK_12;
-}
-
-.navagation{
-  &__container{
-    background: $BACK_5;
-    color: $DARK_RED_2;
-    position: fixed;
-    height: 10vh;
-    bottom: 0;
-    width: 100vw;
-    span{
-      background: $GREY_2;
-      padding: 20px;
-      margin: 20px;
-    }
-  }
+body{
+  font-family: 'Fira Mono', monospace;
 }
