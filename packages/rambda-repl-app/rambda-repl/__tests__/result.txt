@@ -1,0 +1,5 @@
+const mapWithIndex = R.addIndex(R.map)
+const result = mapWithIndex(
+  (val, index) => `${val} - ${index}`,
+  ['A', 'B', 'C']
+) // => ['A - 0', 'B - 1', 'C - 2']

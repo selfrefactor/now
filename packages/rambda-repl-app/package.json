@@ -1,0 +1,108 @@
+{
+	"name": "rambda-repl",
+	"description": "rambda-repl",
+	"version": "0.1.0",
+	"license": "MIT",
+	"main": "./dist/index.js",
+	"typings": "./src/typings.d.ts",
+	"repository": "git@github.com:selfrefactor/rambda-repl.git",
+	"scripts": {
+		"do": "node files/do",
+		"now": "now alias dist-mmeflhjaar.now.sh rambda",
+		"deploy": "now dist --public",
+		"build": "./node_modules/.bin/webpack --config webpack.config.prod.js",
+		"dll": "webpack --config webpack.config.dll.js",
+		"start": "node_modules/.bin/webpack-dev-server",
+		"test": "./node_modules/.bin/jest"
+	},
+	"dependencies": {
+		"colors": "https://github.com/selfrefactor/colors#0.5.0",
+		"create-action": "https://github.com/selfrefactor/create-action#0.5.0",
+		"rambdax": "^1.6.3",
+		"react": "^16.7.0",
+		"react-ace-cdn": "^1.0.3",
+		"react-dom": "^16.7.0",
+		"react-redux": "^5.0.6",
+		"react-router-dom": "^4.4.0-beta.6",
+		"redux": "^3.7.2",
+		"redux-observable": "^0.17.0",
+		"rxjs": "^5.5.5",
+		"styled-components": "^3.4.0"
+	},
+	"depFn": [
+		"style-loader",
+		"webpack",
+		"webpack-bundle-size-analyzer",
+		"webpack-dev-server",
+		"redux-observable",
+		"rxjs",
+		"redux",
+		"react-hot-loader",
+		"typescript",
+		"tslib",
+		"react-redux",
+		"uglifyjs-webpack-plugin",
+		"awesome-typescript-loader"
+	],
+	"devDependencies": {
+    "@types/enzyme": "^3.1.6",
+    "@types/history": "^4.6.2",
+    "@types/jest": "^22.0.1",
+    "@types/react": "^16.0.34",
+    "@types/react-dom": "^16.0.3",
+    "@types/react-redux": "^5.0.14",
+    "@types/react-router": "^4.0.20",
+    "@types/react-router-dom": "^4.2.3",
+    "@types/webpack-env": "^1.13.3",
+    "add-asset-html-webpack-plugin": "^2.1.2",
+    "awesome-typescript-loader": "^3.4.1",
+    "clean-webpack-plugin": "^0.1.17",
+    "commit-message": "https://github.com/selfrefactor/commit-message#2.1.0",
+    "copy-webpack-plugin": "^4.3.1",
+    "css-loader": "^0.28.8",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.0",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "fs-extra": "^5.0.0",
+    "html-webpack-harddisk-plugin": "^0.1.0",
+    "html-webpack-include-assets-plugin": "^1.0.2",
+    "html-webpack-plugin": "^2.30.1",
+    "inquirer": "^5.0.0",
+    "jest": "^22.0.6",
+    "klaw-sync": "^3.0.2",
+    "less": "^3.0.0-pre.4",
+    "less-loader": "^4.0.5",
+    "log": "https://github.com/selfrefactor/log#0.4.0",
+    "react-hot-loader": "^3.1.3",
+    "source-map-loader": "^0.2.3",
+    "string-fn": "^1.5.2",
+    "style-loader": "^0.19.1",
+    "ts-jest": "^22.0.1",
+    "tslib": "^1.8.1",
+    "typescript": "^3.0.0",
+    "uglifyjs-webpack-plugin": "^1.1.6",
+    "watch-fn": "https://github.com/selfrefactor/watch-fn#0.7.0",
+    "webpack": "^3.9.1",
+    "webpack-bundle-size-analyzer": "^2.7.0",
+    "webpack-dev-server": "^2.9.5"
+  },
+	"jest": {
+		"snapshotSerializers": [
+			"enzyme-to-json/serializer"
+		],
+		"setupFiles": [
+			"<rootDir>/files/testShim.js",
+			"<rootDir>/files/testSetup.js"
+		],
+		"moduleFileExtensions": [
+			"ts",
+			"tsx",
+			"js"
+		],
+		"transform": {
+			"^.+\\.(ts|tsx)$": "<rootDir>/files/testPreprocessor.js"
+		},
+		"testRegex": "^((?!e2e).)*(spec.tsx|spec.ts)$"
+	}
+}
