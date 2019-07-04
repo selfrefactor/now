@@ -18,4 +18,3 @@ export const RANGE_CHANGE = 'RANGE_CHANGE'
 export const THROTTLE_DELAY = 250
 export const TOGGLE_NAVIGATION = 'TOGGLE_NAVIGATION'
 export const UPLIMIT_CHANGE = 'UPLIMIT_CHANGE'
-export const NOTIFY = 'notify@ERROR'

@@ -1,4 +1,14 @@
-import { createAction } from 'create-action'
+interface FSA<T>{
+  type: string
+  payload: T
+}
+
+export function createAction<T>(type:string){
+  return (payload?: T): FSA<T> => ({
+    type,
+    payload
+  })
+}
 
 import {
   CHANGE_UPS,

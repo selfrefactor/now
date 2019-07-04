@@ -1,7 +1,17 @@
-import { createAction } from 'create-action'
+interface FSA<T>{
+  type: string
+  payload: T
+}
+
+export function createAction<T>(type:string){
+  return (payload?: T): FSA<T> => ({
+    type,
+    payload
+  })
+}
+
 import {
   // IMPORT_CONSTANTS
-  NOTIFY,
   SCROLL_FETCH_READY,
   SCROLL_INC,
   SCROLL_INIT,
@@ -9,7 +19,6 @@ import {
 } from '../constants'
 
 // ACTIONS
-export const notify = createAction(NOTIFY)
 export const init = createAction(SCROLL_INIT)
 export const scrollInc = createAction(SCROLL_INC)
 export const initReady = createAction(SCROLL_INIT_READY)

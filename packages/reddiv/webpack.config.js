@@ -24,7 +24,6 @@ const dll = new AutoDllPlugin({
   filename: '[name]_[hash].js',
   entry: {
     vendor: [
-      'create-action',
       'rambdax',
       'raven-js',
       'react',

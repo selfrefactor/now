@@ -7,7 +7,7 @@ import {
 
 import { ActionsObservable } from 'redux-observable'
 import { Observable } from 'rxjs/Observable'
-import { fetchReady, notify } from '../actions'
+import { fetchReady } from '../actions'
 
 import { saveUplimit } from '../../_helpers/saveUplimit'
 import { scrollToTop } from '../../_helpers/scrollToTop'
@@ -52,8 +52,6 @@ export const fetchEpic = (
         if (db.length < LIMIT){
           scrollToTop()
           saveUplimit(DEFAULT_LIMIT)
-
-          observer.next(notify({message: 'PREVENT_ZERO_RESET', ms: 2000}))
 
           upLimit = DEFAULT_LIMIT
           const newState = {

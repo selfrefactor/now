@@ -33,7 +33,7 @@ const extractLess = new ExtractTextPlugin({
   disable  : false,
 })
 const html = new HtmlWebpackPlugin({
-  title             : 'DEV',
+  title             : 'Reddiv',
   xhtml             : true,
   alwaysWriteToDisk : true,
   favicon           : './files/favicon.ico',

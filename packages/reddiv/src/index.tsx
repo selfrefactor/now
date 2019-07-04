@@ -24,7 +24,6 @@ export const history = createHistory()
 const middleware = routerMiddleware(history)
 
 // COMPONENTS
-import { Notify } from 'notify/component'
 import { NavigationWrapped } from './navigation/component'
 import { ScrollWrapped } from './scroll/component'
 
@@ -80,8 +79,6 @@ class Root extends React.Component<Props, {}> {
   public render() {
     return (
       <div>
-        <Notify />
-
         <ConnectedRouter history={history}>
           <div>
             <NavigationWrapped />
