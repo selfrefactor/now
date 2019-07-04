@@ -6,7 +6,7 @@
 		"in": "NODE_ENV=development STORYBOOK_NGROK=OFF parcel -p 8080 index.html ",
 		"in.prod": "NODE_ENV=development NGROK=ON parcel -p 8080 index.html ",
     "deploy": "now dist --public",
-		"build": "NGROK=ON NODE_ENV=production parcel build index.html --no-minify --public-url /"
+		"build": "NGROK=ON ILS=ON NODE_ENV=production parcel build index.html --no-minify --public-url /"
 	},
 	"jest": {
 		"snapshotSerializers": [
