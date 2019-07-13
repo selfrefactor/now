@@ -1,4 +1,3 @@
-import 'create-action'
 import 'rambdax'
 import 'react'
 import 'react-dom'
