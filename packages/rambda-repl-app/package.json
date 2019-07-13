@@ -8,7 +8,7 @@
 	"repository": "git@github.com:selfrefactor/rambda-repl.git",
 	"scripts": {
 		"do": "node files/do",
-		"now": "now alias dist-mmeflhjaar.now.sh rambda",
+		"now": "now alias dist-snuimorpbw.now.sh rambda",
 		"deploy": "now dist --public",
 		"build": "./node_modules/.bin/webpack --config webpack.config.prod.js",
 		"dll": "webpack --config webpack.config.dll.js",
