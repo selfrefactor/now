@@ -15969,6 +15969,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+
 /***/ }),
 /* 188 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -16095,6 +16096,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clone", function() { return clone; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "forEach", function() { return forEach; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "groupBy", function() { return groupBy; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "groupWith", function() { return groupWith; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "has", function() { return has; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "head", function() { return head; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "identity", function() { return identity; });
@@ -18340,22 +18342,6 @@ function waitFor(condition, howLong, loops = 10) {
     throw new Error('R.waitFor');
   }
 
-  if (passFunction) {
-    return async (...inputs) => {
-      for (const i of range(0, loops)) {
-        const resultCondition = condition(...inputs);
-
-        if (resultCondition === false) {
-          await delay(interval);
-        } else {
-          return resultCondition;
-        }
-      }
-
-      return false;
-    };
-  }
-
   return async (...inputs) => {
     for (const i of range(0, loops)) {
       const resultCondition = await condition(...inputs);
@@ -18712,6 +18698,32 @@ function groupBy(fn, list) {
   return result;
 }
 
+function groupWith(predicate, list) {
+  const toReturn = [];
+  let holder = [];
+  list.reduce((prev, current, i) => {
+    if (i > 0 && predicate(prev, current)) {
+      if (holder.length === 0) {
+        holder.push(prev);
+        holder.push(current);
+      } else {
+        holder.push(current);
+      }
+    } else if (i > 0) {
+      if (holder.length === 0) {
+        toReturn.push([prev]);
+        if (i === list.length - 1) holder.push(current);
+      } else {
+        toReturn.push(holder);
+        holder = [];
+      }
+    }
+
+    return current;
+  }, undefined);
+  return holder.length === 0 ? toReturn : [...toReturn, holder];
+}
+
 function has(prop, obj) {
   if (arguments.length === 1) return _obj => has(prop, _obj);
   return obj[prop] !== undefined;
@@ -18945,6 +18957,7 @@ function prepend(el, list) {
 
 function prop(key, obj) {
   if (arguments.length === 1) return _obj => prop(key, _obj);
+  if (!obj) return undefined;
   return obj[key];
 }
 

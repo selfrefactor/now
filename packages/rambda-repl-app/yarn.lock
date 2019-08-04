@@ -5912,10 +5912,10 @@ rambda@^1.2.6:
   resolved "https://registry.yarnpkg.com/rambda/-/rambda-1.2.6.tgz#5feed8039369b65c389ee1e02db9527695d30e83"
   integrity sha512-3tjeDuSMKAf8t099BejrmLgXdexAh63AsU2c2ZTcN5y/gt5njw03Wsfb+Ti9b08ZWLLDN5r0EvKynfYM91PB6g==
 
-rambdax@^2.11.0:
-  version "2.11.0"
-  resolved "https://registry.yarnpkg.com/rambdax/-/rambdax-2.11.0.tgz#d63e0f88eae46af8d0db6b3d72fab8131cee8aa3"
-  integrity sha512-yjLAeABZj2hmMs6b1uPjNTzRS/0ThJSfzK4LzCeWwjuylTTtU7Ev7Kzs6pZVFx+/75aSsdLBqdzhU2fb58TtzA==
+rambdax@^2.12.3:
+  version "2.12.3"
+  resolved "https://registry.yarnpkg.com/rambdax/-/rambdax-2.12.3.tgz#8be5c926f449cc6850352463682dae93322ed707"
+  integrity sha512-4gbrTg8EDNYeLMN3edivQrSD6QzpDC7KWfhC0BwVaxZ60+5WCajTD9INVswsaWK1OLmOWguSQ47nMIoXZ1y5Tw==
 
 randexp@0.4.6:
   version "0.4.6"
