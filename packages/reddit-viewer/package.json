@@ -31,7 +31,6 @@
     "@sentry/browser": "^5.1.2",
     "client-helpers": "https://github.com/selfrefactor/client-helpers#1.4.0",
     "colors": "https://github.com/selfrefactor/colors#1.1.0",
-    "create-action": "https://github.com/selfrefactor/create-action#0.5.0",
     "rambdax": "^2.0.0",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
@@ -54,7 +53,7 @@
     "typescript": "^3.3.3"
   },
   "commitMessage": {
-    "workInProgress": "",
+    "workInProgress": "reduxed and cors",
     "fix": [
       "youtube"
     ]

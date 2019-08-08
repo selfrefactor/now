@@ -1,5 +1,7 @@
 # Reddit-viewer
 
+> CORS with https://cors-anywhere.herokuapp.com/
+
 > http://localhost:8080/meme?play=10
 
 Subreddit meme with pause of 10 seconds

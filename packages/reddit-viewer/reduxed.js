@@ -1,1 +1,1 @@
-export * from '../reduxed/src/index'
+export * from '../../../reduxed/src/index'

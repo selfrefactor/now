@@ -1,6 +1,6 @@
 import { getJsonAnt } from '../ants/getJson'
 import { buildUrlAnt } from '../ants/buildUrl'
-import { dispatcher } from '../../reduxed'
+import { dispatcher } from 'reduxed'
 import { setDb } from '../actions'
 import { setDbBee } from './setDb'
 
