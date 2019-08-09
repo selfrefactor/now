@@ -7,8 +7,7 @@
 	"typings": "./src/typings.d.ts",
 	"repository": "git@github.com:selfrefactor/rambda-repl.git",
 	"scripts": {
-		"do": "node files/do",
-		"now": "now alias dist-snuimorpbw.now.sh rambda",
+		"now": "now alias dist-uwvyidqyin.now.sh rambda",
 		"deploy": "now dist --public",
 		"build": "./node_modules/.bin/webpack --config webpack.config.prod.js",
 		"dll": "webpack --config webpack.config.dll.js",
@@ -16,7 +15,7 @@
 	},
 	"dependencies": {
 		"colors": "https://github.com/selfrefactor/colors#0.5.0",
-		"rambdax": "^2.11.0",
+		"rambdax": "^2.12.3",
 		"react": "^16.7.0",
 		"react-ace-cdn": "^1.0.3",
 		"react-dom": "^16.7.0",
