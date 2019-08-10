@@ -20,7 +20,7 @@ export const parseUrlInputsBee = input => {
   if (input.play){
     localStorage.setItem(KEY, input.play)
   } else {
-    localStorage.setItem(KEY, '5')
+    localStorage.setItem(KEY, '7')
   }
 
   return {

@@ -3,7 +3,7 @@ import { waitForAnt } from '../ants/waitFor'
 import { incIndex } from '../actions'
 import { convert } from '../../stories'
 import { pushUniq } from 'client-helpers'
-import { dispatcher } from 'reduxed'
+import { dispatcher } from '../reduxed/src/index'
 import { updateDbBee } from './updateDb'
 
 const condition = getState => !getState().loading

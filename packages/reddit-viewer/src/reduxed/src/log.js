@@ -5,7 +5,7 @@ const { defaultTo, random, isType, map, remove } = require('rambdax')
 // otherwise fallback to `colorLog`
 // ============================================
 function log(label, input, logIndex){
-  console.log(arguments)
+  console.log(arguments, 'prelog')
   if (!isType('Object', input)){
     return colorLog(
       defaultTo(random(7, 10), logIndex),

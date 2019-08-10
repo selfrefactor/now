@@ -13,7 +13,7 @@ import {
   componentDidMountRaw,
 } from './reduxed/src/index.js'
 import * as Sentry from '@sentry/browser'
-import { nextIndex, once, defaultTo } from 'rambdax'
+import { nextIndex, once } from 'rambdax'
 import { takeArguments } from 'string-fn'
 import { initLocalState, getter } from 'client-helpers'
 
@@ -134,63 +134,7 @@ function renderImageData(store){
   }
 }
 
-export class Root extends React.Component{
-  constructor(props){
-    super(props)
-    this.intervalHolder = null
-    this.state = {
-      db      : [],
-      index   : 0,
-      marker  : undefined,
-      loading : false,
-      play: play,
-      subreddit,
-    }
-    this.tick = this.tick.bind(this)
-    this.setDatabase = this.setDatabase.bind(this)
-    this.updateDatabase = this.updateDatabase.bind(this)
-    this.init = this.init.bind(this)
-    this.applyReducer = this.applyReducer.bind(this)
-  }
-
-  componentDidMount(){
-    this.init()
-  }
-  componentWillUnmount(){
-    if(!this.intervalHolder) return
-    clearInterval(this.intervalHolder)
-  }
-  init(){
-    this.tick()
-    this.intervalHolder = setInterval(() => {
-      this.tick()
-    }, this.state.play * 1000)
-  }
-
-  async tick(){
-    const { play, subreddit, index, marker } = this.state
-    const updated = await updateDbBee(subreddit, marker)
-    this.setState({
-      marker : updated.marker,
-      db     : updated.db,
-    })
-  }
-
-  applyReducer(action){
-    this.setState(rootReducer(this.state, action))
-  }
-
-  setDatabase(){}
-  updateDatabase(){}
-
-  render(){
-    return (
-      <div />
-    )
-  }
-}
-
-function Rxoot(){
+function Root(){
   const [ store, dispatch ] = useReducer(
     reducer,
     getCurrentState(initialState)
