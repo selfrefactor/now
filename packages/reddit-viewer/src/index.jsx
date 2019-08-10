@@ -11,16 +11,14 @@ import {
   setCurrentState,
   createReducer,
   componentDidMountRaw,
-} from '../reduxed'
-import * as Sentry from '@sentry/browser';
+} from './reduxed/src/index.js'
+import * as Sentry from '@sentry/browser'
 import { nextIndex, once } from 'rambdax'
 import { takeArguments } from 'string-fn'
 import { initLocalState, getter } from 'client-helpers'
 
-Sentry.init({
-  dsn: "https://c57bf6cbb9fc431fb3f326f31745f93f@sentry.io/123126"
- });
- 
+Sentry.init({ dsn: 'https://c57bf6cbb9fc431fb3f326f31745f93f@sentry.io/123126' })
+
 export const captureException = x => Sentry.captureException(x)
 
 initLocalState('REDDIT_VIEWER')
@@ -128,7 +126,7 @@ function getHypnoList({ subreddit }){
 }
 
 function renderImageData(store){
-  const src = store.db[ store.index ].src
+  const { src } = store.db[ store.index ]
 
   return {
     src,
@@ -162,14 +160,14 @@ function Root(){
           } }
           width={ 32 }
         >
-          {isImage&&(
+          {isImage && (
             <ImageLocalStorage {...renderImageData(store)} />
           )}
 
-          {isGif&&(
-            <ImageStretched 
+          {isGif && (
+            <ImageStretched
+              callback={dispatchEvent('GIF_READY')}
               src={currentInstance.src}
-              callback={dispatchEvent('GIF_READY')} 
             />
           )}
 
@@ -178,9 +176,9 @@ function Root(){
           )}
 
           {specialMode && (
-            <ImageHypno 
-              tick={specialTick} 
-              hypnoList={getHypnoList(store)} 
+            <ImageHypno
+              hypnoList={getHypnoList(store)}
+              tick={specialTick}
             />
           )}
         </Cell>
