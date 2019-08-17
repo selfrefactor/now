@@ -34,7 +34,7 @@
 		"in": "NODE_ENV=development parcel -p 8080 index.html ",
     "build": "NGROK=ON NODE_ENV=production parcel build index.html --no-minify --public-url /",
     "deploy": "now dist --public",
-		"now": "now alias dist-fhuxkqxfzy.now.sh speed-reader",
+		"now": "now alias dist-bspummdtze.now.sh speed-reader",
 		"test": "jest"
 	},
 	"dependencies": {
