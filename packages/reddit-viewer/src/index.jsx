@@ -1,3 +1,4 @@
+import { waitForAnt } from './ants/waitFor'
 import './style.scss'
 import React, { useReducer } from 'react'
 import { render } from 'react-dom'
@@ -13,7 +14,7 @@ import {
   componentDidMountRaw,
 } from './reduxed/src/index.js'
 import * as Sentry from '@sentry/browser'
-import { nextIndex, once, defaultTo } from 'rambdax'
+import { nextIndex, once, waitFor } from 'rambdax'
 import { takeArguments } from 'string-fn'
 import { initLocalState, getter } from 'client-helpers'
 
@@ -133,6 +134,8 @@ function renderImageData(store){
     uniqKey : `${ store.subreddit }-${ src }`,
   }
 }
+let blocked = false
+const WHEN_TO_FETCH = 12
 
 export class Root extends React.Component{
   constructor(props){
@@ -156,24 +159,37 @@ export class Root extends React.Component{
   componentDidMount(){
     this.init()
   }
+
   componentWillUnmount(){
-    if(!this.intervalHolder) return
+    if (!this.intervalHolder) return
     clearInterval(this.intervalHolder)
   }
+
   init(){
     this.tick()
     this.intervalHolder = setInterval(() => {
-      this.tick()
+      if (!blocked) this.tick()
     }, this.state.play * 1000)
   }
 
   async tick(){
-    const { play, subreddit, index, marker } = this.state
-    const updated = await updateDbBee(subreddit, marker)
-    this.setState({
-      marker : updated.marker,
-      db     : updated.db,
-    })
+    blocked = true
+    const { play, subreddit, index, marker, db } = this.state
+    if (db.length - index < WHEN_TO_FETCH){
+      const updated = await updateDbBee(subreddit, marker)
+      this.setState({
+        marker : updated.marker,
+        db     : [ ...this.state.db, ...updated.db ],
+      })
+    }
+    // / Waiting for gif to load
+    // ============================================
+    const gifLoaded = await waitFor(
+      () => !this.state.loading,
+      5000,
+    )()
+    console.log(gifLoaded)
+    blocked = false
   }
 
   applyReducer(action){
