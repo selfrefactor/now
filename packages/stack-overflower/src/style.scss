@@ -6,7 +6,9 @@ $left-width: 84vw;
 $right-width: 73vw;
 $top: 1vh;
 $total-height: 98vh;
-
+html{
+  overflow: hidden;
+}
 portal{
   width: $left-width;
   height: $total-height;
