@@ -22,10 +22,10 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('reader-angular');
   });
 
-  it('should render title in a h1 tag', () => {
+  it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to reader-angular!');
+    expect(compiled.querySelector('.content span').textContent).toContain('reader-angular app is running!');
   });
 });
