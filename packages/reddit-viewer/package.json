@@ -1,54 +1,66 @@
 {
-  "jest": {
-    "snapshotSerializers": [
-      "enzyme-to-json/serializer"
-    ],
-    "setupFiles": [
-      "<rootDir>/node_modules/helpers/jest/reactShim.js",
-      "<rootDir>/node_modules/helpers/jest/enzyme.js"
-    ],
-    "moduleFileExtensions": [
-      "jsx",
-      "js"
-    ],
-    "setupFilesAfterEnv": [
-      "<rootDir>/node_modules/helpers/jest/prepare.js"
-    ]
-  },
-  "name": "reddit-viewer",
-  "version": "1.0.0",
-  "main": "src/index.jsx",
-  "license": "MIT",
-  "scripts": {
-    "now": "now alias dist-emetcpzzkp.now.sh reddit-viewer",
-    "deploy": "now dist --public",
-    "fix": "node files/fix",
-    "test": "jest",
-    "start": "NODE_ENV=development parcel -p 8080 --host 0.0.0.0 index.html ",
-    "build": "rm -rf dist&&NODE_ENV=production parcel build index.html --no-minify --public-url /"
-  },
-  "dependencies": {
-    "@sentry/browser": "^5.1.2",
-    "client-helpers": "https://github.com/selfrefactor/client-helpers#1.4.0",
-    "colors": "https://github.com/selfrefactor/colors#1.1.0",
-    "rambdax": "^2.12.3",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
-    "string-fn": "^2.2.0"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.3.3",
-    "@types/react": "^16.8.3",
-    "babel-preset-env": "^7.0.0-beta.3",
-    "babel-preset-react": "^7.0.0-beta.3",
-    "env": "https://github.com/selfrefactor/env#0.2.0",
-    "enzyme": "^3.8.0",
-    "enzyme-adapter-react-16": "^1.9.1",
-    "enzyme-to-json": "^3.3.5",
-    "helpers": "https://github.com/selfrefactor/helpers#0.5.0",
-    "jest": "^24.1.0",
-    "parcel-bundler": "^1.11.0",
-    "sass": "^1.17.0",
-    "typescript": "^3.3.3"
-  }
+	"jest": {
+		"snapshotSerializers": [
+			"enzyme-to-json/serializer"
+		],
+		"setupFiles": [
+			"<rootDir>/node_modules/helpers/jest/reactShim.js",
+			"<rootDir>/node_modules/helpers/jest/enzyme.js"
+		],
+		"moduleFileExtensions": [
+			"jsx",
+			"js"
+		],
+		"setupFilesAfterEnv": [
+			"<rootDir>/node_modules/helpers/jest/prepare.js"
+		]
+	},
+	"name": "reddit-viewer",
+	"version": "1.0.0",
+	"main": "src/index.jsx",
+	"homepage": "https://github.com/selfrefactor/now#readme",
+	"directories": {
+		"lib": "lib"
+	},
+	"files": [
+		"lib"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/selfrefactor/now.git"
+	},
+	"license": "MIT",
+	"scripts": {
+		"in": "NODE_ENV=development parcel -p 8080 index.html ",
+		"build": "NODE_ENV=production parcel build index.html --no-minify --public-url /",
+		"deploy": "now dist --public",
+		"out": "node files/deploy",
+		"test": "jest"
+	},
+	"dependencies": {
+		"@sentry/browser": "^5.6.2",
+		"react": "^16.9.0",
+		"react-dom": "^16.9.0",
+		"axios": "^0.19.0",
+		"client-helpers": "https://github.com/selfrefactor/client-helpers#2.0.0",
+		"colors": "https://github.com/selfrefactor/colors#1.5.0",
+		"styled-components": "^5.0.0-beta.8-groupsizefix",
+		"rambdax": "^2.13.1",
+		"string-fn": "^2.9.0"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.5.5",
+		"@types/react": "^16.9.2",
+		"babel-preset-env": "^7.0.0-beta.3",
+		"babel-preset-react": "^7.0.0-beta.3",
+		"env": "https://github.com/selfrefactor/env#0.2.1",
+		"enzyme": "^3.10.0",
+		"enzyme-adapter-react-16": "^1.14.0",
+		"enzyme-to-json": "^3.4.0",
+		"helpers": "https://github.com/selfrefactor/helpers#1.6.0",
+		"jest": "^25.0.0",
+		"parcel-bundler": "^1.12.3",
+		"sass": "^1.22.10",
+		"typescript": "^3.7.0-dev.20190824"
+	}
 }
