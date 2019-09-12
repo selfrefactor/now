@@ -15,6 +15,7 @@ async function deploy() {
   })
   const [addressRaw] = logs.filter(x => x.startsWith('http'))
   if(!addressRaw) return console.log('error')
+  
   const address = remove('https://',addressRaw)
   const nowCommand = `now alias ${address} ${alias}`
   log(nowCommand, 'back')
