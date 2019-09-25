@@ -6,7 +6,7 @@ import { SpeedReaderComplete } from '../stories/apps/SpeedReader/complete.js'
 sentryAnt()
 
 function Root(){
-  return <SpeedReaderComplete production={true} />
+  return <SpeedReaderComplete />
 }
 
 render(<Root />, document.getElementById('root'))
