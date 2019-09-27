@@ -20,33 +20,33 @@
 	"main": "src/index.jsx",
 	"homepage": "https://github.com/selfrefactor/now#readme",
 	"directories": {
-    "lib": "lib"
-  },
-  "files": [
-    "lib"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/selfrefactor/now.git"
-  },
+		"lib": "lib"
+	},
+	"files": [
+		"lib"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/selfrefactor/now.git"
+	},
 	"license": "MIT",
 	"scripts": {
 		"in": "NODE_ENV=development parcel -p 8080 index.html ",
-    "build": "NODE_ENV=production parcel build index.html --no-minify --public-url /",
+		"build": "NODE_ENV=production parcel build index.html --no-minify --public-url /",
 		"deploy": "now dist --public",
 		"out": "node files/deploy.js",
 		"test": "jest"
 	},
 	"dependencies": {
 		"@sentry/browser": "^5.1.2",
-		"react": "^16.9.0-alpha.0",
-		"react-dom": "^16.9.0-alpha.0",
 		"axios": "^0.19.0",
 		"client-helpers": "https://github.com/selfrefactor/client-helpers#2.0.0",
 		"colors": "https://github.com/selfrefactor/colors#1.5.0",
-		"styled-components": "^5.0.0-beta.6-ej4",
 		"rambdax": "^2.12.3",
-    "string-fn": "^2.9.0"
+		"react": "^16.9.0-alpha.0",
+		"react-dom": "^16.9.0-alpha.0",
+		"string-fn": "^2.9.0",
+		"styled-components": "^4.4.0"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.4.4",
