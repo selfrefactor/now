@@ -14,7 +14,7 @@
 		"in": "node_modules/.bin/webpack-dev-server"
 	},
 	"dependencies": {
-		"rambdax": "3.0.1",
+		"rambdax": "3.0.3",
 		"react": "^16.7.0",
 		"react-ace-cdn": "^1.0.3",
 		"react-dom": "^16.7.0",
