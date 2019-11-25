@@ -1,6 +1,6 @@
 {
 	"scripts": {
-		"now": "now alias dist-ilfvkroepf.now.sh word-profile",
+		"now": "now alias dist-ztheiwlfjm.now.sh word-profile",
 		"test": "jest",
 		"dev": "jest src --watch --onlyChanged",
 		"in": "NODE_ENV=development parcel -p 8080 index.html ",
