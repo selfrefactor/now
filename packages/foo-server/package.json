@@ -10,6 +10,7 @@
 	],
 	"scripts": {
 		"start": "micro",
+		"build": "ls",
 		"deploy": "now dist --public"
 	},
 	"dependencies": {
