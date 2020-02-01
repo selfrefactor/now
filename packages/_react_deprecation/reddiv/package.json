@@ -109,7 +109,7 @@
     "uglifyjs-webpack-plugin": "^1.2.2",
     "webpack": "^3.11.0",
     "webpack-bundle-size-analyzer": "^2.7.0",
-    "webpack-dev-server": "^2.9.5",
+    "webpack-dev-server": "^3.1.11",
     "webpack-jarvis": "^0.3.0",
     "webpack-monitor": "^1.0.14"
   }
