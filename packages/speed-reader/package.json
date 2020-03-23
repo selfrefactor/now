@@ -16,9 +16,8 @@
 	"license": "MIT",
 	"scripts": {
 		"in": "NODE_ENV=development parcel -p 8080 index.html ",
-		"build": "NODE_ENV=production parcel build index.html --no-minify --public-url /",
-		"deploy": "now dist --public",
-		"out": "node files/deploy.js"
+		"build": "NODE_ENV=production parcel build index.html --no-minify --public-url / --out-dir public",
+		"out": "now --prod"
 	},
 	"dependencies": {
 		"@sentry/browser": "^5.1.2",
