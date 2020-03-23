@@ -6,9 +6,8 @@
 .log
 .size-snapshot.json
 coverage
-coverage
 dist/
-flow-coverage
+public/
 node_modules/
 npm-debug*
 reports
