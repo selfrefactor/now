@@ -24,6 +24,7 @@
 		"@sentry/browser": "^5.1.2",
 		"axios": "^0.19.0",
 		"client-helpers": "https://github.com/selfrefactor/client-helpers#2.0.0",
+		"helpers": "https://github.com/selfrefactor/helpers#2.4.0",
 		"rambdax": "^2.12.3",
 		"react": "^16.9.0-alpha.0",
 		"react-dom": "^16.9.0-alpha.0",
