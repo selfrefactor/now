@@ -12,7 +12,6 @@ flow-coverage
 node_modules/
 npm-debug*
 reports
-stories/
 storybook-static
 yarn-debug*
 yarn-error*

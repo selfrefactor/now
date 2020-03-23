@@ -1,11 +1,11 @@
-@import '../node_modules/colors/colors';
-@import url(https://fonts.googleapis.com/css?family=Fira+Mono:400&subset=cyrillic);
+@import url("https://fonts.googleapis.com/css?family=Fira + Mono:400&subset=cyrillic");
 
-html{
+html {
   overflow: hidden;
 }
 
-body{
+body {
   margin: 0;
-  font-family: 'Fira Mono', monospace !important;
+  font-family: "Fira Mono",
+    monospace !important;
 }
