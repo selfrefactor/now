@@ -1,41 +1,35 @@
-import { getData } from './getData.js'
-import {
-  defaultTo,
-  delay,
-  last,
-  maybe,
-  range,
-  toDecimal,
-} from 'rambdax'
-import React from 'react'
 import { initialGetLocalize, setLocalize } from 'client-helpers'
-import { Grid, Cell } from '../../src/Grid/component'
-import { Options } from '../../src/Options/component'
-import { produceRow } from './produceRow.js'
-import { getReloadIndexes } from './getReloadIndexes.js'
+import { defaultTo, delay, last, maybe, range, toDecimal } from 'rambdax'
+import React from 'react'
 import styled from 'styled-components'
+
+import { Cell, Grid } from '../../src/Grid/component'
+import { Options } from '../../src/Options/component'
+import { getData } from './getData.js'
+import { getReloadIndexes } from './getReloadIndexes.js'
+import { produceRow } from './produceRow.js'
 
 const BACKGROUND = '#ede8e1aa'
 
 const Div = styled.div`
-z-index:1000;
-font-size: 6vh;
-color: #30322ef1;
-margin-top: auto;
-margin-bottom: auto;
+  z-index: 1000;
+  font-size: 6vh;
+  color: #30322ef1;
+  margin-top: auto;
+  margin-bottom: auto;
 `
 const MarkedDivLeft = styled(Div)`
-color: #f7f2f2;
-padding-left: 10%;
-min-height:7.2vh;
-background: #977d96e9;
-width: 100%;
+  color: #f7f2f2;
+  padding-left: 10%;
+  min-height: 7.2vh;
+  background: #977d96e9;
+  width: 100%;
 `
 const MarkedDivRight = styled(MarkedDivLeft)`
-color: #f7f2f2;
-padding-left: 0%;
-background: #977d96e9;
-width: 100%;
+  color: #f7f2f2;
+  padding-left: 0%;
+  background: #977d96e9;
+  width: 100%;
 `
 
 function defineDelay(word, base){
@@ -48,42 +42,42 @@ function defineDelay(word, base){
 }
 
 const bookIndexOption = {
-  label: 'book.index',
-  type: 'SELECT',
-  visibleLabel: 'Book index',
-  choices: [ '0', '1', '2', '3','4','5','6','7','8','9','10','11' ],
-  value: initialGetLocalize({
-    key:'book.index',
-    defaultValue: '1',
+  label        : 'book.index',
+  type         : 'SELECT',
+  visibleLabel : 'Book index',
+  choices      : [ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11' ],
+  value        : initialGetLocalize({
+    key          : 'book.index',
+    defaultValue : '1',
   }),
 }
 const forceReloadOption = {
-  label: 'force.reload',
-  type: 'TOGGLE',
-  visibleLabel: 'Force reload on every 1% progress',
-  value: initialGetLocalize({
-    key:'force.reload',
-    defaultValue: false,
+  label        : 'force.reload',
+  type         : 'TOGGLE',
+  visibleLabel : 'Force reload on every 1% progress',
+  value        : initialGetLocalize({
+    key          : 'force.reload',
+    defaultValue : false,
   }),
 }
 const progressOption = {
-  visibleLabel: 'Progress',
-  label: 'speed.reader.progress',
-  type: 'SLIDER',
-  between: [ 0, 100 ],
-  value: initialGetLocalize({
-    key:'speed.reader.progress',
-    defaultValue: 0,
+  visibleLabel : 'Progress',
+  label        : 'speed.reader.progress',
+  type         : 'SLIDER',
+  between      : [ 0, 100 ],
+  value        : initialGetLocalize({
+    key          : 'speed.reader.progress',
+    defaultValue : 0,
   }),
 }
 const speedOption = {
-  visibleLabel: 'Speed',
-  label: 'speed.reader.speed',
-  type: 'SLIDER',
-  between: [ 200, 1000 ],
-  value: initialGetLocalize({
-    key:'speed.reader.speed',
-    defaultValue: 500,
+  visibleLabel : 'Speed',
+  label        : 'speed.reader.speed',
+  type         : 'SLIDER',
+  between      : [ 200, 1000 ],
+  value        : initialGetLocalize({
+    key          : 'speed.reader.speed',
+    defaultValue : 500,
   }),
 }
 
@@ -104,7 +98,7 @@ export class SpeedReader extends React.Component{
       forceReloadOption,
     ]
     this.state = {
-      show: true,
+      show : true,
       word : defaultTo('', props.testString),
     }
     this.work = this.work.bind(this)
@@ -114,13 +108,10 @@ export class SpeedReader extends React.Component{
   async work(data){
     const len = data.length
     const reloadIndexes = getReloadIndexes(len)
-    const initialCounter = progressOption.value === 0 ?
-      -1 :
-      reloadIndexes[ progressOption.value ]
+    const initialCounter =
+      progressOption.value === 0 ? -1 : reloadIndexes[ progressOption.value ]
 
-    const counter = initialCounter ?
-      initialCounter :
-      last(reloadIndexes)
+    const counter = initialCounter ? initialCounter : last(reloadIndexes)
 
     for (const i of range(counter + 1, len)){
       if (reloadIndexes.includes(i)){
@@ -145,7 +136,7 @@ export class SpeedReader extends React.Component{
 
   handleOptionsCallback({ type }){
     if (type === 'UPDATE_ACTIVE'){
-      return this.setState({ show: false })
+      return this.setState({ show : false })
     }
     if (type !== 'UPDATE_OPTIONS') return
     delay(500).then(() => window.location.reload(false))
@@ -153,10 +144,14 @@ export class SpeedReader extends React.Component{
 
   componentDidMount(){
     if (this.props.testString) return
+    const password = localStorage.getItem('speed.reader.password')
+    if (!password){
+      const userPassword = window.prompt('There is a password. You know the drill.')
+      localStorage.setItem('speed.reader.password', userPassword)
+      window.location.reload(false)
+    }
 
-    getData(bookIndexOption.value).then(
-      data => this.work(data)
-    )
+    getData(bookIndexOption.value, password).then(data => this.work(data))
   }
 
   render(){
@@ -174,14 +169,14 @@ export class SpeedReader extends React.Component{
 
       return (
         <Cell
-          evalStyled='display:flex;'
-          height={ 10 }
-          key={ `speed-reader-row-${ i }` }
-          topLeft={ {
+          evalStyled="display:flex;"
+          height={10}
+          key={`speed-reader-row-${ i }`}
+          topLeft={{
             x : 3 + i,
             y : 10,
-          } }
-          width={ 1 }
+          }}
+          width={1}
         >
           <El>{char}</El>
         </Cell>
@@ -189,26 +184,23 @@ export class SpeedReader extends React.Component{
     })
 
     return (
-      <Grid
-        background={BACKGROUND}
-      >
+      <Grid background={BACKGROUND}>
         <Options
           callback={this.handleOptionsCallback}
           keyBinding={this.props.optionsKeyBinding}
-          label='speed.reader'
+          label="speed.reader"
           options={this.OPTIONS}
         />
         <Cell
-          evalStyled='background: ${BACKGROUND}'
-          height={ 24 }
-          topLeft={ {
+          evalStyled="background: ${BACKGROUND}"
+          height={24}
+          topLeft={{
             x : 2,
             y : 4,
-          } }
-          width={ 28 }
+          }}
+          width={28}
         />
         {this.state.show ? Row : null}
-
       </Grid>
     )
   }
