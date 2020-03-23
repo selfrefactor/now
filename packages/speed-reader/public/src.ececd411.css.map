@@ -1,0 +1,1 @@
+{"version":3,"sources":["src/style.scss"],"names":[],"mappings":"AAAQ;AAER;EACE;;;AAGF;EACE;EACA","file":"src.ececd411.css","sourceRoot":"..","sourcesContent":["@import url(\"https://fonts.googleapis.com/css?family=Fira + Mono:400&subset=cyrillic\");\n\nhtml {\n  overflow: hidden;\n}\n\nbody {\n  margin: 0;\n  font-family: \"Fira Mono\",\n    monospace !important;\n}\n"]}

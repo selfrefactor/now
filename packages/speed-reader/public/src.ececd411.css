@@ -1,0 +1,11 @@
+@import url("https://fonts.googleapis.com/css?family=Fira + Mono:400&subset=cyrillic");
+html {
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  font-family: "Fira Mono", monospace !important;
+}
+
+/*# sourceMappingURL=/src.ececd411.css.map */
