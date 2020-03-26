@@ -1,0 +1,7 @@
+{
+	"name": "write-sentence",
+	"version": "1.0.0",
+	"scripts": {
+		"out": "now --prod"
+	}
+}
