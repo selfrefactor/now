@@ -1,4 +1,4 @@
-import { initialGetLocalize } from 'client-helpers'
+import { initialGetLocalize } from 'client-helpers-fn'
 
 export const autoOption = {
   visibleLabel : 'Enable automatic next',

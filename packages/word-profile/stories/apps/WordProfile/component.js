@@ -1,9 +1,3 @@
-import { library } from '@fortawesome/fontawesome-svg-core'
-import {
-  faArrowAltCircleLeft,
-  faArrowAltCircleRight,
-} from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { equals, filter, glue, map, pluck, splitEvery } from 'rambdax'
 import * as React from 'react'
 import { constantCase } from 'string-fn'
@@ -13,8 +7,6 @@ import { Cell } from '../../src/Grid/component.js'
 import { Row } from '../../src/Row/component'
 import { TestCell } from '../../src/TestCell/component.js'
 import { TextCell } from '../../src/TextCell/component'
-library.add(faArrowAltCircleLeft)
-library.add(faArrowAltCircleRight)
 
 function nextIndex(index, list){
   const newIndex = index + 1
@@ -141,20 +133,10 @@ export function Navigation({ mode = 'all', nextStep, color }){
   return (
     <NavigationContainer color={color}>
       <div className="cell" onClick={onLeftClick}>
-        <span>
-          <FontAwesomeIcon
-            icon="arrow-alt-circle-left"
-            title={`${ mode.toUpperCase() } previous index`}
-          />
-        </span>
+        <span>{'◀'}</span>
       </div>
       <div className="cell" onClick={onRightClick}>
-        <span>
-          <FontAwesomeIcon
-            icon="arrow-alt-circle-right"
-            title={`${ mode.toUpperCase() } next index`}
-          />
-        </span>
+        <span>{'▶'}</span>
       </div>
     </NavigationContainer>
   )
@@ -173,11 +155,9 @@ function FirstParent({ examplesDe, nextStep }){
     >
       <Navigation color="#cccd" nextStep={nextStep} />
     </Cell>
-    
+
   if (examplesDe.length === 0){
-    return <React.Fragment>
-      {NavigationExamples}
-    </React.Fragment>
+    return <React.Fragment>{NavigationExamples}</React.Fragment>
   }
 
   const Inner =

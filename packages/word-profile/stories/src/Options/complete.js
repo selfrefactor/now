@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { initialGetLocalize } from 'client-helpers'
+import { initialGetLocalize } from 'client-helpers-fn'
 import { Grid } from '../Grid/component.js'
 
 import { Options } from './component'

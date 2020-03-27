@@ -7,7 +7,7 @@ import {
   findIndex,
 } from 'rambdax'
 import * as React from 'react'
-import { setLocalize } from 'client-helpers'
+import { setLocalize } from 'client-helpers-fn'
 import { Cell } from '../Grid/component.js'
 import { SelectOption } from './internals/SelectOption'
 import { InputOption } from './internals/InputOption'

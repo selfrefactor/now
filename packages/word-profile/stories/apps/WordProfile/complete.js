@@ -3,7 +3,7 @@ import {
   initialGetLocalize,
   initLocalState,
   setter,
-} from 'client-helpers'
+} from 'client-helpers-fn'
 import { delay, findIndex, ok, path, random, shuffle } from 'rambdax'
 import * as React from 'react'
 
@@ -101,8 +101,7 @@ export class WordProfileComplete extends React.Component{
     const currentWord = this.state.word ?
       this.state.word :
       wordList[ initialIndex ]
-    const currentWordx = 'verstärken'
-    const data = await wordProfileDataAnt(currentWordx, this.state.password)
+    const data = await wordProfileDataAnt(currentWord, this.state.password)
     this._setState({
       data,
       ready : true,

@@ -3,7 +3,7 @@ import React from 'react'
 import { delay, uuid } from 'rambdax'
 import { Grid, Cell } from '../../src/Grid/component.js'
 import { Options } from '../../src/Options/component.js'
-import { initialGetLocalize } from 'client-helpers'
+import { initialGetLocalize } from 'client-helpers-fn'
 
 const speedOption = {
   label: 'speed.option',

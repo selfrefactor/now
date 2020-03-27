@@ -8,7 +8,7 @@ import {
   toDecimal,
 } from 'rambdax'
 import React from 'react'
-import { initialGetLocalize, setLocalize } from 'client-helpers'
+import { initialGetLocalize, setLocalize } from 'client-helpers-fn'
 import { Grid, Cell } from '../../src/Grid/component'
 import { Options } from '../../src/Options/component'
 import { produceRow } from './produceRow.js'

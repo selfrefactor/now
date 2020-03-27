@@ -1,6 +1,6 @@
 import { delay } from 'rambdax'
 import React from 'react'
-import { initialGetLocalize } from 'client-helpers'
+import { initialGetLocalize } from 'client-helpers-fn'
 import { Grid } from '../../src/Grid/component'
 import { Options } from '../../src/Options/component'
 import { getNewInstance } from './getNewInstance'

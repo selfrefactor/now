@@ -1,0 +1,1 @@
+{"version":3,"sources":["src/style.scss"],"names":[],"mappings":"AAAQ;AAER;EACE;EACA;EACA;;;AAEF;EACE","file":"src.5cc64df7.css","sourceRoot":"..","sourcesContent":["@import url(https://fonts.googleapis.com/css?family=Cousine);\n\nhtml{\n  background:#ede8e1;\n  overflow: hidden;\n  font-family: 'Cousine', monospace;\n}\nbody{\n  margin: 0 !important;\n}"]}
