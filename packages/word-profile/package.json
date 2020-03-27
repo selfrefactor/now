@@ -1,28 +1,8 @@
 {
 	"scripts": {
-		"now": "now alias dist-ztheiwlfjm.now.sh word-profile",
-		"test": "jest",
-		"dev": "jest src --watch --onlyChanged",
 		"in": "NODE_ENV=development parcel -p 8080 index.html ",
-		"out": "yarn build&&yarn deploy",
-		"deploy": "now dist --public",
-		"build": "NGROK=ON parcel build index.html --no-minify --public-url /"
-	},
-	"jest": {
-		"snapshotSerializers": [
-			"enzyme-to-json/serializer"
-		],
-		"setupFiles": [
-			"<rootDir>/node_modules/helpers/jest/reactShim.js",
-			"<rootDir>/node_modules/helpers/jest/enzyme.js"
-		],
-		"moduleFileExtensions": [
-			"jsx",
-			"js"
-		],
-		"setupFilesAfterEnv": [
-			"<rootDir>/node_modules/helpers/jest/prepare.js"
-		]
+		"build": "NODE_ENV=production parcel build index.html --no-minify --public-url / --out-dir public",
+		"out": "now --prod"
 	},
 	"name": "word-profile",
 	"version": "1.0.0",

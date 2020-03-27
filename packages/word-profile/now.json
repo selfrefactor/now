@@ -1,9 +1,4 @@
 {
-  "name": "word-profile",
-  "alias": "word-profile",
-  "version": 1, 
-  "env": {
-    "MY_KEY": "this is the value"
-  },
-  "public": true
+  "public": true,
+  "regions": ["bru1"]
 }
