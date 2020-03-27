@@ -30,7 +30,7 @@ export function Select({
     width: 100%;
     height: 100%;
     color: #232;
-    padding-left: 2vw;
+    padding-left: 21vw;
     overflow: hidden;
     &:hover {
       font-size: ${ fontSize * 1.2 }vh;
@@ -41,15 +41,13 @@ export function Select({
     background: #953a;
   `
 
-  const Options = (
+  const Options =
     <React.Fragment>
-      {list.map((x, i) => (
+      {list.map((x, i) =>
         <OptionStyled key={`select-sk-${ i }`} value={x}>
           {x}
-        </OptionStyled>
-      ))}
+        </OptionStyled>)}
     </React.Fragment>
-  )
 
   return (
     <Container {...parentProps}>

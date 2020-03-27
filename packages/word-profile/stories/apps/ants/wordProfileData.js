@@ -1,9 +1,13 @@
-import { API_URL } from '../../constants'
 import { post } from 'axios'
 
-export async function wordProfileDataAnt(currentWord, token){
-  if (!token) return
-  const { data } = await post(`${ API_URL }/word-profile/get/${ currentWord }`, { token })
+import { API_URL } from '../../constants'
+
+export async function wordProfileDataAnt(word, password){
+  if (!password) return
+  const { data } = await post(`${ API_URL }/lambdas/word-profile`, {
+    word,
+    password,
+  })
 
   return data
 }

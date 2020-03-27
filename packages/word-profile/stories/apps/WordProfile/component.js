@@ -1,33 +1,39 @@
-import * as React from 'react'
-import styled from 'styled-components'
-import { constantCase } from 'string-fn'
-import {
-  glue,
-  filter,
-  nextIndex,
-  pluck,
-  equals,
-  prevIndex,
-  splitEvery,
-  map,
-} from 'rambdax'
-import { Cell } from '../../src/Grid/component.js'
-import { TestCell } from '../../src/TestCell/component.js'
-import { Row } from '../../src/Row/component'
-import { TextCell } from '../../src/TextCell/component'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faArrowAltCircleLeft,
   faArrowAltCircleRight,
 } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { equals, filter, glue, map, pluck, splitEvery } from 'rambdax'
+import * as React from 'react'
+import { constantCase } from 'string-fn'
+import styled from 'styled-components'
+
+import { Cell } from '../../src/Grid/component.js'
+import { Row } from '../../src/Row/component'
+import { TestCell } from '../../src/TestCell/component.js'
+import { TextCell } from '../../src/TextCell/component'
 library.add(faArrowAltCircleLeft)
 library.add(faArrowAltCircleRight)
 
+function nextIndex(index, list){
+  const newIndex = index + 1
+  if (list.length === newIndex) return 0
+
+  return newIndex
+}
+
+function prevIndex(index, list){
+  const newIndex = index - 1
+  if (newIndex === -1) return list.length - 2
+
+  return newIndex
+}
+
 const lineLengthLabels = {
-  examples: 'examplesLineLengthLabel',
-  related: 'relatedLineLengthLabel',
-  meta: 'metaLineLengthLabel',
+  examples : 'examplesLineLengthLabel',
+  related  : 'relatedLineLengthLabel',
+  meta     : 'metaLineLengthLabel',
 }
 
 function getConfig(label){
@@ -38,61 +44,53 @@ function getConfig(label){
 }
 
 const CONFIG = {
-  examples: {
-    fontSize: 2.45,
-    length: getConfig('examples'),
-    pseudoLength: 120,
-    limit: 3,
+  examples : {
+    fontSize     : 2.45,
+    length       : getConfig('examples'),
+    pseudoLength : 120,
+    limit        : 3,
   },
-  meta: {
-    fontSize: 1.9,
-    length: getConfig('meta'),
-    pseudoLength: 160,
+  meta : {
+    fontSize     : 1.9,
+    length       : getConfig('meta'),
+    pseudoLength : 160,
   },
-  related: {
-    fontSize: 2,
-    length: getConfig('related'),
-    pseudoLength: 80,
-    limit: 3,
+  related : {
+    fontSize     : 2,
+    length       : getConfig('related'),
+    pseudoLength : 80,
+    limit        : 3,
   },
 }
 
-const evalExamples = glue(
-  `
+const evalExamples = glue(`
 background: #fafafaea
 color: #9c524aaa
 font-weight:100
 `,
-  ';'
-)
+';')
 
-const evalExamplesRight = glue(
-  `
+const evalExamplesRight = glue(`
 text-align: right
 background: #fafafaea
 color: #440b0bea
 `,
-  ';'
-)
+';')
 const evalStyled = 'outline: 1px solid green'
 const evalStyledMark = 'outline: 1px solid green;background: #cacaca;'
 const evalRelated = 'background: #ddd;color: #8f1c3d99;'
-const evalRelatedRight = glue(
-  `
+const evalRelatedRight = glue(`
   text-align:right
   background: #eee 
   color: #a007
 `,
-  ';'
-)
-const evalMeta = glue(
-  `
+';')
+const evalMeta = glue(`
   text-align:center
   background: #cccf
   color: #455a64
 `,
-  ';'
-)
+';')
 
 function getTestStyled(label){
   return `
@@ -142,18 +140,18 @@ export function Navigation({ mode = 'all', nextStep, color }){
 
   return (
     <NavigationContainer color={color}>
-      <div className='cell' onClick={onLeftClick}>
+      <div className="cell" onClick={onLeftClick}>
         <span>
           <FontAwesomeIcon
-            icon='arrow-alt-circle-left'
+            icon="arrow-alt-circle-left"
             title={`${ mode.toUpperCase() } previous index`}
           />
         </span>
       </div>
-      <div className='cell' onClick={onRightClick}>
+      <div className="cell" onClick={onRightClick}>
         <span>
           <FontAwesomeIcon
-            icon='arrow-alt-circle-right'
+            icon="arrow-alt-circle-right"
             title={`${ mode.toUpperCase() } next index`}
           />
         </span>
@@ -163,23 +161,26 @@ export function Navigation({ mode = 'all', nextStep, color }){
 }
 
 function FirstParent({ examplesDe, nextStep }){
-  if (examplesDe.length === 0) return <React.Fragment />
-
-  const NavigationExamples = (
+  const NavigationExamples =
     <Cell
       evalStyled={evalStyled}
       height={2}
       topLeft={{
-        x: 0,
-        y: 4,
+        x : 0,
+        y : 4,
       }}
       width={32}
     >
-      <Navigation color='#cccd' nextStep={nextStep} />
+      <Navigation color="#cccd" nextStep={nextStep} />
     </Cell>
-  )
+    
+  if (examplesDe.length === 0){
+    return <React.Fragment>
+      {NavigationExamples}
+    </React.Fragment>
+  }
 
-  const Inner = (
+  const Inner =
     <Row
       loopWith={examplesDe}
       loopWithComponent={TextCell(
@@ -188,7 +189,6 @@ function FirstParent({ examplesDe, nextStep }){
         evalExamplesRight
       )}
     />
-  )
 
   const TestOptimalLineLength = getTestOptimal('examples')
 
@@ -196,19 +196,18 @@ function FirstParent({ examplesDe, nextStep }){
     Inner :
     TestOptimalLineLength
 
-  const ExamplesDeColumn = (
+  const ExamplesDeColumn =
     <Cell
       evalStyled={evalStyledMark}
       height={12}
       topLeft={{
-        x: 0,
-        y: 6,
+        x : 0,
+        y : 6,
       }}
       width={16}
     >
       {toRender}
     </Cell>
-  )
 
   return (
     <React.Fragment>
@@ -221,7 +220,7 @@ function FirstParent({ examplesDe, nextStep }){
 function SecondParent({ examplesEn }){
   if (examplesEn.length === 0) return <React.Fragment />
 
-  const Inner = (
+  const Inner =
     <Row
       loopWith={examplesEn}
       loopWithComponent={TextCell(
@@ -230,15 +229,14 @@ function SecondParent({ examplesEn }){
         evalExamples
       )}
     />
-  )
 
   return (
     <Cell
       evalStyled={evalStyledMark}
       height={12}
       topLeft={{
-        x: 16,
-        y: 6,
+        x : 16,
+        y : 6,
       }}
       width={16}
     >
@@ -250,7 +248,7 @@ function SecondParent({ examplesEn }){
 function ThirdParent({ relatedFirstDe }){
   if (relatedFirstDe.length === 0) return <React.Fragment />
 
-  const Inner = (
+  const Inner =
     <Row
       loopWith={relatedFirstDe}
       loopWithComponent={TextCell(
@@ -259,7 +257,6 @@ function ThirdParent({ relatedFirstDe }){
         evalRelatedRight
       )}
     />
-  )
 
   const TestOptimalLineLength = getTestOptimal('related')
 
@@ -267,19 +264,18 @@ function ThirdParent({ relatedFirstDe }){
     Inner :
     TestOptimalLineLength
 
-  const RelatedFirstDeColumn = (
+  const RelatedFirstDeColumn =
     <Cell
       evalStyled={evalStyledMark}
       height={7}
       topLeft={{
-        x: 0,
-        y: 18,
+        x : 0,
+        y : 18,
       }}
       width={8}
     >
       {toRender}
     </Cell>
-  )
 
   return <React.Fragment>{RelatedFirstDeColumn}</React.Fragment>
 }
@@ -287,7 +283,7 @@ function ThirdParent({ relatedFirstDe }){
 function FourthParent({ relatedFirstEn }){
   if (relatedFirstEn.length === 0) return <React.Fragment />
 
-  const Inner = (
+  const Inner =
     <Row
       loopWith={relatedFirstEn}
       loopWithComponent={TextCell(
@@ -296,21 +292,19 @@ function FourthParent({ relatedFirstEn }){
         evalRelated
       )}
     />
-  )
 
-  const RelatedFirstEnColumn = (
+  const RelatedFirstEnColumn =
     <Cell
       evalStyled={evalStyledMark}
       height={7}
       topLeft={{
-        x: 8,
-        y: 18,
+        x : 8,
+        y : 18,
       }}
       width={8}
     >
       {Inner}
     </Cell>
-  )
 
   return <React.Fragment>{RelatedFirstEnColumn}</React.Fragment>
 }
@@ -318,7 +312,7 @@ function FourthParent({ relatedFirstEn }){
 function FifthParent({ relatedSecondDe }){
   if (relatedSecondDe.length === 0) return <React.Fragment />
 
-  const Inner = (
+  const Inner =
     <Row
       loopWith={relatedSecondDe}
       loopWithComponent={TextCell(
@@ -327,21 +321,19 @@ function FifthParent({ relatedSecondDe }){
         evalRelatedRight
       )}
     />
-  )
 
-  const RelatedSecondDeColumn = (
+  const RelatedSecondDeColumn =
     <Cell
       evalStyled={evalStyledMark}
       height={7}
       topLeft={{
-        x: 16,
-        y: 18,
+        x : 16,
+        y : 18,
       }}
       width={8}
     >
       {Inner}
     </Cell>
-  )
 
   return <React.Fragment>{RelatedSecondDeColumn}</React.Fragment>
 }
@@ -349,7 +341,7 @@ function FifthParent({ relatedSecondDe }){
 function SixthParent({ relatedSecondEn }){
   if (relatedSecondEn.length === 0) return <React.Fragment />
 
-  const Inner = (
+  const Inner =
     <Row
       loopWith={relatedSecondEn}
       loopWithComponent={TextCell(
@@ -358,21 +350,19 @@ function SixthParent({ relatedSecondEn }){
         evalRelated
       )}
     />
-  )
 
-  const RelatedSecondEnColumn = (
+  const RelatedSecondEnColumn =
     <Cell
       evalStyled={evalStyledMark}
       height={7}
       topLeft={{
-        x: 24,
-        y: 18,
+        x : 24,
+        y : 18,
       }}
       width={8}
     >
       {Inner}
     </Cell>
-  )
 
   return <React.Fragment>{RelatedSecondEnColumn}</React.Fragment>
 }
@@ -380,7 +370,7 @@ function SixthParent({ relatedSecondEn }){
 function BottomParent({ meta }){
   if (!meta) return <React.Fragment />
 
-  const Inner = (
+  const Inner =
     <Row
       loopWith={[ meta ]}
       loopWithComponent={TextCell(
@@ -389,7 +379,6 @@ function BottomParent({ meta }){
         evalMeta
       )}
     />
-  )
 
   const TestOptimalLineLength = getTestOptimal('meta')
 
@@ -397,19 +386,18 @@ function BottomParent({ meta }){
     Inner :
     TestOptimalLineLength
 
-  const BottomRow = (
+  const BottomRow =
     <Cell
       evalStyled={evalStyledMark}
       height={7}
       topLeft={{
-        x: 0,
-        y: 25,
+        x : 0,
+        y : 25,
       }}
       width={32}
     >
       {toRender}
     </Cell>
-  )
 
   return <React.Fragment>{BottomRow}</React.Fragment>
 }
@@ -417,10 +405,9 @@ function BottomParent({ meta }){
 function orderAndFilter(obj, rules){
   const keys = []
   if (equals(obj, {})) return [ [], [] ]
-
   const toReturn = rules
     .map(prop => {
-      if (obj[ prop ].length === 0) return
+      if (!obj[ prop ] || obj[ prop ].length === 0) return
 
       keys.push(prop)
 
@@ -449,9 +436,7 @@ function parse({ examples, related, meta }){
   const relatedFirstDe = related[ 0 ] ? pluck('german', related[ 0 ]) : []
   const relatedFirstEn = related[ 0 ] ? pluck('translation', related[ 0 ]) : []
   const relatedSecondDe = related[ 1 ] ? pluck('german', related[ 1 ]) : []
-  const relatedSecondEn = related[ 1 ] ?
-    pluck('translation', related[ 1 ]) :
-    []
+  const relatedSecondEn = related[ 1 ] ? pluck('translation', related[ 1 ]) : []
 
   const examplesDe = pluck('german', examples)
   const examplesEn = pluck('translation', examples)
@@ -468,15 +453,13 @@ function parse({ examples, related, meta }){
 }
 
 function initialize(input){
-  const examplesData = splitEvery(
-    CONFIG.examples.limit,
-    input.exampleSentences
-  )
+  const examplesData = splitEvery(CONFIG.examples.limit,
+    input.exampleSentences)
   const relatedData = splitEvery(CONFIG.related.limit, input.related)
 
   return {
     examplesData,
-    meta: input.meta,
+    meta : input.meta,
     relatedData,
   }
 }
@@ -489,16 +472,16 @@ export class WordProfile extends React.Component{
 
     return {
       ...state,
-      currentWord: props.word,
-      examples: examplesData[ 0 ],
+      currentWord   : props.word,
+      examples      : examplesData[ 0 ],
       examplesData,
-      examplesIndex: 0,
-      meta: parseMeta(meta, 0),
-      metaData: meta,
-      metaIndex: 0,
-      related: [ relatedData[ 0 ], relatedData[ 1 ] ],
+      examplesIndex : 0,
+      meta          : parseMeta(meta, 0),
+      metaData      : meta,
+      metaIndex     : 0,
+      related       : [ relatedData[ 0 ], relatedData[ 1 ] ],
       relatedData,
-      relatedIndex: 1,
+      relatedIndex  : 1,
     }
   }
 
@@ -507,17 +490,17 @@ export class WordProfile extends React.Component{
     const { examplesData, relatedData, meta } = initialize(this.props.json)
 
     this.state = {
-      currentWord: this.props.word,
-      examples: examplesData[ 0 ],
+      currentWord   : this.props.word,
+      examples      : examplesData[ 0 ],
       examplesData,
-      examplesIndex: 0,
-      meta: parseMeta(meta, 0),
-      metaData: meta,
-      metaIndex: 0,
-      related: [ relatedData[ 0 ], relatedData[ 1 ] ],
+      examplesIndex : 0,
+      meta          : parseMeta(meta, 0),
+      metaData      : meta,
+      metaIndex     : 0,
+      related       : [ relatedData[ 0 ], relatedData[ 1 ] ],
       relatedData,
-      relatedIndex: 1,
-      searchInput: '',
+      relatedIndex  : 1,
+      searchInput   : '',
     }
     this.nextStep = this.nextStep.bind(this)
     this.pressed = this.pressed.bind(this)
@@ -566,15 +549,15 @@ export class WordProfile extends React.Component{
         newRelatedIndexFirst + 1
 
     const partial = {
-      examples: examplesData[ newExamplesIndex ],
-      examplesIndex: newExamplesIndex,
-      meta: parseMeta(metaData, newMetaIndex),
-      metaIndex: newMetaIndex,
-      related: [
+      examples      : examplesData[ newExamplesIndex ],
+      examplesIndex : newExamplesIndex,
+      meta          : parseMeta(metaData, newMetaIndex),
+      metaIndex     : newMetaIndex,
+      related       : [
         relatedData[ newRelatedIndexFirst ],
         relatedData[ newRelatedIndexSecond ],
       ],
-      relatedIndex: newRelatedIndexFirst,
+      relatedIndex : newRelatedIndexFirst,
     }
 
     this.setState(partial)
@@ -592,7 +575,7 @@ export class WordProfile extends React.Component{
     } = parse(this.state)
     const First = FirstParent({
       examplesDe,
-      nextStep: this.nextStep,
+      nextStep : this.nextStep,
     })
     const Second = SecondParent({ examplesEn })
     const Third = ThirdParent({ relatedFirstDe })
