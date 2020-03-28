@@ -1,0 +1,31 @@
+<div class="foo">
+
+  <input (keydown.l)="onSpecialKeyPress()" />
+  <hr />
+  <app-bar sk=1 (sdEmitter)="receiveFromBar($event)"></app-bar>
+  <hr />
+  <p>itsFromBar - {{itsFromBar | foo}}</p>
+  <hr />
+  <p>{{itsFromMoon}}</p>
+  <hr />
+  <p [style.font-size.px]="isImportant ? '30' : '16'">{{name}}</p>
+  <hr />
+  <div *ngFor="let pair of unsolvedPairs ">           
+    {{pair}}
+</div>
+  <hr />
+  <label for="foo3">Angular hug</label>
+  <input [(ngModel)]="name" name="foo3">
+  <hr />
+  <label for="foo1">Passing event to component</label>
+  <input [value]="name" (input)="name = $event.target.value" name="foo1" />
+  <hr />
+  <p>{{ name }} | {{bar}}</p>
+  <hr />
+  <label for="foo2">Square brackets</label>
+  <input [value]="name" name="foo2" />
+  <hr />
+  <textarea (keydown.enter)="fooMethod()"></textarea>
+  <hr />
+  <input type="bar" [(ngModel)]="bar">
+</div>
