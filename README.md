@@ -4,6 +4,8 @@
 
 ### Write Sentence Movie mode
 
+- https://write-sentence.now.sh/?auto=0.8
+
 - https://write-sentence.now.sh/?auto=2.5
 
 Each step is 2.5 seconds and it pauses for 4s at the end of each sentence:
