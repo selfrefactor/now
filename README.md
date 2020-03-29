@@ -1,5 +1,11 @@
 # Now deployments
 
+## Deploy Angular bug
+
+Need to manually override `Now` project configurations.
+
+![Deploy Angular bug](./now_deploy_angular_bug.png)
+
 ## Joke maker
 
 - https://joke-maker.now.sh/
