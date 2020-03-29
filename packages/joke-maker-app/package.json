@@ -9,7 +9,7 @@
     "in": "ng serve",
     "start": "ng serve",
     "out": "now --prod",
-    "build": "ng build --outputPath=public --sourceMap=false --optimization=true",
+    "build": "ng build --prod --outputPath=public --sourceMap=false --optimization=true",
     "lint": "cd src&&run lx"
   },
   "private": true,
@@ -21,7 +21,7 @@
     "@angular/core": "9.0.6",
     "@angular/platform-browser": "9.0.6",
     "@angular/platform-browser-dynamic": "9.0.6",
-    "grid-fn": "^0.2.1",
+    "grid-fn": "^0.2.2",
     "rambdax": "^3.7.0",
     "string-fn": "2.11.0",
     "rxjs": "^7.0.0-alpha.1",
