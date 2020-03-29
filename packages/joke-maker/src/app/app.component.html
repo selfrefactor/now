@@ -5,7 +5,10 @@
 		[width]="10"
 	>
 		<div class="word">
-			<span>{{words[0]}}</span>
+			<span
+				[@openClose]="loading ? 'open' : 'closed'"
+				class="open-close-container"
+			>{{words[0]}}</span>
 		</div>
 	</cell>
 	<cell
@@ -14,7 +17,10 @@
 		[width]="10"
 	>
 		<div class="word">
-			<span>{{words[2]}}</span>
+			<span
+				[@openClose]="loading ? 'open' : 'closed'"
+				class="open-close-container"
+			>{{words[2]}}</span>
 		</div>
 	</cell>
 	<cell
@@ -23,7 +29,10 @@
 		[width]="10"
 	>
 		<div class="word">
-			<span>{{words[4]}}</span>
+			<span
+				[@openClose]="loading ? 'open' : 'closed'"
+				class="open-close-container"
+			>{{words[4]}}</span>
 		</div>
 	</cell>
 	<cell
@@ -32,7 +41,10 @@
 		[width]="10"
 	>
 		<div class="word">
-			<span>{{words[1]}}</span>
+			<span
+				[@openClose]="loading ? 'open' : 'closed'"
+				class="open-close-container"
+			>{{words[1]}}</span>
 		</div>
 	</cell>
 	<cell
@@ -41,7 +53,10 @@
 		[width]="10"
 	>
 		<div class="word">
-			<span>{{words[3]}}</span>
+			<span
+				[@openClose]="loading ? 'open' : 'closed'"
+				class="open-close-container"
+			>{{words[3]}}</span>
 		</div>
 	</cell>
 	<cell
@@ -50,7 +65,10 @@
 		[width]="10"
 	>
 		<div class="word">
-			<span>{{words[5]}}</span>
+			<span
+				[@openClose]="loading ? 'open' : 'closed'"
+				class="open-close-container"
+			>{{words[5]}}</span>
 		</div>
 	</cell>
 </grid>

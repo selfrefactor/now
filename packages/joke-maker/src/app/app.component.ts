@@ -1,20 +1,46 @@
 import {Component, OnInit, OnDestroy} from '@angular/core'
 import {HttpClient} from '@angular/common/http'
-import {interval, Observable} from 'rxjs'
+import {interval, Observable, Subscriber} from 'rxjs'
+import { delay } from 'rambdax'
 import {startWith, concatAll, map} from 'rxjs/operators'
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+} from '@angular/animations';
+
 const URL = 'https://toteff.eu.ngrok.io/lambdas/random-bulgarian-word'
 const KEY = 'joke.maker.password'
 
-const debugMode = true
+const debugMode = false
 const debugWord = '1234567890azsxdcfa'
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  animations:[
+    trigger('openClose', [
+      state('open', style({
+        opacity: 0,
+      })),
+      state('closed', style({
+        opacity: 1,
+      })),
+      transition('open => closed', [
+        animate('2s')
+      ]),
+      transition('closed => open', [
+        animate('2s')
+      ]),
+    ]),
+  ]
 })
 export class AppComponent implements OnInit {
   interval = 12
+  loading = false
   merged$: Observable<string[]>
   password = localStorage.getItem(KEY)
   words: string[] = Array(6).fill(debugMode ? debugWord:'')
@@ -27,8 +53,19 @@ export class AppComponent implements OnInit {
       password: this.password,
     })
     const interval$ = interval(this.interval * 1000).pipe(startWith(0))
+    
     this.merged$ = interval$.pipe(
-      map(() => response$),
+      map(() => new Observable((observer: Subscriber<string[]>) => {
+        this.loading = true
+        delay(600).then(()=>{
+
+          response$.subscribe(response => {
+            this.loading = false
+            observer.next(response)
+            observer.complete()
+          })
+        })
+      })),
       concatAll()
     )
 
