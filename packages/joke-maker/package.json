@@ -1,7 +1,47 @@
 {
-	"name": "joke-maker",
-	"version": "1.0.0",
-	"scripts": {
-		"out": "now --prod"
-	}
+  "name": "joke-maker",
+  "version": "1.0.0",
+  "files": ["public"],
+  "scripts": {
+    "component": "ng g component --skipTests",
+    "directive": "ng g directive --skipTests",
+    "service": "ng g service --skipTests",
+    "pipe": "ng g pipe --skipTests",
+    "in": "ng serve",
+    "start": "ng serve",
+    "out": "now --prod",
+    "build": "ng build --prod --outputPath=public --sourceMap=false --optimization=true",
+    "lint": "cd src&&run lx"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "^9.1.0",
+    "@angular/cdk": "9.0.0",
+    "@angular/common": "9.0.6",
+    "@angular/compiler": "9.0.6",
+    "@angular/core": "9.0.6",
+    "@angular/platform-browser": "9.0.6",
+    "@angular/platform-browser-dynamic": "9.0.6",
+    "grid-fn": "^0.2.2",
+    "rambdax": "^3.7.0",
+    "string-fn": "2.11.0",
+    "rxjs": "^7.0.0-alpha.1",
+    "tslib": "^1.11.1",
+    "zone.js": "^0.10.3"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^0.901.0",
+    "@angular/cli": "9.0.6",
+    "@angular/compiler-cli": "9.0.6",
+    "@angular/language-service": "9.0.6",
+    "@babel/core": "^7.9.0",
+    "@types/jest": "^25.1.4",
+    "@types/node": "^13.9.5",
+    "babel-loader": "^8.1.0",
+    "tslint-fn": "0.2.1",
+    "typescript": "3.7.2"
+  },
+  "depFn": [
+    "typescript"
+  ]
 }
