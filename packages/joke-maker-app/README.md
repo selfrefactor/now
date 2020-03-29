@@ -10,6 +10,9 @@ Solved by manually update red markers in `npm outdated` output.
 
 ## Alternative browserlist
 
+last 1 version
+
+
 ```
 last 2 Chrome versions
 last 2 ChromeAndroid versions
