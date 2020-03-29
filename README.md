@@ -1,5 +1,15 @@
 # Now deployments
 
+## Joke maker
+
+- https://joke-maker.now.sh/
+
+- https://joke-maker.now.sh/?play=8
+
+- https://joke-maker.now.sh/?play=30
+
+- https://joke-maker.now.sh/?play=60
+
 ## Imported from `I Learn Smarter` project
 
 ### Write Sentence Movie mode
