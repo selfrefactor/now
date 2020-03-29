@@ -12,11 +12,7 @@ import {CellComponent, GridComponent, SubGridComponent} from 'grid-fn'
     CellComponent,
     SubGridComponent,
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-  ],
+  imports: [BrowserModule, HttpClientModule, BrowserAnimationsModule],
   providers: [],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
