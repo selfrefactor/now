@@ -8,7 +8,8 @@
     "pipe": "ng g pipe --skipTests",
     "in": "ng serve",
     "start": "ng serve",
-    "out": "ng build",
+		"out": "now --prod",
+    "build": "ng build --outputPath=public",
     "lint": "cd src&&run lx"
   },
   "private": true,
