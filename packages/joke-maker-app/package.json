@@ -9,7 +9,7 @@
     "in": "ng serve",
     "start": "ng serve",
     "out": "now --prod",
-    "buildx": "ng build --outputPath=public --sourceMap=false --optimization=true",
+    "build": "ng build --outputPath=public --sourceMap=false --optimization=true",
     "lint": "cd src&&run lx"
   },
   "private": true,
