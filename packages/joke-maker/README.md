@@ -1,7 +1,5 @@
 # JokeMaker
 
-## Missing e2e tests with Protractor
+## Change default interval
 
-## Update deps
-
-`Angular-material` is limiting update as its cdk version should match that of this project
+`?play=5`

@@ -1,15 +1,16 @@
 import {Component, OnInit, OnDestroy} from '@angular/core'
 import {HttpClient} from '@angular/common/http'
 import {interval, Observable, Subscriber} from 'rxjs'
-import { delay } from 'rambdax'
+import {delay} from 'rambdax'
+import {takeArguments} from 'string-fn'
 import {startWith, concatAll, map} from 'rxjs/operators'
 import {
   trigger,
   state,
   style,
   animate,
-  transition,
-} from '@angular/animations';
+  transition, 
+} from '@angular/animations'
 
 const URL = 'https://toteff.eu.ngrok.io/lambdas/random-bulgarian-word'
 const KEY = 'joke.maker.password'
@@ -21,51 +22,56 @@ const debugWord = '1234567890azsxdcfa'
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  animations:[
+  animations: [
     trigger('openClose', [
-      state('open', style({
-        opacity: 0,
-      })),
-      state('closed', style({
-        opacity: 1,
-      })),
-      transition('open => closed', [
-        animate('2s')
-      ]),
-      transition('closed => open', [
-        animate('2s')
-      ]),
+      state(
+        'open',
+        style({
+          opacity: 0,
+        })
+      ),
+      state(
+        'closed',
+        style({
+          opacity: 1,
+        })
+      ),
+      transition('open => closed', [animate('1.4s')]),
+      transition('closed => open', [animate('1.4s')]),
     ]),
-  ]
+  ],
 })
 export class AppComponent implements OnInit {
   interval = 12
   loading = false
   merged$: Observable<string[]>
   password = localStorage.getItem(KEY)
-  words: string[] = Array(6).fill(debugMode ? debugWord:'')
+  words: string[] = Array(6).fill(debugMode ? debugWord : '')
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
     this.checkPassword()
-    if(debugMode) return
+    this.checkInterval()
+    if (debugMode) return
     const response$: Observable<any> = this.http.post(URL, {
       password: this.password,
     })
     const interval$ = interval(this.interval * 1000).pipe(startWith(0))
-    
-    this.merged$ = interval$.pipe(
-      map(() => new Observable((observer: Subscriber<string[]>) => {
-        this.loading = true
-        delay(600).then(()=>{
 
-          response$.subscribe(response => {
-            this.loading = false
-            observer.next(response)
-            observer.complete()
+    this.merged$ = interval$.pipe(
+      map(
+        () =>
+          new Observable((observer: Subscriber<string[]>) => {
+            this.loading = true
+            delay(600).then(() => {
+              response$.subscribe(response => {
+                this.loading = false
+                observer.next(response)
+                observer.complete()
+              })
+            })
           })
-        })
-      })),
+      ),
       concatAll()
     )
 
@@ -73,10 +79,14 @@ export class AppComponent implements OnInit {
       this.words = words
     })
   }
+  checkInterval(){
+    const {play} = takeArguments(window.location.search)
+    if(play) this.interval = play
+  }
   checkPassword() {
     if (!this.password) {
       const password = window.prompt(
-        'Why many, when can less words. Password?'
+        'Why many, when same less words. Password?'
       )
       localStorage.setItem(KEY, password)
       this.password = password
