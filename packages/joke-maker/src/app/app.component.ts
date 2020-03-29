@@ -1,9 +1,12 @@
 import {Component, OnInit, OnDestroy} from '@angular/core'
 import {HttpClient} from '@angular/common/http'
-import { interval, Observable } from 'rxjs'
-import { startWith, concatAll, map } from 'rxjs/operators';
+import {interval, Observable} from 'rxjs'
+import {startWith, concatAll, map} from 'rxjs/operators'
 const URL = 'https://toteff.eu.ngrok.io/lambdas/random-bulgarian-word'
 const KEY = 'joke.maker.password'
+
+const debugMode = true
+const debugWord = '1234567890azsxdcfa'
 
 @Component({
   selector: 'app-root',
@@ -11,17 +14,19 @@ const KEY = 'joke.maker.password'
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  title = 'joke-maker'
   interval = 12
   merged$: Observable<string[]>
   password = localStorage.getItem(KEY)
-  words: string[] = Array(6).fill('')
+  words: string[] = Array(6).fill(debugMode ? debugWord:'')
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
     this.checkPassword()
-    const response$: Observable<any> = this.http.post(URL, {password: this.password})
-    const interval$ = interval(this.interval * 1000).pipe(startWith(0));
+    if(debugMode) return
+    const response$: Observable<any> = this.http.post(URL, {
+      password: this.password,
+    })
+    const interval$ = interval(this.interval * 1000).pipe(startWith(0))
     this.merged$ = interval$.pipe(
       map(() => response$),
       concatAll()
