@@ -9,7 +9,7 @@ import {
   state,
   style,
   animate,
-  transition, 
+  transition,
 } from '@angular/animations'
 
 const URL = 'https://toteff.eu.ngrok.io/lambdas/random-bulgarian-word'
@@ -79,9 +79,9 @@ export class AppComponent implements OnInit {
       this.words = words
     })
   }
-  checkInterval(){
+  checkInterval() {
     const {play} = takeArguments(window.location.search)
-    if(play) this.interval = play
+    if (play) this.interval = play
   }
   checkPassword() {
     if (!this.password) {

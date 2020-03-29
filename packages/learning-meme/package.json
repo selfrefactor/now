@@ -1,5 +1,5 @@
 {
-	"name": "learning-meme",
+	"name": "joke-maker",
 	"version": "1.0.0",
 	"scripts": {
 		"out": "now --prod"
