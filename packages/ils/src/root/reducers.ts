@@ -8,7 +8,6 @@ import {
   SHARED_INIT,
   NAVIGATION_TOGGLE,
   ROUTER_CHANGE,
-  INFO,
 } from '../constants'
 
 import { getInitialState } from '../_helpers/getInitialState'
@@ -17,7 +16,6 @@ import { normalizeDatabaseBee } from './bees/normalizeDatabase'
 import { languageChangeClick } from './side_effects/languageChangeClick'
 import { settingsRandom } from './side_effects/settingsRandom'
 import { settingsTextToSpeech } from './side_effects/settingsTextToSpeech'
-import { infoBee } from '../bees/info';
 
 export function store(
   state: Store = getInitialState(),
@@ -26,10 +24,6 @@ export function store(
 
   switch (action.type) {
     case INIT_READY:
-      /**
-       * init process is ready
-       * user's reducer also listens for the same action
-       */
       return {
         ...state,
         db: normalizeDatabaseBee(action.payload.received.rows),
@@ -46,17 +40,11 @@ export function store(
         navigationActive: false,
       }  
     case LANGUAGE_CHANGE_INIT:
-      /**
-       * language change icon is clicked
-       */
       return {
         ...state,
         toggleLanguage: !state.toggleLanguage,
       }
     case LANGUAGE_CHANGE_CLICK:
-      /**
-       * new language pair is selected
-       */
       return languageChangeClick(action, state)
     case SETTINGS_RANDOM:
       return settingsRandom(action, state)
@@ -67,17 +55,11 @@ export function store(
         ...state,
         points: action.payload,
       }
-    /**
-     * some application is mounted
-     */
     case SHARED_INIT:
       return {
         ...state,
         name: action.payload,
       }
-    case INFO:
-      infoBee(action)
-      return state
     default:
       return state
   }

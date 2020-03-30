@@ -3,8 +3,7 @@ import { defaultTo, glue, replace } from 'rambdax'
 import styled from 'styled-components'
 import { mediaAnt, mediaImportantAnt } from '../../../ants/media'
 const gridAreas = glue(`logo 
-  c_info
-  . . 
+  . . . 
   c_changelanguage 
   c_random 
   c_texttospeech 
