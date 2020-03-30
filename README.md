@@ -16,6 +16,26 @@ Need to manually override `Now` project configurations.
 
 - https://joke-maker.now.sh/?play=60
 
+## Speed reader
+
+List of books
+```
+const hash = {
+  0: 'udhaus_fred',
+  1: 'udhaus_napred',
+  2: 'udhaus_pari',
+  3: 'udhaus_pylnolunie',
+  4: 'udhaus_radost',
+  5: 'udi',
+  6: 'voltaire',
+  7: 'sunset',
+  8: 'too_human',
+  9: 'zaratustra',
+  10: 'gogol',
+  99: 'demo',
+}
+```
+
 ## Imported from `I Learn Smarter` project
 
 ### Write Sentence Movie mode
