@@ -1,5 +1,5 @@
 {
-  "compilerOptions": {
+  "compilerOptions":{
     "allowJs": true,
     "jsx":"react",
     "allowSyntheticDefaultImports": true,
@@ -16,11 +16,18 @@
       "esnext",
       "es2017"
     ],
-    "baseUrl": "./src",
-    "paths": {
-      "~*": ["./*"]
-    },
-    "typeRoots": ["node_modules/@types"]
+    "plugins": [
+      {
+        "name": "typescript-styled-plugin"
+      }
+    ]
   },
-  "include": ["src/**/*"]
+  "include":[
+    "./src/**/*"
+  ],
+  "exclude":[
+    "dist",
+    "src/**/*.spec.ts",
+    "node_modules"
+  ]
 }
