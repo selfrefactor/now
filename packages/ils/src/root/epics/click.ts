@@ -16,8 +16,6 @@ function getActionFromID(id: string, name: string): false | Action {
       return { type: LANGUAGE_CHANGE_INIT }
     case 'toggle-navigation':
       return { type: NAVIGATION_TOGGLE }
-    case 'icon_info':
-      return { type: INFO, payload: name }
     case 'icon_next':
       return { type: `${name}@NEXT` }
     case 'icon_submit':
