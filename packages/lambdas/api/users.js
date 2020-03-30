@@ -1,6 +1,9 @@
-const url = require('url')
+// const url = require('url')
 const { add } = require('rambdax')
 
 module.exports = async (req, res) => {
-  res.status(200).json({ users: add(1,2) })
+  const ok = req.body.password === process.env.FOO
+  const result = ok? add(1,2) : 'Not allowed'
+
+  res.status(200).json({ users: result })
 }

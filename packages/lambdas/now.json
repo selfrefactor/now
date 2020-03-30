@@ -1,4 +1,7 @@
 {
   "public": true,
-  "regions": ["bru1"]
+  "regions": ["bru1"],
+  "env": {
+    "FOO": "@foo"
+  }
 }
