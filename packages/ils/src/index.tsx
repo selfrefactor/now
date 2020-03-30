@@ -15,10 +15,6 @@ masterSetter({
  
 // IMPORTS
 ///////////////////////////
-import {
-  connectRouter,
-  routerMiddleware,
-} from 'connected-react-router'
 import * as React from 'react'
 import { render } from 'react-dom'
 
@@ -26,7 +22,6 @@ import * as Sentry from '@sentry/browser'
 import { connect, Provider } from 'react-redux'
 import { Observable } from 'rxjs/Observable'
 
-import { createBrowserHistory } from 'history'
 import { applyMiddleware, createStore } from 'redux'
 import { createEpicMiddleware } from 'redux-observable'
 
@@ -78,14 +73,12 @@ const composeEnhancers = getComposeAnt()
 
 // CREATE_STORE
 ///////////////////////////
-const history = createBrowserHistory()
 const createdStore = createStore(
-  connectRouter(history)(combinedReducers),
+  combinedReducers,
   composeEnhancers(
     applyMiddleware(
-      routerMiddleware(history),
-      epicMiddleware),
-  ),
+      epicMiddleware
+  ))
 )
 
 // ROOT_COMPONENT
