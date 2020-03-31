@@ -15,8 +15,9 @@
 	},
 	"license": "MIT",
 	"scripts": {
+		"write": "maided write.sentence",
 		"in": "NODE_ENV=development parcel -p 8080 index.html ",
-		"build": "NODE_ENV=production parcel build index.html --no-minify --public-url / --out-dir public",
+		"build": "CURRENT_COMPONENT='write.sentence' NODE_ENV=production parcel build index.html --no-minify --public-url / --out-dir public",
 		"out": "now --prod"
 	},
 	"dependencies": {
@@ -47,6 +48,7 @@
 		"babel-preset-env": "^7.0.0-beta.3",
 		"babel-preset-react": "^7.0.0-beta.3",
 		"env-fn": "2.1.0",
+		"maided": "^0.1.3",
 		"parcel-bundler": "^1.12.3",
 		"typescript": "^3.2.2"
 	}

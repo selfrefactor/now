@@ -17,14 +17,12 @@ masterSetter({
 ///////////////////////////
 import * as React from 'react'
 import { render } from 'react-dom'
-
+import { switcher } from 'rambdax'
 import * as Sentry from '@sentry/browser'
 import { connect, Provider } from 'react-redux'
 import { Observable } from 'rxjs/Observable'
-
 import { applyMiddleware, createStore } from 'redux'
 import { createEpicMiddleware } from 'redux-observable'
-
 import { createElementAnt } from './ants/createElement'
 import { getComposeAnt } from './ants/getCompose'
 
@@ -33,11 +31,28 @@ import { getComposeAnt } from './ants/getCompose'
 import { Notify } from '../notify/component'
 // import { ChooseWordWrapped } from './choose_word/component'
 // import { GuessWordWrapped } from './guess_word/component'
-import { LearningMemeWrapped } from './learning_meme/component'
 import { CarrierWrapped } from './root/carrier/component'
-// import { SelectArticleWrapped } from './select_article/component'
-// import { WriteSentenceWrapped } from './write_sentence/component'
+import { LearningMemeWrapped } from './learning_meme/component'
+import { SelectArticleWrapped } from './select_article/component'
+import { WriteSentenceWrapped } from './write_sentence/component'
 
+const AllComponents = {
+  LearningMemeWrapped,
+  SelectArticleWrapped,
+  WriteSentenceWrapped
+}
+console.log(process.env.CURRENT_COMPONENT);
+
+const currentComponentKey = switcher(process.env.CURRENT_COMPONENT)
+  .is('learning.meme', 'LearningMeme')
+  .is('select.article', 'SelectArticle')
+  .is('write.sentence', 'WriteSentence')
+  .default('learning.meme')
+
+console.log(currentComponentKey);
+  
+const CurrentComponent = AllComponents[`${currentComponentKey}Wrapped`]
+  
 // INTERNAL_MODULES
 ///////////////////////////
 import { getJsonBee } from './bees/getJson'
@@ -105,7 +120,7 @@ class Root extends React.Component<Props, {}> {
       <div>
         <Notify />
         <CarrierWrapped />
-        <LearningMemeWrapped/>
+        <CurrentComponent/>
       </div>
     )
   }
