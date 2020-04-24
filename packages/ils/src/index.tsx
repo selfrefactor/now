@@ -41,7 +41,6 @@ const AllComponents = {
   SelectArticleWrapped,
   WriteSentenceWrapped
 }
-console.log(process.env.CURRENT_COMPONENT);
 
 const currentComponentKey = switcher(process.env.CURRENT_COMPONENT)
   .is('learning.meme', 'LearningMeme')
@@ -49,8 +48,6 @@ const currentComponentKey = switcher(process.env.CURRENT_COMPONENT)
   .is('write.sentence', 'WriteSentence')
   .default('learning.meme')
 
-console.log(currentComponentKey);
-  
 const CurrentComponent = AllComponents[`${currentComponentKey}Wrapped`]
   
 // INTERNAL_MODULES

@@ -7,6 +7,7 @@ export const WordsContainer = styled.div`
   width: 100%;
   text-align: center;
   span{
+    font-weight: 800;
     margin: 0 0.4vw;
   }
 `

@@ -3,7 +3,7 @@ import * as React from 'react'
 import { click, next } from './actions'
 import { Container } from './styled/grid'
 import { Image, ImageContainer } from './styled/image'
-import { Select, SelectContainer } from './styled/select'
+import { Select, SelectContainer, Span } from './styled/select'
 import { SmallerTranslation, TranslationContainer } from './styled/translation'
 import { WordsContainer } from './styled/words'
 
@@ -61,7 +61,7 @@ export class SelectArticle extends React.PureComponent<SelectArticleProps, {}> {
             wordList.map((_, i) => {
               if (typeof _ === 'string'){
 
-                return <span key={i}>{_}</span>
+                return <Span key={i}>{_}</Span>
               }
 
               return (

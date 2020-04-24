@@ -16,6 +16,9 @@ export const SelectContainer = styled.ul`
   list-style-type: none;
   margin: 0 10px;
   min-width: 7vw;
+  li{
+    color: #4d0e0b;
+  }
   li.selectable_correct{
     color: #f9f6f1;
     background: #60a917;
@@ -28,6 +31,10 @@ export const SelectContainer = styled.ul`
     color: #f9f6f1;
     background: #1fafff;    
   }
+`
+
+export const Span = styled.span`
+  color: #3e4251;
 `
 
 export const Select = styled.li`
