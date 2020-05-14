@@ -1,6 +1,9 @@
 import { createActionAnt } from './ants/createAction'
 import { glue, remove } from 'rambdax'
 
+export const isFirefox = typeof InstallTrigger !== 'undefined';
+export const isChrome = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
+
 // These keys persist
 // ============================================
 export const initialDefaultState = {

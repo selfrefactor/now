@@ -2,7 +2,8 @@ import { range } from 'rambdax'
 import { ActionsObservable } from 'redux-observable'
 import { Observable } from 'rxjs/Observable'
 import {
-  INFO,
+  isFirefox,
+  isChrome,
   LANGUAGE_CHANGE_INIT,
   NAVIGATION_TOGGLE,
   SETTINGS_RANDOM,
@@ -42,6 +43,21 @@ function getID(click: any) {
   return willReturn
 }
 
+function getActionToEmit(clickEvent, name){
+  if(isChrome){
+    const isCanvas = clickEvent.srcElement.nodeName === 'CANVAS'
+    const ok = clickEvent.path.length >= MIN || isCanvas
+  
+    const id = ok ?
+      getID(clickEvent) :
+      ''
+  
+    return getActionFromID(id, name)
+  }
+  
+  return getActionFromID(clickEvent.target.id, name))
+}
+
 /**
  * It listens for any click events.
  * If there is event handler, action is emitted.
@@ -53,27 +69,19 @@ export const clickEpic = (
 
   Observable
     .fromEvent(document, 'click')
-    .switchMap((click: any) =>
+    .switchMap((clickEvent: any) =>
+    new Observable(observer => {
+      const { name } = store.getState().store
 
-      new Observable(observer => {
-        const isCanvas = click.srcElement.nodeName === 'CANVAS'
-        try {
-          const ok = click.path.length >= MIN || isCanvas
-  
-          const id = ok ?
-            getID(click) :
-            ''
-  
-          const { name } = store.getState().store
-          const actionToEmit = getActionFromID(id, name)
-  
+      try {
+          const actionToEmit = getActionToEmit(clickEvent, name)
           if (actionToEmit === false) return observer.complete()
   
           observer.next(actionToEmit)
           observer.complete()
         } catch (e) {
           observer.next(notifyError({
-            message: 'Navigation works only on Chrome!',
+            message: 'Navigation error',
             ms: 5000,
           }))
           observer.complete()
