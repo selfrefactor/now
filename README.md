@@ -6,6 +6,14 @@ Need to manually override `Now` project configurations.
 
 ![Deploy Angular bug](./now_deploy_angular_bug.png)
 
+## Firefox
+
+It required `visualviewport` in `about:config` to be set to `true`
+
+## Speed reader
+
+- https://speed-reader.now.sh/
+
 ## Joke maker
 
 - https://joke-maker.now.sh/
