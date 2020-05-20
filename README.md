@@ -14,6 +14,10 @@ It required `visualviewport` in `about:config` to be set to `true`
 
 - https://speed-reader.now.sh/
 
+## Select article
+
+- https://select-article.now.sh/
+
 ## Joke maker
 
 - https://joke-maker.now.sh/
