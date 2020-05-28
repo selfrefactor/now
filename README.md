@@ -66,6 +66,8 @@ Very fast:
 
 ### Accept speech
 
+> !Important - works only in Chrome
+
 - https://learning-meme.now.sh/?easier?easiest?mic
 
 - https://write-sentence.now.sh/?easier?easiest?mic
