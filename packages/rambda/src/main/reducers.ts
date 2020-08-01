@@ -1,6 +1,7 @@
 import { SET_CODE, SET_RESULTS } from '../constants'
 
-const devCode = `const condition = async x => {
+const devCode = `
+const condition = async x => {
   await R.delay(100)
   return x > 1
 }
