@@ -1,7 +1,6 @@
-import { map, type, anyPass, includes } from 'rambdax'
+import { map, type, anyPass, includes, waitFor } from 'rambdax'
 import { ActionsObservable } from 'redux-observable'
 import { Observable } from 'rxjs/Observable'
-import { throttleTime } from 'rxjs/operator/throttleTime'
 import { SET_CODE } from '../../constants'
 import { setResults } from '../actions'
 
@@ -32,13 +31,10 @@ export const execCodeEpic = (
       return new Observable(observer => {
         const code = store.getState().store.code
         const flag = getFlag(code)
-
-        if (!flag) {
-
-          return observer.complete()
-        }
+        if (!flag) return observer.complete()
 
         let resultHolder
+        let readyState = false
         const logResultHolder = []
         const consoleLogHolder = console.log
         console.log = (...input) => logResultHolder.push(...input)
@@ -56,58 +52,48 @@ export const execCodeEpic = (
         }
 
         const codeToEvaluate = `
-${code};
-const resultType = R.type(result)
-const typeFlag = resultType === 'Promise' || resultType === 'Async'
-if(typeFlag){
-  resultHolder = {
-    type: resultType,
-    payload: result
-  }
-}else{
-  resultHolder = result
-}
+void async function main() {
+  ${code};
+  readyState = true;
+  resultHolder = result;
+}();
 `
 
         try {
           eval(codeToEvaluate)
-
-          if (type(resultHolder) === 'Object' && ['Promise', 'Async'].includes(resultHolder.type)) {
-
-            const promised = resultHolder.type === 'Async' ?
-              resultHolder.payload() :
-              resultHolder.payload
-
-            promised.then(resolved => {
-
+          if(readyState){
               onResult({
                 log: logResultHolder,
-                result: resolved,
+                result: resultHolder,
               })
+              return onComplete()
+          }
+          const waitForResult = waitFor(() => readyState, 5000)
 
+          waitForResult()
+            .then(()=>{
+              onResult({
+                log: logResultHolder,
+                result: resultHolder,
+              })
               onComplete()
-
-            }).catch(err => {
+            })
+            .catch(err => {
               onResult({
                 log: logResultHolder,
                 result: err.message || 'ERROR',
               })
               onComplete()
             })
-          } else {
-
-            onResult({
-              log: logResultHolder,
-              result: resultHolder,
-            })
-            onComplete()
-          }
         } catch (e) {
           onResult({
             log: logResultHolder,
             result: e.message || 'ERROR',
           })
           onComplete()
+          if(e instanceof SyntaxError === false){
+            console.log(e)
+          }
         }
       })
     })
