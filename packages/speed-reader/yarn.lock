@@ -2193,12 +2193,13 @@ cli-spinners@^2.2.0:
   resolved "https://registry.yarnpkg.com/cli-spinners/-/cli-spinners-2.2.0.tgz#e8b988d9206c692302d8ee834e7a85c0144d8f77"
   integrity sha512-tgU3fKwzYjiLEQgPMD9Jt+JjHVL9kW93FiIMX/l7rivvOD4/LL0Mf7gda3+4U2KJBloybwgj5KEoQgGRioMiKQ==
 
-client-helpers-fn@0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/client-helpers-fn/-/client-helpers-fn-0.1.0.tgz#a0dd47b4d4e3805bede54168a2b17f60c8a33cdc"
-  integrity sha512-pzWo8RDgJsgH8h+iFWcHI50sTk4u4/f3lwzMVzzyEsABdf3dr1xvB4OrGLHjWISCri+yiEMPMp8vJJgMRKQ0/A==
+client-helpers-fn@0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/client-helpers-fn/-/client-helpers-fn-0.2.0.tgz#daed94696c13992530a220f09f1ed0e981b5c554"
+  integrity sha512-ERgy2zp23DQWi3U9oOlqNJOGMBeaVIwIrp5xQ1cmbOK0yyrTCxHAlImxlTjS2HasL0MIek4ImlVXvVFoS64HSg==
   dependencies:
-    rambdax "^3.7.0"
+    rambdax "7.0.1"
+    string-fn "3.1.0"
 
 clone@^1.0.2:
   version "1.0.4"
@@ -5300,25 +5301,20 @@ quote-stream@^1.0.1, quote-stream@~1.0.2:
     minimist "^1.1.3"
     through2 "^2.0.0"
 
-rambda@^1.2.6:
-  version "1.2.6"
-  resolved "https://registry.yarnpkg.com/rambda/-/rambda-1.2.6.tgz#5feed8039369b65c389ee1e02db9527695d30e83"
-  integrity sha512-3tjeDuSMKAf8t099BejrmLgXdexAh63AsU2c2ZTcN5y/gt5njw03Wsfb+Ti9b08ZWLLDN5r0EvKynfYM91PB6g==
-
 rambda@^4.5.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/rambda/-/rambda-4.6.0.tgz#79a47911329c91ad6094a0425a2980ec19e6ba72"
   integrity sha512-RGFM9TnZWmh/r6SAjNK9qrz5Ch8UceRgQrxtijtdD/ZmTUOEcqNYKlJNzApPH+kWvvUJ0ZYhS82I+3gR1O/6uA==
 
-rambdax@3.7.0, rambdax@^3.7.0:
+rambdax@3.7.0:
   version "3.7.0"
   resolved "https://registry.yarnpkg.com/rambdax/-/rambdax-3.7.0.tgz#bc89ced092f95521555eb24fe0a29039807a4756"
   integrity sha512-EaV46HD0sqoFGmm0BT7cMSUXJw0l+iMCH52CkhAuByJNLC+WXE13KgxRd5UsnwdLg/tEskgPADYacOuR0zVa9Q==
 
-rambdax@^2.12.3:
-  version "2.13.0"
-  resolved "https://registry.yarnpkg.com/rambdax/-/rambdax-2.13.0.tgz#a997c8d55f837d5fa746ef906a8cd976cf1b9304"
-  integrity sha512-7vK+xf6Or+Zn7YFDg6k5xHHOZsitSJHfeIeuL24yHPnO+7UQx++yTJFgX1yE4+kH3iH4nXQc3atBdHYJkDPPKQ==
+rambdax@7.0.1:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/rambdax/-/rambdax-7.0.1.tgz#6a1b3184abcf4cf6df5dffc27fc0d71100aa21ec"
+  integrity sha512-Xrrp45dg1PLt40LMcjfNyVDcPBndzpR2t+AXGAcc9iqU9lD9bnk/b1B+n4W5tFXoSKDmZmgckcA8ajgVzbtxGA==
 
 randombytes@^2.0.0, randombytes@^2.0.1, randombytes@^2.0.5:
   version "2.1.0"
@@ -5966,12 +5962,12 @@ string-fn@2.11.1:
   dependencies:
     rambdax "3.7.0"
 
-string-fn@^2.9.0:
-  version "2.9.0"
-  resolved "https://registry.yarnpkg.com/string-fn/-/string-fn-2.9.0.tgz#4f2e25d6fd8a9f0c02ef229182516964ff26007a"
-  integrity sha512-iW5/ulXeco059bRzc/vLePD1mPDTFq/2zhZ50U+TsPJLBYdF7lphkHoBLxtbPHycv/u32egiMEAbdlgQIaZTAQ==
+string-fn@3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/string-fn/-/string-fn-3.1.0.tgz#bef505074bc0db40ad8085249c1d97b5e30e128e"
+  integrity sha512-LFje5UeJH6t0XILNbwjUWctL5aU9yDKz8ILPzKVHDgw6ZGR8ebulvRD0zjUVEGKzCNxi1IzJK63/HR+7Q9HQQQ==
   dependencies:
-    rambda "^1.2.6"
+    rambdax "7.0.1"
 
 string-width@^1.0.1:
   version "1.0.2"

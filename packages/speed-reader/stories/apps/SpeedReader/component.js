@@ -1,14 +1,18 @@
-import { initialGetLocalize, setLocalize } from 'client-helpers-fn'
+import {
+  initialGetLocalize,
+  initialGetLocalizeUrl,
+  setLocalize,
+} from 'client-helpers-fn'
 import { defaultTo, delay, last, maybe, range, toDecimal } from 'rambdax'
+import { range as rangeModule } from 'rambdax'
 import React from 'react'
 import styled from 'styled-components'
 
 import { Cell, Grid } from '../../src/Grid/component'
 import { Options } from '../../src/Options/component'
-import { getData } from './getData.js'
-import { range as rangeModule } from 'rambdax'
-import { getReloadIndexes } from './getReloadIndexes.js'
-import { produceRow } from './produceRow.js'
+import { getData } from './getData'
+import { getReloadIndexes } from './getReloadIndexes'
+import { produceRow } from './produceRow'
 
 const BACKGROUND = '#ede8e1aa'
 
@@ -46,9 +50,10 @@ const bookIndexOption = {
   label        : 'book.index',
   type         : 'SELECT',
   visibleLabel : 'Book index',
-  choices      : rangeModule(0,60).map(String),
-  value        : initialGetLocalize({
+  choices      : rangeModule(0, 60).map(String),
+  value        : initialGetLocalizeUrl({
     key          : 'book.index',
+    urlKey       : 'i',
     defaultValue : '1',
   }),
 }

@@ -3,9 +3,6 @@
 	"version": "1.0.0",
 	"main": "src/index.jsx",
 	"homepage": "https://github.com/selfrefactor/now#readme",
-	"directories": {
-		"lib": "lib"
-	},
 	"files": [
 		"lib"
 	],
@@ -22,12 +19,12 @@
 	"dependencies": {
 		"@sentry/browser": "^5.1.2",
 		"axios": "^0.19.0",
-		"client-helpers-fn": "0.1.0",
+		"client-helpers-fn": "0.2.0",
 		"helpers-fn": "0.3.3",
-		"rambdax": "^2.12.3",
+		"rambdax": "7.0.1",
 		"react": "^16.9.0-alpha.0",
 		"react-dom": "^16.9.0-alpha.0",
-		"string-fn": "^2.9.0",
+		"string-fn": "3.1.0",
 		"styled-components": "^4.4.0"
 	},
 	"devDependencies": {
