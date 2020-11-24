@@ -3,9 +3,6 @@
 	"version": "1.0.0",
 	"main": "src/index.jsx",
 	"homepage": "https://github.com/selfrefactor/now#readme",
-	"files": [
-		"lib"
-	],
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/selfrefactor/now.git"

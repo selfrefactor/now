@@ -14,6 +14,10 @@ It required `visualviewport` in `about:config` to be set to `true`
 
 - https://speed-reader.now.sh/
 
+> control book index from URL
+
+- https://speed-reader.now.sh/?i=22
+
 ## Select article
 
 - https://select-article.now.sh/
