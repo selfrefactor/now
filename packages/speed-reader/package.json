@@ -14,24 +14,24 @@
 		"out": "now --prod"
 	},
 	"dependencies": {
-		"@sentry/browser": "^5.1.2",
-		"axios": "^0.19.0",
+		"@sentry/browser": "5.1.2",
+		"axios": "0.19.0",
 		"client-helpers-fn": "0.2.0",
 		"helpers-fn": "0.3.3",
-		"rambdax": "7.0.1",
-		"react": "^16.9.0-alpha.0",
-		"react-dom": "^16.9.0-alpha.0",
+		"rambdax": "4.2.0",
+		"react": "16.9.0-alpha.0",
+		"react-dom": "16.9.0-alpha.0",
 		"string-fn": "3.1.0",
-		"styled-components": "^4.4.0"
+		"styled-components": "4.4.0"
 	},
 	"devDependencies": {
-		"@babel/core": "^7.4.4",
-		"@types/react": "^16.8.16",
-		"babel-preset-env": "^7.0.0-beta.3",
-		"babel-preset-react": "^7.0.0-beta.3",
+		"@babel/core": "7.4.4",
+		"@types/react": "16.8.16",
+		"babel-preset-env": "7.0.0-beta.3",
+		"babel-preset-react": "7.0.0-beta.3",
 		"env-fn": "2.1.0",
-		"parcel-bundler": "^1.12.3",
-		"sass": "^1.20.1",
-		"typescript": "^3.5.0-dev.20190504"
+		"parcel-bundler": "1.12.3",
+		"sass": "1.20.1",
+		"typescript": "3.5.0-dev.20190504"
 	}
 }

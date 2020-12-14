@@ -9,3 +9,7 @@
 2. `yarn deploy`
 
 3. `yarn now`
+
+## Using stories's options component
+
+Use Rambdax version 4.2.0
