@@ -81,7 +81,8 @@ List of books
     "40": "udi",
     "41": "voltaire",
     "42": "volter.filosofski.noveli",
-    "43": "zaratustra",
+    "43": "woody.allen.ako.impresionistite.bjaha.zybolekari",
+    "44": "zaratustra",
     "99": "demo"
   }
 }
