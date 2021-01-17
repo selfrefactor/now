@@ -132,6 +132,8 @@ export const CHOOSE_WORD_STOP = 'chooseWord@STOP'
 export const CHOOSE_WORD_UNMOUNT = 'chooseWord@UNMOUNT'
 
 // GENERAL
+export const PASSWORD = 'PASSWORD'
+export const DATABASE = 'DATABASE'
 export const DATA_READY = 'DATA_READY'
 export const DELAY = 500
 export const INFO = 'INFO'

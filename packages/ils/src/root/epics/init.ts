@@ -1,10 +1,15 @@
 import { getter } from 'client-helpers-fn'
 import { ActionsObservable } from 'redux-observable'
 import { Observable } from 'rxjs/Observable'
-import { INIT } from './../../constants'
+import { INIT, DATABASE } from './../../constants'
 import { initReady } from './../actions'
 import { partition } from 'rambdax'
-import {db} from './db'
+
+function getDatabase(){
+  const database = localStorage.getItem(DATABASE)
+
+  return JSON.parse(database)
+}
 
 function rehydrate({rows}){
   const toReturn = []
@@ -34,15 +39,13 @@ function rehydrate({rows}){
 
 export const initEpic = (
   action$: ActionsObservable<InitAction>,
-  store: ObservableStore,
-  { getJson },
 ): Observable<any> =>
   action$
     .ofType(INIT)
     .switchMap(() => new Observable(observer => {
       observer.next(
         initReady({
-          received: rehydrate(db),
+          received: rehydrate(getDatabase()),
         }),
       )
       observer.complete()

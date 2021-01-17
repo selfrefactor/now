@@ -5,7 +5,7 @@ import './root/rxImports'
 ///////////////////////////
 import { initLocalState, masterGetter, masterSetter } from 'client-helpers-fn'
 import { rootInitBee } from './bees/rootInit'
-import { defaultState, initialDefaultState } from './constants'
+import { defaultState, initialDefaultState, PASSWORD, DATABASE } from './constants'
 initLocalState('ILS', initialDefaultState)
 masterSetter({
   ...initialDefaultState,
@@ -93,6 +93,8 @@ const createdStore = createStore(
   ))
 )
 
+const API_URL = 'http://lambdas-fn.now.sh/api/api'
+
 // ROOT_COMPONENT
 ///////////////////////////
 class Root extends React.Component<Props, {}> {
@@ -101,11 +103,30 @@ class Root extends React.Component<Props, {}> {
     rootInitBee()
   }
 
-  public componentDidMount() {
+  public async initDatabase(password) {
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password })
+  };
+    const response = await window.fetch(API_URL, requestOptions)
+    const data = await response.json()
+    localStorage.setItem(DATABASE, JSON.stringify(data))
+    return this.props.dispatch(init())
+  }
+
+  public async componentDidMount() {
     Sentry.init({
       dsn: 'https://c57bf6cbb9fc431fb3f326f31745f93f@sentry.io/123126',
     })
-    this.props.dispatch(init())
+    const localPassword = localStorage.getItem(PASSWORD)
+    const localDatabase = localStorage.getItem(DATABASE)
+    if(localDatabase) return this.props.dispatch(init())
+    if(localPassword) return this.initDatabase(localPassword)
+
+    const password = prompt('Enter password!')
+    localStorage.setItem(PASSWORD, password)
+    this.initDatabase(password)
   }
 
   public componentDidCatch(e) {
