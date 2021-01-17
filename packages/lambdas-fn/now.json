@@ -1,7 +1,0 @@
-{
-  "public": true,
-  "regions": ["bru1"],
-  "env": {
-    "FOO": "@foo"
-  }
-}
