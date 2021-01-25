@@ -14,9 +14,9 @@ It required `visualviewport` in `about:config` to be set to `true`
 
 - https://speed-reader.now.sh/
 
-> control book index from URL
+## Reddit viewer
 
-- https://speed-reader.now.sh/?i=22
+Firefox setting for strict protection blocks the work of this app.
 
 ## Select article
 
