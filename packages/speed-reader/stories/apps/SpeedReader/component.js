@@ -6,6 +6,7 @@ import {
 import { defaultTo, delay, last, maybe, range, toDecimal } from 'rambdax'
 import { range as rangeModule } from 'rambdax'
 import React from 'react'
+import { takeArguments } from 'string-fn'
 import styled from 'styled-components'
 
 import { Cell, Grid } from '../../src/Grid/component'
@@ -152,9 +153,10 @@ export class SpeedReader extends React.Component{
     if (this.props.testString) return
     const password = localStorage.getItem('speed.reader.password')
     if (!password){
-      const userPassword = window.prompt('There is a password. You know the drill.')
+      const {password: passwordFromAddress} = takeArguments(window.location.href)
+      const userPassword = passwordFromAddress ? passwordFromAddress : window.prompt('There is a password. You know the drill.')
       localStorage.setItem('speed.reader.password', userPassword)
-      window.location.reload(false)
+      window.location.reload()
     }
 
     getData(bookIndexOption.value, password).then(data => this.work(data))
