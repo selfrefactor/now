@@ -93,7 +93,7 @@ const createdStore = createStore(
   ))
 )
 
-const API_URL = 'http://lambdas-fn.now.sh/api/api'
+const API_URL = 'https://lambdas-fn.now.sh/api/api'
 
 // ROOT_COMPONENT
 ///////////////////////////
