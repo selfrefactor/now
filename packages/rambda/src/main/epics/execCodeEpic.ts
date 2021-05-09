@@ -5,9 +5,6 @@ import { SET_CODE } from '../../constants'
 import { setResults } from '../actions'
 
 const stringifyResult = x => {
-  if(Array.isArray(x)){
-    return x.toString()
-  }
   if(type(x) === 'Object'){
     return JSON.stringify(x, null, 2)
   }
