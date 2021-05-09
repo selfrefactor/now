@@ -6,8 +6,12 @@
 	"main": "./dist/index.js",
 	"typings": "./src/typings.d.ts",
 	"repository": "git@github.com:selfrefactor/rambda-repl.git",
+	"type": "static",
+  "files": [
+    "public"
+  ],
 	"scripts": {
-		"out": "now --prod",
+		"out": "now ./dist",
 		"build": "./node_modules/.bin/webpack --config webpack.config.prod.js",
 		"dll": "webpack --config webpack.config.dll.js",
 		"in": "node_modules/.bin/webpack-dev-server"

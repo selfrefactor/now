@@ -89,7 +89,7 @@ const rules = [
 
 const output = {
   filename: '[name].[chunkhash].js',
-  path: path.resolve(__dirname, 'public')
+  path: path.resolve(__dirname, 'dist')
 }
 
 module.exports = {
