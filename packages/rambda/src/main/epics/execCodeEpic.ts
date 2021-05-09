@@ -1,10 +1,13 @@
-import { map, type, anyPass, includes, waitFor } from 'rambdax'
+import { map, type, anyPass, includes, waitFor, uniq } from 'rambdax'
 import { ActionsObservable } from 'redux-observable'
 import { Observable } from 'rxjs/Observable'
 import { SET_CODE } from '../../constants'
 import { setResults } from '../actions'
 
 const stringifyResult = x => {
+  if(Array.isArray(x)){
+    return x.toString()
+  }
   if(type(x) === 'Object'){
     return JSON.stringify(x, null, 2)
   }
@@ -31,6 +34,7 @@ export const execCodeEpic = (
       return new Observable(observer => {
         const code = store.getState().store.code
         const flag = getFlag(code)
+        console.log(`flag`, flag )
         if (!flag) return observer.complete()
 
         let resultHolder
@@ -45,6 +49,7 @@ export const execCodeEpic = (
         }
 
         const onResult = ({ result, log }) => {
+          console.warn(`result`, result )
           observer.next(setResults({
             logResult: stringifyLog(log),
             result: stringifyResult(result),
@@ -58,7 +63,7 @@ void async function main() {
   resultHolder = result;
 }();
 `
-
+console.warn(`codeToEvaluate`, uniq([null, undefined]) )
         try {
           eval(codeToEvaluate)
           if(readyState){
