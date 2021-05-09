@@ -19,7 +19,7 @@ process.env.NODE_ENV = 'production'
 
 const plugins = [
   new CleanWebpackPlugin(['dist']),
-  new WebpackBundleSizeAnalyzerPlugin('./plain-report.txt'),
+  // new WebpackBundleSizeAnalyzerPlugin('./plain-report.txt'),
   new webpack.EnvironmentPlugin([
     'NODE_ENV',
   ]),
@@ -89,7 +89,7 @@ const rules = [
 
 const output = {
   filename: '[name].[chunkhash].js',
-  path: path.resolve(__dirname, 'dist')
+  path: path.resolve(__dirname, 'public')
 }
 
 module.exports = {
