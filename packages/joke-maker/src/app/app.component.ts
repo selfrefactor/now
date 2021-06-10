@@ -1,7 +1,7 @@
 import {Component, OnInit, OnDestroy} from '@angular/core'
 import {HttpClient} from '@angular/common/http'
 import {interval, Observable, Subscriber} from 'rxjs'
-import {delay} from 'rambdax'
+import {delay, random} from 'rambdax'
 import {takeArguments} from 'string-fn'
 import {startWith, concatAll, map} from 'rxjs/operators'
 import {
@@ -52,6 +52,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.checkPassword()
     this.checkInterval()
+    console.log((window as any).DD_RUM.getInternalContext())
     if (debugMode) return
     const response$: Observable<any> = this.http.post(URL, {
       password: this.password,
@@ -88,8 +89,17 @@ export class AppComponent implements OnInit {
       const password = window.prompt(
         'Why many, when same less words. Password?'
       )
-      localStorage.setItem(KEY, password)
-      this.password = password
+      if(password){
+        console.log(`password`, password )
+        localStorage.setItem(KEY, password)
+        this.password = password
+      }
     }
+  }
+  firstClick(){
+    console.log(1)
+  }
+  secondClick(){
+    throw new Error(`foo-${random(1, 999)}`)
   }
 }

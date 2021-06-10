@@ -1,7 +1,9 @@
 {
   "name": "joke-maker",
   "version": "1.0.0",
-  "files": ["public"],
+  "files": [
+    "public"
+  ],
   "scripts": {
     "component": "ng g component --skipTests",
     "directive": "ng g directive --skipTests",
@@ -22,10 +24,11 @@
     "@angular/core": "9.0.6",
     "@angular/platform-browser": "9.0.6",
     "@angular/platform-browser-dynamic": "9.0.6",
+    "@datadog/browser-rum": "2.13.0",
     "grid-fn": "^0.2.2",
     "rambdax": "^3.7.0",
-    "string-fn": "2.11.0",
     "rxjs": "^7.0.0-alpha.1",
+    "string-fn": "2.11.0",
     "tslib": "^1.11.1",
     "zone.js": "^0.10.3"
   },
