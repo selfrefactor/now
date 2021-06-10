@@ -32,6 +32,7 @@
 	>
 		<div class="word">
 			<span
+				(click)="thirdClick()"
 				[@openClose]="loading ? 'open' : 'closed'"
 				class="open-close-container"
 			>{{words[4]}}</span>

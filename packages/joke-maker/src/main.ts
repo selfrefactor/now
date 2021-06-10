@@ -12,6 +12,7 @@ import '@datadog/browser-rum/bundle/datadog-rum'
   site: 'datadoghq.eu',
   service:'foo',
   version: '1.0.0',
+  forwardErrorsToLogs: true,
   env:'dev',
   sampleRate: 100,
   trackInteractions: true

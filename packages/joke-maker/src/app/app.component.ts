@@ -52,8 +52,6 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.checkPassword()
     this.checkInterval()
-    console.log((window as any).DD_RUM.getInternalContext())
-    console.log((Object.keys((window as any).DD_RUM)).includes('addAction'))
     if (debugMode) return
     const response$: Observable<any> = this.http.post(URL, {
       password: this.password,
@@ -98,12 +96,17 @@ export class AppComponent implements OnInit {
     }
   }
   firstClick(){
-    console.log(1);
-    (window as any).DD_RUM.addAction(`FOO_ACTION_${random(1, 999)}`, JSON.stringify({
-      message: `FOO_MESSAGE_${random(1, 999)}`
+    console.log(`STRINGIFY_LOG_${random(1, 999)}`, {[`PROP_${random(1, 999)}`]: [`Q_${random(1, 999)}`]});
+    (window as any).DD_RUM.addAction(`STRINGIFY_ACTION_${random(1, 999)}`, JSON.stringify({
+      [`MSG_${random(0,4)}`]: `FOO_MESSAGE_${random(1, 999)}`
     }))
   }
   secondClick(){
-    throw new Error(`foo-${random(1, 999)}`)
+    (window as any).DD_RUM.addAction(`PROPERTY_${random(1, 999)}`, {
+      [`MESSAGE_${random(0,4)}`]: `MESSAGE_${random(1, 999)}`
+    });
+  }
+  thirdClick(){
+    throw new Error(`foo-${random(1, 999)}`);
   }
 }
