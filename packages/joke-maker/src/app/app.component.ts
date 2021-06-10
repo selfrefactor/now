@@ -96,10 +96,8 @@ export class AppComponent implements OnInit {
     }
   }
   firstClick(){
-    console.log(`STRINGIFY_LOG_${random(1, 999)}`, {[`PROP_${random(1, 999)}`]: [`Q_${random(1, 999)}`]});
-    (window as any).DD_RUM.addAction(`STRINGIFY_ACTION_${random(1, 999)}`, JSON.stringify({
-      [`MSG_${random(0,4)}`]: `FOO_MESSAGE_${random(1, 999)}`
-    }))
+    (window as any).DD_RUM.addError(new Error(`FIRST_ERROR_${random(1, 999)}`), {[`FE_${random(1, 999)}`]: `DEO_${random(1, 999)}`},'source');
+    (window as any).DD_RUM.addError(new Error(`FIRST_ERROR2_${random(1, 999)}`), undefined, `source`);
   }
   secondClick(){
     (window as any).DD_RUM.addAction(`PROPERTY_${random(1, 999)}`, {
