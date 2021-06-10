@@ -53,6 +53,7 @@ export class AppComponent implements OnInit {
     this.checkPassword()
     this.checkInterval()
     console.log((window as any).DD_RUM.getInternalContext())
+    console.log((Object.keys((window as any).DD_RUM)).includes('addAction'))
     if (debugMode) return
     const response$: Observable<any> = this.http.post(URL, {
       password: this.password,
@@ -97,7 +98,10 @@ export class AppComponent implements OnInit {
     }
   }
   firstClick(){
-    console.log(1)
+    console.log(1);
+    (window as any).DD_RUM.addAction(`FOO_ACTION_${random(1, 999)}`, JSON.stringify({
+      message: `FOO_MESSAGE_${random(1, 999)}`
+    }))
   }
   secondClick(){
     throw new Error(`foo-${random(1, 999)}`)

@@ -19,6 +19,7 @@
 	>
 		<div class="word">
 			<span
+			(click)="secondClick()"
 				[@openClose]="loading ? 'open' : 'closed'"
 				class="open-close-container"
 			>{{words[2]}}</span>
