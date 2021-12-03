@@ -15,10 +15,9 @@ import { createEpicMiddleware } from 'redux-observable'
 
 import * as React from 'react'
 import { render } from 'react-dom'
-import { connect, Provider } from 'react-redux'
+import { Provider } from 'react-redux'
 import { applyMiddleware, compose, createStore } from 'redux'
 
-import { init } from './root/actions'
 
 // BOILERPLATE
 const id = 'react-container'

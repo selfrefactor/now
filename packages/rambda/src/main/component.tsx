@@ -39,7 +39,7 @@ export class Main extends React.Component<Props, {}> {
       newValue,
     })
   }
-  public componentDidCatch(error, errorInfo) {
+  public componentDidCatch(error) {
     console.log(error, 'componentDidCatch')
   }
   public componentDidMount() {
@@ -56,7 +56,6 @@ export class Main extends React.Component<Props, {}> {
 
     return (
       <Grid>
-
         <AceContainer>
           <AceCell>
             <AceEditor

@@ -23,8 +23,8 @@ const result = await R.ifElseAsync(
 `
 
 const initialState: Store = {
-  // code: 'const result = R.uniq([null, undefined])',
-  code: 'const result = 1;\nconsole.log(2,3,4);',
+  code: 'const result = R.uniq([null, undefined])',
+  // code: 'const result = 1;\nconsole.log(2,3,4);',
   result: '1',
   classNameStatus: 'vivify pullUp duration-250',
   logResult: [],

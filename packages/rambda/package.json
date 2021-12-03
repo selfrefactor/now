@@ -14,7 +14,13 @@
 		"out": "now --prod",
 		"build": "./node_modules/.bin/webpack --config webpack.config.prod.js",
 		"dll": "webpack --config webpack.config.dll.js",
-		"in": "node_modules/.bin/webpack-dev-server"
+		"in": "node_modules/.bin/webpack-dev-server",
+		"dev": "jest /src/modules/stringify.spec.js --watch"
+	},
+	"jest": {
+		"env": "node",
+    "verbose": true,
+    "testURL": "http://localhost/"
 	},
 	"dependencies": {
 		"rambdax": "3.0.3",

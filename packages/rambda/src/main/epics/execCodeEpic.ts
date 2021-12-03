@@ -2,17 +2,10 @@ import { map, type, anyPass, includes, waitFor, uniq } from 'rambdax'
 import { ActionsObservable } from 'redux-observable'
 import { Observable } from 'rxjs/Observable'
 import { SET_CODE } from '../../constants'
+import { Stringify } from '../../modules/stringify'
 import { setResults } from '../actions'
 
-const stringifyResult = x => {
-  if(type(x) === 'Object'){
-    return JSON.stringify(x, null, 2)
-  }
-  
-  return JSON.stringify(x)
-}
-
-const stringifyLog = map(stringifyResult)
+const stringifyLog = map(Stringify)
 
 const getFlag = anyPass([
   includes('const result ='),
@@ -31,7 +24,6 @@ export const execCodeEpic = (
       return new Observable(observer => {
         const code = store.getState().store.code
         const flag = getFlag(code)
-        console.log(`flag`, flag )
         if (!flag) return observer.complete()
 
         let resultHolder
@@ -46,10 +38,9 @@ export const execCodeEpic = (
         }
 
         const onResult = ({ result, log }) => {
-          console.warn(`result`, result )
           observer.next(setResults({
             logResult: stringifyLog(log),
-            result: stringifyResult(result),
+            result: Stringify(result),
           }))
         }
 
