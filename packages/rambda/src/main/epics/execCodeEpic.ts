@@ -1,4 +1,4 @@
-import { map, type, anyPass, includes, waitFor, uniq } from 'rambdax'
+import { map, anyPass, includes, waitFor, uniq } from 'rambdax'
 import { ActionsObservable } from 'redux-observable'
 import { Observable } from 'rxjs/Observable'
 import { SET_CODE } from '../../constants'
@@ -51,7 +51,7 @@ void async function main() {
   resultHolder = result;
 }();
 `
-console.warn(`codeToEvaluate`, uniq([null, undefined]) )
+
         try {
           eval(codeToEvaluate)
           if(readyState){

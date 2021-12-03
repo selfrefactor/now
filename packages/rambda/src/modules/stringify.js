@@ -1,4 +1,4 @@
-const { type } = require('rambdax')
+const { type, map } = require('rambdax')
 
 function Stringify(input){
   const typeInput= type(input)
@@ -8,8 +8,8 @@ function Stringify(input){
   if(typeInput === null) return `null`
   if(input === undefined) return `undefined`
   if(typeInput !== 'Object') return String(input)
-
-  return map(Stringify, input)
+  const obj= map(x => Stringify(x), input)
+  return JSON.stringify(obj, null, 2)
 }
 
 exports.Stringify = Stringify
