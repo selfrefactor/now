@@ -1,4 +1,4 @@
-import { map, anyPass, includes, waitFor, uniq } from 'rambdax'
+import { map, anyPass, includes, waitFor } from 'rambdax'
 import { ActionsObservable } from 'redux-observable'
 import { Observable } from 'rxjs/Observable'
 import { SET_CODE } from '../../constants'

@@ -1,1 +1,1 @@
-exports.rambdax = 'https://unpkg.com/rambdax@7.4.1/dist/rambdax.umd.js'
+exports.rambdax = 'https://unpkg.com/rambdax@8.0.0/dist/rambdax.umd.js'
