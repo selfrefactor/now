@@ -126,7 +126,7 @@ export class SpeedReader extends React.Component{
         setLocalize(progressOption.label, percentage)
 
         if (forceReloadOption.value && percentage < 98){
-          return window.location.reload(false)
+          return window.location.reload()
         }
       }
 
@@ -138,7 +138,7 @@ export class SpeedReader extends React.Component{
 
     setLocalize(progressOption.label, 0)
     await delay(2000)
-    window.location.reload(false)
+    window.location.reload()
   }
 
   handleOptionsCallback({ type }){
@@ -146,7 +146,7 @@ export class SpeedReader extends React.Component{
       return this.setState({ show : false })
     }
     if (type !== 'UPDATE_OPTIONS') return
-    delay(500).then(() => window.location.reload(false))
+    delay(500).then(() => window.location.reload())
   }
 
   componentDidMount(){
