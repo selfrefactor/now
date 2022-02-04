@@ -43,9 +43,9 @@ const AllComponents = {
 }
 
 const currentComponentKey = switcher(process.env.CURRENT_COMPONENT)
-  .is('learning.meme', 'LearningMeme')
-  .is('select.article', 'SelectArticle')
-  .is('write.sentence', 'WriteSentence')
+  .is('learning-meme', 'LearningMeme')
+  .is('select-article', 'SelectArticle')
+  .is('write-sentence', 'WriteSentence')
   .default('learning.meme')
 
 const CurrentComponent = AllComponents[`${currentComponentKey}Wrapped`]
