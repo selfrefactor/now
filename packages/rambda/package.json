@@ -11,7 +11,8 @@
     "public"
   ],
 	"scripts": {
-		"out": "now --prod",
+		"out": "yarn build && yarn deploy",
+		"deploy": "now --prod",
 		"build": "./node_modules/.bin/webpack --config webpack.config.prod.js",
 		"dll": "webpack --config webpack.config.dll.js",
 		"in": "node_modules/.bin/webpack-dev-server",

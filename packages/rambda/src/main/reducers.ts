@@ -23,30 +23,27 @@ const result = await R.ifElseAsync(
 `
 
 const initialState: Store = {
-//   code: `
-// const fn = R.applySpec({})
-// const result = fn(2, 4)
-// `,
-  // code: `
-  // const rules = {
-  //   foo: R.pipe(R.add(1), R.add(2)),
-  //   a: {b: R.add(3)}
-  // }
-  // const result = R.produce(rules, 1)
-  
-  // const expected = {
-  //   foo: 4,
-  //   a: {b: 4}
-  // }
-  // `.trim(),
   code: `
-  async function fn(x){
-    await R.delay(1000)
-  
-    return x+1
+  let counter = 0
+  const increment = () => {
+    counter++
   }
   
-  const result = await R.mapAsync(fn, [1, 2, 3])
+  const debounced = R.debounce(increment, 1000)
+  
+  async function fn(){
+    debounced()
+    await R.delay(500)
+    debounced()
+    await R.delay(800)
+    console.log(counter) // => 0
+  
+    await R.delay(1200)
+    console.log(counter) // => 1
+  
+    return counter
+  }
+  const result = await fn()
   `.trim(),
   // code: 'const result = R.uniq([null, undefined,1])',
   // code: 'const result = 1;\nconsole.log(2,3,4);',
