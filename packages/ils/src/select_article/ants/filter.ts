@@ -104,13 +104,14 @@ export const allArticles: string[] = [
 
 function count(sentence: string): number{
   const words = wordsX(sentence).map(toLower)
-
-  return words.reduce((prev, current) => {
-
+  const counted = words.reduce((prev, current) => {
+    
     return allArticles.includes(current) ?
-      prev + 1 :
-      prev
+    prev + 1 :
+    prev
   }, 0)
+
+  return counted
 }
 
 export function filterAnt(db: DBInstance[]): any {
@@ -118,9 +119,8 @@ export function filterAnt(db: DBInstance[]): any {
     has('dePart'),
   )
 
-  const filtered = hasDePart.filter(
-    x => count(x.dePart) > 1,
+  const result= hasDePart.filter(
+    x => count(x.dePart) >= 1 && x.dePart.match(/sein.{1}$/) === null,
   )
-
-  return filtered
+  return result
 }
