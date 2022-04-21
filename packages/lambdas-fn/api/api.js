@@ -1,11 +1,26 @@
 const data = require('./db.json')
 
-const handler = (req, res) => {
-  const fallback = () => res.status(200).json({rows:[], auth: 'incorrect password'})
+function noImages(input) {
+  const rows = input.rows.map(x => ({
+    ...x,
+    doc: {
+      ...x.doc,
+      imageSrc: null,
+      imageSrcOrigin: null,
+    },
+  }))
 
-  if(!req.body) return fallback()
-  if(!req.body.password) return fallback()
-  if(req.body.password !== process.env.password) return fallback()
+  return {rows}
+}
+
+const handler = (req, res) => {
+  if (
+    !req.body ||
+    !req.body.password ||
+    req.body.password !== process.env.password
+  ) {
+    return res.status(200).json(noImages(data))
+  }
 
   res.status(200).json(data)
 }

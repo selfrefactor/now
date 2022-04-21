@@ -110,6 +110,7 @@ class Root extends React.Component<Props, {}> {
       body: JSON.stringify({ password })
   };
     const response = await window.fetch(API_URL, requestOptions)
+    
     const data = await response.json()
     localStorage.setItem(DATABASE, JSON.stringify(data))
     return this.props.dispatch(init())
