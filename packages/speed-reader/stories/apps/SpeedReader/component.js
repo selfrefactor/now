@@ -96,7 +96,7 @@ const isDarkModeOption = {
   type         : 'TOGGLE',
   value        : initialGetLocalize({
     key          : 'speed.reader.dark.mode',
-    defaultValue : false,
+    defaultValue : true,
   }),
 }
 console.log(`isDarkModeOption`, isDarkModeOption.value)
