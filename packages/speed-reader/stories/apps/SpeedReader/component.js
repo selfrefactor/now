@@ -15,15 +15,18 @@ import { getData } from './getData'
 import { getReloadIndexes } from './getReloadIndexes'
 import { produceRow } from './produceRow'
 
-const BACKGROUND = '#ede8e1aa'
+const BACKGROUND = (isDarkMode) => isDarkMode ? '#111' : '#ede8e1aa'
 
-const Div = styled.div`
-  z-index: 1000;
-  font-size: 6vh;
-  color: #30322ef1;
-  margin-top: auto;
-  margin-bottom: auto;
-`
+const Div =  styled.div(props => {
+  return {
+    'z-index': "1000",
+  'font-size': "6vh",
+  color: props.isDarkMode? "#e7e7e7": "#30322ef1",
+  'margin-top': "auto",
+  'margin-bottom': "auto"
+  }
+})
+
 const MarkedDivLeft = styled(Div)`
   color: #f7f2f2;
   padding-left: 10%;
@@ -87,7 +90,16 @@ const speedOption = {
     defaultValue : 500,
   }),
 }
-
+const isDarkModeOption = {
+  visibleLabel : 'Dark mode',
+  label        : 'speed.reader.dark.mode',
+  type         : 'TOGGLE',
+  value        : initialGetLocalize({
+    key          : 'speed.reader.dark.mode',
+    defaultValue : false,
+  }),
+}
+console.log(`isDarkModeOption`, isDarkModeOption.value)
 function calculateActualSpeed(input){
   return toDecimal(input / 500, 1)
 }
@@ -103,6 +115,7 @@ export class SpeedReader extends React.Component{
       progressOption,
       speedOption,
       forceReloadOption,
+      isDarkModeOption
     ]
     this.state = {
       show : true,
@@ -186,13 +199,13 @@ export class SpeedReader extends React.Component{
           }}
           width={1}
         >
-          <El>{char}</El>
+          <El isDarkMode={isDarkModeOption.value}>{char}</El>
         </Cell>
       )
     })
 
     return (
-      <Grid background={BACKGROUND}>
+      <Grid background={BACKGROUND(isDarkModeOption.value)}>
         <Options
           callback={this.handleOptionsCallback}
           keyBinding={this.props.optionsKeyBinding}

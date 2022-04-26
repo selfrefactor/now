@@ -24,11 +24,6 @@ export const DevContainer = styled(Container)`
   }
 `
 
-export const ExampleCell = styled.div`
-  background: #aafafa;
-  grid-column: 4 / span 3;
-`
-
 function zeroBasedOrder(x){
   return x + 1
 }
@@ -38,6 +33,7 @@ export function Cell({
   evalStyled = null,
   id = undefined,
   subgridFlag = false,
+  isDarkMode,
   height,
   topLeft,
   width,
