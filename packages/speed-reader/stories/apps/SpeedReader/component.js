@@ -85,9 +85,10 @@ const speedOption = {
   label        : 'speed.reader.speed',
   type         : 'SLIDER',
   between      : [ 200, 1000 ],
-  value        : initialGetLocalize({
+  value        : initialGetLocalizeUrl({
     key          : 'speed.reader.speed',
-    defaultValue : 500,
+    urlKey       : 'speed',
+    defaultValue : '350',
   }),
 }
 const isDarkModeOption = {
