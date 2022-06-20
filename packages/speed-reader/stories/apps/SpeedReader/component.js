@@ -75,8 +75,9 @@ const progressOption = {
   label        : 'speed.reader.progress',
   type         : 'SLIDER',
   between      : [ 0, 100 ],
-  value        : initialGetLocalize({
+  value        : initialGetLocalizeUrl({
     key          : 'speed.reader.progress',
+    urlKey       : 'progress',
     defaultValue : 0,
   }),
 }
@@ -91,6 +92,16 @@ const speedOption = {
     defaultValue : '350',
   }),
 }
+const alternativeOption = {
+  visibleLabel : 'alternative',
+  label        : 'speed.reader.alternative',
+  type         : 'TOGGLE',
+  value        : initialGetLocalizeUrl({
+    key          : 'speed.reader.alternative',
+    urlKey       : 'alt',
+    defaultValue : false,
+  }),
+}
 const isDarkModeOption = {
   visibleLabel : 'Dark mode',
   label        : 'speed.reader.dark.mode',
@@ -100,7 +111,15 @@ const isDarkModeOption = {
     defaultValue : true,
   }),
 }
-console.log(`isDarkModeOption`, isDarkModeOption.value)
+const isLoopOption = {
+  visibleLabel : 'Loop mode',
+  label        : 'speed.reader.loop.mode',
+  type         : 'TOGGLE',
+  value        : initialGetLocalize({
+    key          : 'speed.reader.loop.mode',
+    defaultValue : false,
+  }),
+}
 function calculateActualSpeed(input){
   return toDecimal(input / 500, 1)
 }
@@ -116,7 +135,9 @@ export class SpeedReader extends React.Component{
       progressOption,
       speedOption,
       forceReloadOption,
-      isDarkModeOption
+      alternativeOption,
+      isDarkModeOption,
+      isLoopOption
     ]
     this.state = {
       show : true,
@@ -136,10 +157,11 @@ export class SpeedReader extends React.Component{
 
     for (const i of range(counter + 1, len)){
       if (reloadIndexes.includes(i)){
+        if(isLoopOption.value) return window.location.reload()
         const percentage = reloadIndexes.indexOf(i) + 1
         setLocalize(progressOption.label, percentage)
 
-        if (forceReloadOption.value && percentage < 98){
+        if (forceReloadOption.value){
           return window.location.reload()
         }
       }
@@ -184,7 +206,7 @@ export class SpeedReader extends React.Component{
       if (!focused && (!char || !this.state.show)) return
 
       const El = maybe(
-        i === 10,
+        i === 10 && !alternativeOption.value,
         MarkedDivLeft,
         i === 11 ? MarkedDivRight : Div
       )
