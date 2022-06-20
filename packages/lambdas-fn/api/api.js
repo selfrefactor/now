@@ -1,7 +1,10 @@
 const data = require('./db.json')
 
-function noImages(input) {
-  const rows = input.rows.map(x => ({
+function guestDatabase(input) {
+  const filteredRows = input.rows.filter((x) => {
+    return x.doc.pcFlag
+  })
+  const rows = filteredRows.map(x => ({
     ...x,
     doc: {
       ...x.doc,
@@ -19,7 +22,7 @@ const handler = (req, res) => {
     !req.body.password ||
     req.body.password !== process.env.password
   ) {
-    return res.status(200).json(noImages(data))
+    return res.status(200).json(guestDatabase(data))
   }
 
   res.status(200).json(data)
