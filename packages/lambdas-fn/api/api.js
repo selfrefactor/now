@@ -1,5 +1,18 @@
 const data = require('./db.json')
 
+export function omit(propsToOmit, obj){
+  const willReturn = {};
+
+  Object.keys(obj).forEach(prop => {
+    if (!propsToOmit.includes(prop)){
+      willReturn[ prop ] = (obj)[ prop ];
+    }
+  });
+
+  return willReturn as T;
+}
+
+
 function guestDatabase(input) {
   const filteredRows = input.rows.filter((x) => {
     return x.doc.pcFlag
@@ -7,7 +20,7 @@ function guestDatabase(input) {
   const rows = filteredRows.map(x => ({
     ...x,
     doc: {
-      ...x.doc,
+      ...(omit(['pcFlag', '_rev'],x.doc)),
       imageSrc: null,
       imageSrcOrigin: null,
     },
