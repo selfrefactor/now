@@ -15,11 +15,13 @@
 	},
 	"license": "MIT",
 	"scripts": {
-		"in": "NODE_ENV=development CURRENT_COMPONENT='choose-word' parcel -p 8080 index.html ",
-		"build": "CURRENT_COMPONENT='choose-word' NODE_ENV=production parcel build index.html --no-minify --public-url / --out-dir public",
-		"move": "cp -TRv public/ ../choose-word/public",
-		"deploy": "cd ../choose-word && yarn out",
-		"out": "yarn build && yarn move && yarn deploy"
+		"in": "NODE_ENV=development CURRENT_COMPONENT='learning-meme' parcel -p 8080 index.html ",
+		"buildx": "CURRENT_COMPONENT='learning-meme' NODE_ENV=production parcel build index.html --no-minify --public-url / --out-dir public",
+		"build": "parcel build index.html --out-dir public",
+		"move": "cp -TRv public/ ../learning-meme/public",
+		"deploy": "cd ../learning-meme && yarn out",
+		"out": "yarn build && yarn move && yarn deploy",
+		"d": "yarn out && run d"
 	},
 	"dependencies": {
 		"@sentry/browser": "^4.4.2",

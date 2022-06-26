@@ -42,7 +42,9 @@ const AllComponents = {
   WriteSentenceWrapped
 }
 
-const currentComponentKey = switcher(process.env.CURRENT_COMPONENT)
+const CURRENT_COMPONENT = process.env.CURRENT_COMPONENT ? process.env.CURRENT_COMPONENT : 'learning-meme'
+
+const currentComponentKey = switcher(CURRENT_COMPONENT)
   .is('learning-meme', 'LearningMeme')
   .is('select-article', 'SelectArticle')
   .is('write-sentence', 'WriteSentence')
@@ -93,7 +95,7 @@ const createdStore = createStore(
   ))
 )
 
-const API_URL = 'https://lambdas-fn.now.sh/api/api'
+const API_URL = 'https://lambdas-fn.vercel.sh/api/api'
 
 // ROOT_COMPONENT
 ///////////////////////////
