@@ -1,14 +1,29 @@
 import { getter } from 'client-helpers-fn'
 import { ActionsObservable } from 'redux-observable'
 import { Observable } from 'rxjs/Observable'
-import { INIT, DATABASE } from './../../constants'
+import { INIT } from './../../constants'
 import { initReady } from './../actions'
-import { partition } from 'rambdax'
+import { omit, partition } from 'rambdax'
+import DB from '../../db.json'
+
+function guestDatabase(input) {
+  const filteredRows = input.rows.filter((x) => {
+    return x.doc.pcFlag
+  })
+  const rows = filteredRows.map(x => ({
+    ...x,
+    doc: {
+      ...(omit(['pcFlag', '_rev'],x.doc)),
+      imageSrc: null,
+      imageSrcOrigin: null,
+    },
+  }))
+
+  return {rows}
+}
 
 function getDatabase(){
-  const database = localStorage.getItem(DATABASE)
-
-  return JSON.parse(database)
+  return guestDatabase(DB)
 }
 
 function rehydrate({rows}){

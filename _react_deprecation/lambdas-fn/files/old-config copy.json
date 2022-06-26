@@ -4,6 +4,7 @@
   "env": {
     "FOO": "@foo"
   },
+  "cors": true,
   "headers": [
     {
       "source": "/(.*)",

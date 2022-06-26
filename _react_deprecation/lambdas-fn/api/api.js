@@ -30,7 +30,9 @@ function guestDatabase(input) {
 }
 
 const handler = (req, res) => {
-  if(!req.body) return 'dummy get response'
+  if (request.method === 'OPTIONS') {
+    return response.status(200).send('ok');
+  }
   if (
     !req.body.password ||
     req.body.password !== process.env.password
@@ -41,4 +43,4 @@ const handler = (req, res) => {
   res.status(200).json(data)
 }
 
-module.exports = handler
+module.exports = allowCors(handler)
