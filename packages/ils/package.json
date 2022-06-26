@@ -26,7 +26,6 @@
 		"@sentry/browser": "^4.4.2",
 		"client-helpers-fn": "0.1.0",
 		"connected-react-router": "^4.3.0",
-		"localforage": "^1.7.1",
 		"rambdax": "2.2.0",
 		"react": "^16.7.0",
 		"react-dom": "^16.7.0",

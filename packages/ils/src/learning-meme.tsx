@@ -10,7 +10,7 @@ initLocalState('ILS', initialDefaultState)
 masterSetter({
   ...initialDefaultState,
   ...defaultState,
-  ...masterGetter()
+  ...masterGetter<any>()
 })
  
 // IMPORTS

@@ -9,7 +9,7 @@ import { initReady } from '../actions'
 import { createDatabaseBee } from '../../bees/createDatabase';
 
 // Epic called from `componentDidMount`
-// Performs database filtering(if neccessary)
+// Performs database filtering(if necessary)
 // before emitting `ready` and `next` actions
 // ============================================
 export const initEpic = (

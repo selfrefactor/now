@@ -16,8 +16,6 @@ import { getNextIndex } from '../../_helpers/getNextIndex'
 import { sharedSpeakTo } from '../../root/actions'
 import { setNext } from '../actions'
 import { getCommons } from '../../_helpers/selectors';
-import { setConvertedImageBee } from '../../bees/setConvertedImage';
-import { getConvertedImageBee } from '../../bees/getConvertedImage';
 
 export const nextEpic = (
   action$: ActionsObservable<WriteSentenceNextAction>,
@@ -39,7 +37,7 @@ export const nextEpic = (
           easiest,
           easy,
           visible,
-        } = getterAnt(urlInputsDefault)
+        } = getterAnt<any>(urlInputsDefault)
         const {textToSpeechFlag} = getCommons(store)
 
         const canSpeak = textToSpeechFlag && !getter('auto')
@@ -49,7 +47,6 @@ export const nextEpic = (
         })
 
         const currentInstance = db[currentIndex]
-        setConvertedImageBee(currentInstance)
 
         const maskSentenceResult: OutputMaskSentence = maskSentence({
           sentence: currentInstance.fromPart,
@@ -78,17 +75,13 @@ export const nextEpic = (
           NEXT_TICK :
           SHORT_DELAY
 
-        Promise.all([
-          getConvertedImageBee(currentInstance),
-          delay(MS),
-        ])
-          .then(([convertedImage]) => {
+        delay(MS)
+          .then(() => {
             const payload = {
               currentIndex,
               currentInstance,
               okCorrect,
               question,
-              convertedImage,
             }
             observer.next(setNext(payload))
 

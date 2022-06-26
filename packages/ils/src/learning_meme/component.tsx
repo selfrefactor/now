@@ -1,6 +1,8 @@
 import { getter } from 'client-helpers-fn'
+import { take } from 'rambdax'
 import * as React from 'react'
 import { connect } from 'react-redux'
+import { words } from 'string-fn'
 import { init, listen as listenAction } from './actions'
 
 import { acceptSpeech } from './auto_mode/acceptSpeech'
@@ -33,7 +35,6 @@ export class LearningMeme extends React.Component<LearningMemeProps, {}> {
 
   public render() {
     const {
-      convertedImage,
       currentInstance,
       inputState,
       listen,
@@ -41,12 +42,10 @@ export class LearningMeme extends React.Component<LearningMemeProps, {}> {
       ready,
       sentence,
     } = this.props.learningMemeStore
-
+    const seed = sentence && take(12,words(sentence.visible).join('')).toLowerCase()
     const imageSource = currentInstance === undefined ?
       '' :
-      convertedImage === false ?
-        currentInstance.imageSrc :
-        convertedImage
+      `${currentInstance.imageSrc}?seed=${seed}`
 
     return (
       <div>

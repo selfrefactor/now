@@ -12,8 +12,6 @@ import { maskSentence, OutputMaskSentence } from 'string-fn'
 import { getNextIndex } from '../../_helpers/getNextIndex'
 import { nextReady } from '../actions'
 import { getCommons } from '../../_helpers/selectors';
-import { setConvertedImageBee } from '../../bees/setConvertedImage';
-import { getConvertedImageBee } from '../../bees/getConvertedImage';
 
 export const nextEpic = (
   action$: ActionsObservable<LearningMemeNextAction>,
@@ -34,7 +32,7 @@ export const nextEpic = (
           easy,
           easier,
           easiest,
-        } = getterAnt(urlInputsDefault)
+        } = getterAnt<any>(urlInputsDefault)
         const charLimit = easiest ? 1 : 4
 
         const newCurrentIndex = getNextIndex({
@@ -75,21 +73,15 @@ export const nextEpic = (
           sentenceRaw,
         )
 
-        getConvertedImageBee(currentInstance).then(convertedImage => {
-          const payload = {
-            convertedImage,
-            currentIndex: newCurrentIndex,
-            currentInstance,
-            question,
-            sentence,
-          }
+        const payload = {
+          currentIndex: newCurrentIndex,
+          currentInstance,
+          question,
+          sentence,
+        }
 
-          observer.next(nextReady(payload))
-          if (textToSpeechFlag) observer.next(sharedSpeak('toPart'))
-          setConvertedImageBee(currentInstance)
-
-          observer.complete()
-        })
-
+        observer.next(nextReady(payload))
+        if (textToSpeechFlag) observer.next(sharedSpeak('toPart'))
+        observer.complete()
       }),
   )

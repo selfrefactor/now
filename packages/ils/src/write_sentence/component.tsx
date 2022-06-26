@@ -39,7 +39,7 @@ export class WriteSentence extends React.Component<
       id,
       mic,
       pause,
-    } = masterGetter('auto,pause,id,mic')
+    } = masterGetter<any>('auto,pause,id,mic')
     if (typeof auto === 'number'){
       autoAnt(
         this.props.dispatch,
