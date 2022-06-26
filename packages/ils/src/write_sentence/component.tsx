@@ -1,5 +1,5 @@
 import { getter, masterGetter } from 'client-helpers-fn'
-import { defaultTo } from 'rambdax'
+import { defaultTo, take } from 'rambdax'
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { init, listen } from './actions'
@@ -19,6 +19,7 @@ import { autoAnt } from './ants/auto'
 import { lockAnt } from './ants/lock'
 import { acceptSpeechBee } from './bees/acceptSpeech'
 import { getBee } from './bees/get'
+import { words } from 'string-fn'
 
 export class WriteSentence extends React.Component<
   WriteSentenceProps, {lock: boolean}
@@ -75,17 +76,15 @@ export class WriteSentence extends React.Component<
   public render() {
     const {
       currentInstance,
-      convertedImage,
       inputState,
       ready,
     } = this.props.writeSentenceStore
     if (!ready) return ''
 
+    const seed = currentInstance && currentInstance.fromPart && take(12,words(currentInstance.fromPart).join('')).toLowerCase()
     const imageSource = currentInstance === undefined ?
       '' :
-      convertedImage === false ?
-        currentInstance.imageSrc :
-        convertedImage
+      `${currentInstance.imageSrc}?seed=${seed}`
 
     const Bee = getBee(currentInstance)
 
