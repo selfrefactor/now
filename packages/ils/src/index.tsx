@@ -95,24 +95,6 @@ const createdStore = createStore(
   ))
 )
 
-
-function guestDatabase(input) {
-  const filteredRows = input.rows.filter((x) => {
-    return x.doc.pcFlag
-  })
-  const rows = filteredRows.map(x => ({
-    ...x,
-    doc: {
-      ...(omit(['pcFlag', '_rev'],x.doc)),
-      imageSrc: null,
-      imageSrcOrigin: null,
-    },
-  }))
-
-  return {rows}
-}
-
-
 // ROOT_COMPONENT
 ///////////////////////////
 class Root extends React.Component<Props, {}> {
