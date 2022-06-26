@@ -95,7 +95,7 @@ const createdStore = createStore(
   ))
 )
 
-const API_URL = 'https://lambdas-fn.vercel.sh/api/api'
+const API_URL = 'https://lambdas-fn.vercel.app/api/api'
 
 // ROOT_COMPONENT
 ///////////////////////////

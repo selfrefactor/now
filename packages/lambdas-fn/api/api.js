@@ -1,6 +1,6 @@
 const data = require('./db.json')
 
-export function omit(propsToOmit, obj){
+function omit(propsToOmit, obj){
   const willReturn = {};
 
   Object.keys(obj).forEach(prop => {
@@ -9,7 +9,7 @@ export function omit(propsToOmit, obj){
     }
   });
 
-  return willReturn as T;
+  return willReturn;
 }
 
 
@@ -30,8 +30,8 @@ function guestDatabase(input) {
 }
 
 const handler = (req, res) => {
+  if(!req.body) return 'dummy get response'
   if (
-    !req.body ||
     !req.body.password ||
     req.body.password !== process.env.password
   ) {
