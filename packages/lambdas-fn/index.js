@@ -1,10 +1,19 @@
-const express = require('express')
-const app = express()
-const api = require('./src/api')
+const express = require('express');
+const app = express();
 
-app.use(express.json({ extended : false }))
+app.get('/', (req, res) => {
+  res.json({
+    status  : 200,
+    message : 'Get data has successfully',
+  })
+})
+app.post('/', (req, res) => {
+  res.json({
+    status  : 200,
+    message : 'Get data has successfully',
+  })
+})
 
-app.use('/api', api)
+app.listen(process.env.PORT || 3000);
 
-const PORT = process.env.PORT || 8080
-app.listen(PORT, () => console.log(`Server is running in port ${ PORT }`))
+module.exports = app;
