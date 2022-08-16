@@ -58,6 +58,18 @@ List of books
 }
 ```
 
+## FP-TS
+
+https://kodimensional.dev/posts/2019-03-25-comonadic-builders
+
+https://github.com/purescript/purescript-filterable/blob/main/src/Data/Witherable.purs
+
+https://github.com/purescript-contrib/purescript-these
+
+https://package.elm-lang.org/packages/joneshf/elm-these/1.2.1/
+
+https://github.com/purescript/purescript-profunctor/blob/master/src/Data/Profunctor/Strong.purs
+
 ## Deploy Angular bug
 
 Need to manually override `Now` project configurations.
