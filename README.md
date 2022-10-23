@@ -1,5 +1,9 @@
 # Now deployments
 
+## References
+
+https://github.com/lydiahallie/javascript-questions/tree/master/de-DE
+
 ## Speed reader
 
 List of books
