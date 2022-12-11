@@ -51,7 +51,9 @@ const currentComponentKey = switcher(CURRENT_COMPONENT)
   .default('learning.meme')
 
 const CurrentComponent = AllComponents[`${currentComponentKey}Wrapped`]
-  
+
+const API_URL = 'https://words-api-khaki.vercel.app/api'
+
 // INTERNAL_MODULES
 ///////////////////////////
 import { getJsonBee } from './bees/getJson'
@@ -102,12 +104,34 @@ class Root extends React.Component<Props, {}> {
     super(props)
     rootInitBee()
   }
+  public async initDatabase(password) {
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password })
+  };
+    const response = await window.fetch(API_URL)
+    debugger
+    // const response = await window.fetch(API_URL, requestOptions)
 
+    const data = await response.json()
+    console.log(data, `data`)
+    // localStorage.setItem(DATABASE, JSON.stringify(data))
+    // return this.props.dispatch(init())
+  }
   public async componentDidMount() {
-    Sentry.init({
-      dsn: 'https://c57bf6cbb9fc431fb3f326f31745f93f@sentry.io/123126',
-    })
-    this.props.dispatch(init())
+    // Sentry.init({
+    //   dsn: 'https://c57bf6cbb9fc431fb3f326f31745f93f@sentry.io/123126',
+    // })
+    const localPassword = localStorage.getItem(PASSWORD)
+    // const localDatabase = localStorage.getItem(DATABASE)
+    // if(localDatabase) return this.props.dispatch(init())
+    if(localPassword) return this.initDatabase(localPassword)
+
+    const password = prompt('Enter password!')
+    localStorage.setItem(PASSWORD, password)
+    this.initDatabase(password)
+    // this.props.dispatch(init())
   }
 
   public componentDidCatch(e) {
