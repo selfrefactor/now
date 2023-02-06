@@ -1,4 +1,3 @@
-import { light6, navy, teal } from 'colors'
 import styled from 'styled-components'
 import { getConvertFractions } from '../_helpers/getConvertFractions'
 

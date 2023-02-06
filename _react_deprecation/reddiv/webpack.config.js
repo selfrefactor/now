@@ -1,15 +1,11 @@
-require('env')('special')
 process.env.NODE_ENV = 'development'
 
-const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin')
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const Jarvis = require('webpack-jarvis')
 const webpack = require('webpack')
 const AutoDllPlugin = require('autodll-webpack-plugin').default
 
 const named = new webpack.NamedModulesPlugin()
-const monotor = new Jarvis()
 const envs = new webpack.EnvironmentPlugin([
   'NODE_ENV',
 ])
@@ -43,23 +39,12 @@ const hot = new webpack.HotModuleReplacementPlugin()
 
 const plugins = [
   named,
-  // monitor,
   envs,
   html,
   dll,
   htmlHard,
   hot
 ]
-
-const devServer = {
-  contentBase      : './dev_dist',
-  host: 'localhost',
-  disableHostCheck : true,
-  historyApiFallback: true,
-  headers          : { 'Access-Control-Allow-Origin' : '*' },
-  hot              : true,
-  watchOptions     : { poll : 30 },
-}
 
 const entry = [
   'react-hot-loader/patch',

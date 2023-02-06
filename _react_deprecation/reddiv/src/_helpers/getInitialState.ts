@@ -1,21 +1,15 @@
-import { initialGet } from 'client-helpers'
+import {takeArguments} from 'string-fn'
 
-const upLimit = initialGet({
-  defaultValue: 10,
-  key: 'upLimit',
-})
+const aa = takeArguments(window.location.href)
 
-const subreddit = initialGet({
-  defaultValue: 'ProgrammerHumor',
-  key: 'subreddit',
-})
+console.log(aa)
 
 export function getInitialState(): ScrollStore {
   return {
     currentIndex: 0,
     db: [],
     ready: false,
-    subreddit,
-    upLimit,
+    subreddit:'pic',
+    upLimit:2,
   }
 }
