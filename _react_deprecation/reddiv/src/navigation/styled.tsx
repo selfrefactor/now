@@ -15,7 +15,7 @@ export const Container = styled.div`
   left: 0;
   height: ${height}vh;
   width: 100%;
-  background-color: ${navy};
+  background-color: #fafafa;
   z-index: 1000;
 `
 
@@ -49,6 +49,6 @@ export const UplimitContainer = styled.div`
 
 export const Uplimit = styled.div`
   margin: ${convertFractions(1.1)}vmin;
-  color: ${light6};
+  color: blue;
   font-size: ${convertFractions(3)}vh;
 `

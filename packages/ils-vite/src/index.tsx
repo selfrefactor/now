@@ -1,28 +1,28 @@
 import './root/carrier/style.css'
 // import './root/rxImports'
 import React from 'react'
-import { createRoot } from 'react-dom/client';
+import {createRoot} from 'react-dom/client'
 
 // LOCAL_STORAGE
 ///////////////////////////
-import { initLocalState, masterGetter, masterSetter } from 'client-helpers-fn'
-import { rootInitBee } from './bees/rootInit'
-import { defaultState, initialDefaultState } from './constants'
+import {initLocalState, masterGetter, masterSetter} from 'client-helpers-fn'
+import {rootInitBee} from './bees/rootInit'
+import {defaultState, initialDefaultState} from './constants'
 initLocalState('ILS', initialDefaultState)
 masterSetter({
   ...initialDefaultState,
   ...defaultState,
-  ...masterGetter<Record<string,unknown>>()
+  ...masterGetter<Record<string, unknown>>(),
 })
- 
+
 // IMPORTS
 ///////////////////////////
-import { connect, Provider } from 'react-redux'
-import { Observable } from 'rxjs'
-import { applyMiddleware, createStore } from 'redux'
-import { createEpicMiddleware } from 'redux-observable'
-import { createElementAnt } from './ants/createElement'
-import { getComposeAnt } from './ants/getCompose'
+import {connect, Provider} from 'react-redux'
+import {Observable} from 'rxjs'
+import {applyMiddleware, createStore} from 'redux'
+import {createEpicMiddleware} from 'redux-observable'
+import {createElementAnt} from './ants/createElement'
+import {getComposeAnt} from './ants/getCompose'
 
 // COMPONENTS
 ///////////////////////////
@@ -31,34 +31,29 @@ import { getComposeAnt } from './ants/getCompose'
 
 // INTERNAL_MODULES
 ///////////////////////////
-import { getJsonBee } from './bees/getJson'
+import {getJsonBee} from './bees/getJson'
 
-import { postBee } from './bees/post'
-import { init } from './root/actions'
-import { combinedReducers } from './root/combinedReducers'
+import {postBee} from './bees/post'
+import {init} from './root/actions'
+import {combinedReducers} from './root/combinedReducers'
 
-const postRequest = (
-  url,
-  body,
-) => Observable.fromPromise(postBee(url, body))
+const postRequest = (url, body) => Observable.fromPromise(postBee(url, body))
 
-const getJson = url => Observable.fromPromise(
-  getJsonBee(url),
-)
+const getJson = url => Observable.fromPromise(getJsonBee(url))
 
 // EPICS
 ///////////////////////////
-import { rootEpic } from './root/epics/'
+import {rootEpic} from './root/epics/'
 const dependencies = {
   getJson: getJson,
   postRequest: postRequest,
 }
 
 // const epicMiddleware = createEpicMiddleware(rootEpic, { dependencies })
-const epicMiddleware = createEpicMiddleware();
+const epicMiddleware = createEpicMiddleware()
 // const store = createStore(rootReducer, applyMiddleware(epicMiddleware));
 
-epicMiddleware.run(rootEpic);
+epicMiddleware.run(rootEpic)
 
 // BOILERPLATE
 ///////////////////////////
@@ -70,10 +65,7 @@ const composeEnhancers = getComposeAnt()
 ///////////////////////////
 const createdStore = createStore(
   combinedReducers,
-  composeEnhancers(
-    applyMiddleware(
-      epicMiddleware
-  ))
+  composeEnhancers(applyMiddleware(epicMiddleware))
 )
 
 // ROOT_COMPONENT
@@ -99,20 +91,19 @@ class Root extends React.Component<Props, {}> {
   }
 }
 
-const connectRootComponent = ({
-  store,
-  navigationStore,
-}) => ({
+const connectRootComponent = ({store, navigationStore}) => ({
   navigationStore,
   store,
 })
 
 const RootWrapped = connect(connectRootComponent)(Root)
 
-const container = document.getElementById('root');
-const root = createRoot(container!); 
-root.render(<React.StrictMode>
-  <Provider store={createdStore as any}>
-  <RootWrapped />
-</Provider>
-</React.StrictMode>);
+const container = document.getElementById('root')
+const root = createRoot(container!)
+root.render(
+  <React.StrictMode>
+    <Provider store={createdStore as any}>
+      <RootWrapped />
+    </Provider>
+  </React.StrictMode>
+)

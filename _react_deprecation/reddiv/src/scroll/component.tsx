@@ -18,16 +18,15 @@ function getVideoWidth(i: number): number{
 
 function Items(props: any) {
   const { scrollStore, fn } = props
-
   return (
     <React.Fragment>
       {
         scrollStore.db.map((x: DBInstance, i) => {
+          console.log(i, x,`i`)
           if (
             fn(i) &&
             i < scrollStore.currentIndex
           ) {
-
             const Comp = x.preview ?
               <img src={x.preview} /> :
                 x.url ?
