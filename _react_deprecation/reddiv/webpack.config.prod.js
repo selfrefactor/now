@@ -1,22 +1,13 @@
-require('env')('special')
 process.env.NODE_ENV = 'production'
 
 const path = require('path')
 const webpack = require('webpack')
-const { WebpackBundleSizeAnalyzerPlugin } = require('webpack-bundle-size-analyzer')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
-const WebpackMonitor = require('webpack-monitor')
 
 const clean = new CleanWebpackPlugin(['dist'])
-const report = new WebpackBundleSizeAnalyzerPlugin('./plain-report.txt')
-const monitor = new WebpackMonitor({
-  capture: true,
-  launch: true,
-})
 const envs = new webpack.EnvironmentPlugin([
   'COUCH_URL',
   'NODE_ENV',
@@ -44,15 +35,13 @@ const uglify = new UglifyJSPlugin({
 
 const plugins = [
   clean,
-  // report,
-  // monitor,
-  envs,
-  hash,
+  // envs,
+  // hash,
   vendorChunk,
   runtimeChunk,
   extractLess,
   html,
-  uglify,
+  // uglify,
 ]
 
 const vendors = [
@@ -112,6 +101,6 @@ module.exports = {
   resolve : {
     extensions : [ '.ts', '.tsx', '.js' ],
   },
-  devtool: devtool,
+  // devtool: devtool,
   module : { rules : rules },
 }
