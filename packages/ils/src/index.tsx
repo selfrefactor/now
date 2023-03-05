@@ -111,18 +111,14 @@ class Root extends React.Component<Props, {}> {
       body: JSON.stringify({ password })
   };
     const response = await window.fetch(API_URL)
-    debugger
     // const response = await window.fetch(API_URL, requestOptions)
 
     const data = await response.json()
     console.log(data, `data`)
-    // localStorage.setItem(DATABASE, JSON.stringify(data))
-    // return this.props.dispatch(init())
+    localStorage.setItem(DATABASE, JSON.stringify(data))
+    return this.props.dispatch(init())
   }
   public async componentDidMount() {
-    // Sentry.init({
-    //   dsn: 'https://c57bf6cbb9fc431fb3f326f31745f93f@sentry.io/123126',
-    // })
     const localPassword = localStorage.getItem(PASSWORD)
     // const localDatabase = localStorage.getItem(DATABASE)
     // if(localDatabase) return this.props.dispatch(init())
