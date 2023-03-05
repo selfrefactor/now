@@ -55,7 +55,7 @@ function getActionToEmit(clickEvent, name){
     return getActionFromID(id, name)
   }
   
-  return getActionFromID(clickEvent.target.id, name))
+  return getActionFromID(clickEvent.target.id, name)
 }
 
 /**
