@@ -10,7 +10,7 @@ import { sharedSpeakEpic } from './sharedSpeak'
 // IMPORT_EPICS
 // import { chooseWordEpic } from '../../choose_word/epics/'
 // import { guessWordEpic } from '../../guess_word/epics/'
-import { learningMemeEpic } from '../../learning_meme/epics/'
+import { learningMemeEpic } from '../../learning_meme/epics'
 // import { selectArticleEpic } from '../../select_article/epics/'
 // import { writeSentenceEpic } from '../../write_sentence/epics/'
 import { sharedAddPointsEpic } from './sharedAddPoints'

@@ -1,8 +1,8 @@
 import { getter } from 'client-helpers-fn'
 // import { ActionsObservable } from 'redux-observable'
 import { Observable } from 'rxjs'
-import { INIT } from './../../constants'
-import { initReady } from './../actions'
+import { INIT } from '../../constants'
+import { initReady } from '../actions'
 import { omit, partition } from 'rambdax'
 import DB from '../../db.json'
 

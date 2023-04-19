@@ -43,7 +43,7 @@ const getJson = url => Observable.fromPromise(getJsonBee(url))
 
 // EPICS
 ///////////////////////////
-import {rootEpic} from './root/epics/'
+import {rootEpic} from './root/epics'
 const dependencies = {
   getJson: getJson,
   postRequest: postRequest,
