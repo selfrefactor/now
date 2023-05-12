@@ -1,5 +1,12 @@
 # Now deployments
 
+## Articles
+
+https://prirai.github.io/books/unix-koans.html?utm_source=hackernewsletter&utm_medium=email&utm_term=fun
+
+
+## What
+
 https://codepen.io/jcubic/pen/rNdWjrR?editors=1010
 
 ## References
