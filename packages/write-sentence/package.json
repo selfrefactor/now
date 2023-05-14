@@ -1,8 +1,0 @@
-{
-	"name": "write-sentence",
-	"version": "1.0.0",
-	"scripts": {
-		"out": "now --prod",
-		"build":"echo dummy script as vercel require build command script"
-	}
-}
