@@ -1,0 +1,1 @@
+Foo is equal bar against baz

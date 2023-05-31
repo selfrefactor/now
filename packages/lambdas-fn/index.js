@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const data = require('./src/db.json')
+// const data = require('./src/db.json')
 
 const allowCors = fn => async (req, res) => {
   res.setHeader('Access-Control-Allow-Credentials', true)
@@ -19,23 +19,24 @@ const allowCors = fn => async (req, res) => {
 }
 
 const dataRoute = (req, res) => {
+  const bookId = req.params.id;
   res.json({
     status  : 200,
     message : JSON.stringify(
-      data, null, 2
+      {data: {bookId}}, null, 2
     ),
   })
 }
-const fn = (req, res) => {
-  res.json({
-    status  : 200,
-    message : JSON.stringify(
-      data, null, 2
-    ),
-  })
-}
-app.get('/', allowCors(fn))
-app.get('/female-stars-list', allowCors(dataRoute))
+// const fn = (req, res) => {
+//   res.json({
+//     status  : 200,
+//     message : JSON.stringify(
+//       data, null, 2
+//     ),
+//   })
+// }
+// app.get('/', allowCors(fn))
+app.get('/books/:id', allowCors(dataRoute))
 
 app.listen(process.env.PORT || 3000)
 
