@@ -18,6 +18,14 @@ const allowCors = fn => async (req, res) => {
   return await fn(req, res)
 }
 
+const dataRoute = (req, res) => {
+  res.json({
+    status  : 200,
+    message : JSON.stringify(
+      data, null, 2
+    ),
+  })
+}
 const fn = (req, res) => {
   res.json({
     status  : 200,
@@ -27,14 +35,7 @@ const fn = (req, res) => {
   })
 }
 app.get('/', allowCors(fn))
-app.get('/female-stars-list', allowCors(fn))
-
-// app.post('/', (req, res) => {
-//   res.json({
-//     status  : 200,
-//     message : 'Get data33 has successfully',
-//   })
-// })
+app.get('/female-stars-list', allowCors(dataRoute))
 
 app.listen(process.env.PORT || 3000)
 
