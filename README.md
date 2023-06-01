@@ -4,9 +4,32 @@
 
 - https://speed-reader.now.sh/
 
+- https://speed-reader.now.sh/?i=22&speed=400&alt=true&dark=false&progress=50
+
+
 > select book from URL
 
 - https://speed-reader.now.sh/?i=2
+
+> progress
+
+- https://speed-reader.now.sh/?progress=50
+
+> progress
+
+- https://speed-reader.now.sh/?speed=300
+
+- https://speed-reader.now.sh/?speed=400
+
+- https://speed-reader.now.sh/?speed=500
+
+> light mode
+
+- https://speed-reader.now.sh/?dark=false
+
+> alternative mode - one or two markers
+
+- https://speed-reader.now.sh/?alt=true
 
 ## Chords
 

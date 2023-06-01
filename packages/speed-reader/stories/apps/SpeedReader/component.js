@@ -92,6 +92,7 @@ const speedOption = {
     defaultValue : '350',
   }),
 }
+// 
 const alternativeOption = {
   visibleLabel : 'alternative',
   label        : 'speed.reader.alternative',
@@ -106,8 +107,9 @@ const isDarkModeOption = {
   visibleLabel : 'Dark mode',
   label        : 'speed.reader.dark.mode',
   type         : 'TOGGLE',
-  value        : initialGetLocalize({
+  value        : initialGetLocalizeUrl({
     key          : 'speed.reader.dark.mode',
+    urlKey       : 'dark',
     defaultValue : true,
   }),
 }
