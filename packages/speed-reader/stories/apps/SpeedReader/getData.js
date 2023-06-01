@@ -1,4 +1,4 @@
-import { mapAsync, range } from 'rambdax'
+import { delay, mapAsync, range } from 'rambdax'
 import { API_URL } from '../../constants'
 import { post } from 'axios'
 
@@ -11,7 +11,11 @@ function getInitFlag (){
 
 function saveToLocalStorage(data, bookIndex){
   console.log( 'Saving to local storage', bookIndex)
-  localStorage.setItem(bookIndex, JSON.stringify(data))
+  try {
+    localStorage.setItem(bookIndex, JSON.stringify(data))
+  } catch (error) {
+    console.log( 'Error saving to local storage', bookIndex)
+  }
 }
 
 function getFromLocalStorage (bookIndex){
@@ -33,6 +37,7 @@ export async function initializeCache(password){
     }
   }, range(0, 47))
   if(hasError){
+    await delay(2000)
     window.location.reload()      
   }else{
     saveInitFlag()

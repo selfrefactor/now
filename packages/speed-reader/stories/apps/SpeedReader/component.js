@@ -11,7 +11,7 @@ import styled from 'styled-components'
 
 import { Cell, Grid } from '../../src/Grid/component'
 import { Options } from '../../src/Options/component'
-import { getData, initializeCache } from './getData'
+import { getData } from './getData'
 import { getReloadIndexes } from './getReloadIndexes'
 import { produceRow } from './produceRow'
 
@@ -197,9 +197,7 @@ export class SpeedReader extends React.Component{
       window.location.reload()
       
     }else{
-      initializeCache(password).then((  ) => {
-        getData(bookIndexOption.value, password).then(data => this.work(data))
-      })
+      getData(bookIndexOption.value, password).then(data => this.work(data))
     }
   }
 
