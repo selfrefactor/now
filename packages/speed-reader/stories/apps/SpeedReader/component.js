@@ -11,7 +11,7 @@ import styled from 'styled-components'
 
 import { Cell, Grid } from '../../src/Grid/component'
 import { Options } from '../../src/Options/component'
-import { getData } from './getData'
+import { getData, initializeCache } from './getData'
 import { getReloadIndexes } from './getReloadIndexes'
 import { produceRow } from './produceRow'
 
@@ -194,10 +194,12 @@ export class SpeedReader extends React.Component{
       const {password: passwordFromAddress} = takeArguments(window.location.href)
       const userPassword = passwordFromAddress ? passwordFromAddress : window.prompt('There is a password. You know the drill.')
       localStorage.setItem('speed.reader.password', userPassword)
-      initializeCache(password).then((  ) => window.location.reload())
-
+      window.location.reload()
+      
     }else{
-      getData(bookIndexOption.value, password).then(data => this.work(data))
+      initializeCache(password).then((  ) => {
+        getData(bookIndexOption.value, password).then(data => this.work(data))
+      })
     }
   }
 
