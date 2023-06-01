@@ -194,10 +194,11 @@ export class SpeedReader extends React.Component{
       const {password: passwordFromAddress} = takeArguments(window.location.href)
       const userPassword = passwordFromAddress ? passwordFromAddress : window.prompt('There is a password. You know the drill.')
       localStorage.setItem('speed.reader.password', userPassword)
-      window.location.reload()
-    }
+      initializeCache(password).then((  ) => window.location.reload())
 
-    getData(bookIndexOption.value, password).then(data => this.work(data))
+    }else{
+      getData(bookIndexOption.value, password).then(data => this.work(data))
+    }
   }
 
   render(){
