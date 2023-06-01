@@ -19,8 +19,8 @@
 
 > woody.allen
 
-- https://speed-reader.now.sh/?i=45?speed=400?alt=true?dark=false?progress=50
-- https://speed-reader.now.sh/?i=46?speed=400?alt=true?dark=false?progress=50
+- https://speed-reader.now.sh/?i=43?speed=400?alt=true?dark=false?progress=50
+- https://speed-reader.now.sh/?i=44?speed=400?alt=true?dark=false?progress=50
 
 
 
