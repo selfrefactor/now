@@ -1,5 +1,9 @@
 # Vercel deployments
 
+## Solo jazz
+
+https://www.youtube.com/playlist?list=PLGXlRErl-0jYw_mnApUW9LzD99wsHVF-9
+
 ## Speed reader
 
 - https://speed-reader.now.sh/
