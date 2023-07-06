@@ -11,6 +11,7 @@
     "public"
   ],
 	"scripts": {
+		"test": "jest src/modules/stringify.spec.js",
 		"out": "yarn build && yarn deploy",
 		"deploy": "now --prod",
 		"build": "./node_modules/.bin/webpack --config webpack.config.prod.js",

@@ -1,53 +1,10 @@
 import { SET_CODE, SET_RESULTS } from '../constants'
 
-const devCode = `
-const condition = async x => {
-  await R.delay(100)
-  return x > 1
-}
-const ifFn = async x => {
-  console.log(1,3,x)
-  await R.delay(100)
-  return x + 1
-}
-const elseFn = async x => {
-  await R.delay(100)
-  return x - 1
-}
-
-const result = await R.ifElseAsync(
-  condition,
-  ifFn,
-  elseFn  
-)(10)
-`
-
 const initialState: Store = {
   code: `
-  let counter = 0
-  const increment = () => {
-    counter++
-  }
-  
-  const debounced = R.debounce(increment, 1000)
-  
-  async function fn(){
-    debounced()
-    await R.delay(500)
-    debounced()
-    await R.delay(800)
-    console.log(counter) // => 0
-  
-    await R.delay(1200)
-    console.log(counter) // => 1
-  
-    return counter
-  }
-  const result = await fn()
+  const result = R.mergeRight({a:1}, {b: () => 1})
   `.trim(),
-  // code: 'const result = R.uniq([null, undefined,1])',
-  // code: 'const result = 1;\nconsole.log(2,3,4);',
-  result: '1',
+  result: '',
   classNameStatus: 'vivify pullUp duration-250',
   logResult: [],
   theme: 'vs-dark',

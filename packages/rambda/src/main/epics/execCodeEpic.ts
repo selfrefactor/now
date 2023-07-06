@@ -62,7 +62,6 @@ void async function main() {
               return onComplete()
           }
           const waitForResult = waitFor(() => readyState, 5000)
-
           waitForResult()
             .then(()=>{
               onResult({
