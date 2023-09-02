@@ -1,58 +1,8 @@
 # Vercel deployments
 
-## Solo jazz
-
-https://www.youtube.com/playlist?list=PLGXlRErl-0jYw_mnApUW9LzD99wsHVF-9
-
-## Speed reader
-
-- https://speed-reader.now.sh/
-
-
-> nitsshe
-
-- https://speed-reader.now.sh/?i=6
-
-> gogol
-
-- https://speed-reader.now.sh/?i=8?speed=400?alt=true?dark=false?progress=50
-
-> udhaus
-
-- https://speed-reader.now.sh/?i=30?speed=400?alt=true?dark=false?progress=50
-
-> woody.allen
-
-- https://speed-reader.now.sh/?i=43?speed=400?alt=true?dark=false?progress=50
-- https://speed-reader.now.sh/?i=44?speed=400?alt=true?dark=false?progress=50
-
-
-
-> select book from URL
-
-- https://speed-reader.now.sh/?i=2
-
-> progress
-
-- https://speed-reader.now.sh/?progress=50
-
-> progress
-
-- https://speed-reader.now.sh/?speed=300
-
-- https://speed-reader.now.sh/?speed=400
-
-- https://speed-reader.now.sh/?speed=500
-
-> light mode
-
-- https://speed-reader.now.sh/?dark=false
-
-> alternative mode - one or two markers
-
-- https://speed-reader.now.sh/?alt=true
-
 ## Chords
+
+https://chordu.com/chords-tabs-al-green-how-can-you-mend-a-broken-heart-id_lbn0qoqlDUs
 
 ### Queens Of The Stone Age - I Sat by the Ocean (Fox Uninvited Guest)
 
@@ -305,3 +255,53 @@ https://www.youtube.com/playlist?list=PLGXlRErl-0jYw_mnApUW9LzD99wsHVF-9
 ### You Are The Sunshine Of My Life
 
 [https://chordu.com/chords-tabs-you-are-the-sunshine-of-my-life-id_sp6hzycBsTI](https://chordu.com/chords-tabs-you-are-the-sunshine-of-my-life-id_sp6hzycBsTI)
+
+## Solo jazz
+
+https://www.youtube.com/playlist?list=PLGXlRErl-0jYw_mnApUW9LzD99wsHVF-9
+
+## Speed reader
+
+- https://speed-reader.now.sh/
+
+
+> nitsshe
+
+- https://speed-reader.now.sh/?i=6
+
+> gogol
+
+- https://speed-reader.now.sh/?i=8?speed=400?alt=true?dark=false?progress=50
+
+> udhaus
+
+- https://speed-reader.now.sh/?i=30?speed=400?alt=true?dark=false?progress=50
+
+> woody.allen
+
+- https://speed-reader.now.sh/?i=43?speed=400?alt=true?dark=false?progress=50
+- https://speed-reader.now.sh/?i=44?speed=400?alt=true?dark=false?progress=50
+
+> select book from URL
+
+- https://speed-reader.now.sh/?i=2
+
+> progress
+
+- https://speed-reader.now.sh/?progress=50
+
+> progress
+
+- https://speed-reader.now.sh/?speed=300
+
+- https://speed-reader.now.sh/?speed=400
+
+- https://speed-reader.now.sh/?speed=500
+
+> light mode
+
+- https://speed-reader.now.sh/?dark=false
+
+> alternative mode - one or two markers
+
+- https://speed-reader.now.sh/?alt=true
