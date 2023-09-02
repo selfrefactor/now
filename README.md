@@ -2,6 +2,8 @@
 
 ## Chords
 
+https://chordu.com/chords-tabs-cream-strange-brew-1967--id_hftgytmgQgE
+
 https://chordu.com/chords-tabs-al-green-how-can-you-mend-a-broken-heart-id_lbn0qoqlDUs
 
 ### Queens Of The Stone Age - I Sat by the Ocean (Fox Uninvited Guest)
