@@ -2,7 +2,13 @@
 
 ## Chords
 
-https://chordu.com/chords-tabs-jimmy-page-with-the-black-crowes-wanton-song-id_zzjt-lEZ8uY
+https://chordu.com/chords-tabs-gary-moore-parisienne-walkways-id_BziDx_lruXQ
+
+https://chordu.com/chords-tabs-grand-funk-railroad-heartbreaker-id_ieHkKs0ewLY
+
+https://chordu.com/chords-tabs-phil-lynott-spanish-guitar-id_-WBFBsZeYfg
+
+https://chordu.com/chords-tabs-b-b-king-buddy-guy-i-can-t-quit-you-baby-id_39W46dLA8BI
 
 https://chordu.com/chords-tabs-jimmy-page-and-the-black-crowes-17-23-shape-of-things-mpg-id_UhyCgcGnjjc
 
