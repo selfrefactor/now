@@ -2,6 +2,12 @@
 
 ## Chords
 
+https://chordu.com/chords-tabs-jimmy-page-with-the-black-crowes-wanton-song-id_zzjt-lEZ8uY
+
+https://chordu.com/chords-tabs-jimmy-page-and-the-black-crowes-17-23-shape-of-things-mpg-id_UhyCgcGnjjc
+
+https://chordu.com/chords-tabs-jimmy-page-and-the-black-crowes-9-23-oh-well-mpg-id_UKTGQKNxTDY
+
 https://chordu.com/chords-tabs-cream-strange-brew-1967--id_hftgytmgQgE
 
 https://chordu.com/chords-tabs-al-green-how-can-you-mend-a-broken-heart-id_lbn0qoqlDUs
