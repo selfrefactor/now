@@ -2,6 +2,12 @@
 
 ## Chords
 
+https://chordu.com/chords-tabs-the-rolling-stones-rain-fall-down-official-promo-id_tJHnsz2NOfg
+
+https://chordu.com/chords-tabs-tea-for-one-remaster--id_c-PylmHxSTo
+
+https://chordu.com/chords-tabs-david-bowie-loving-the-alien-live-reality-tour-id_5DBwN2Ve9Mc
+
 https://chordu.com/chords-tabs-janis-joplin-little-girl-blue-id_rX8hOw31wCQ
 
 https://chordu.com/chords-tabs-robert-plant-all-your-love-id_Gjwv689fmhk
