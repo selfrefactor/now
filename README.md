@@ -2,6 +2,16 @@
 
 ## Chords
 
+https://chordu.com/chords-tabs-janis-joplin-little-girl-blue-id_rX8hOw31wCQ
+
+https://chordu.com/chords-tabs-robert-plant-all-your-love-id_Gjwv689fmhk
+
+https://chordu.com/chords-tabs-ahat-monolog-id_3IR8TRk5MSI
+
+https://chordu.com/chords-tabs-the-black-crowes-losing-my-mind-id_etRGIjofAog
+
+https://chordu.com/chords-tabs-willie-nelson-golden-earrings-id_DiRp5SP-rsg
+
 https://chordu.com/chords-tabs-gary-moore-parisienne-walkways-id_BziDx_lruXQ
 
 https://chordu.com/chords-tabs-grand-funk-railroad-heartbreaker-id_ieHkKs0ewLY
