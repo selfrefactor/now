@@ -1,0 +1,94 @@
+import {
+  NEXT_TICK,
+  SHORT_DELAY,
+  urlInputsDefault,
+  WRITE_SENTENCE_NEXT,
+  WRITE_SENTENCE_READY,
+} from '../../constants'
+
+import { getterAnt, getter } from 'client-helpers-fn'
+import { delay } from 'rambdax'
+import { ActionsObservable } from 'redux-observable'
+import { Observable } from 'rxjs/Observable'
+import { maskSentence, OutputMaskSentence } from 'string-fn'
+
+import { getNextIndex } from '../../_helpers/getNextIndex'
+import { sharedSpeakTo } from '../../root/actions'
+import { setNext } from '../actions'
+import { getCommons } from '../../_helpers/selectors';
+
+export const nextEpic = (
+  action$: ActionsObservable<WriteSentenceNextAction>,
+  store: ObservableStore,
+): Observable<any> =>
+
+  action$.ofType(WRITE_SENTENCE_NEXT)
+    .concatMap(() => {
+      return new Observable(observer => {
+
+        const {
+          currentIndex: currentIndexRaw,
+          db,
+          ready,
+        } = store.getState().writeSentenceStore
+
+        const {
+          easier,
+          easiest,
+          easy,
+          visible,
+        } = getterAnt<any>(urlInputsDefault)
+        const {textToSpeechFlag} = getCommons(store)
+
+        const canSpeak = textToSpeechFlag && !getter('auto')
+        const currentIndex = getNextIndex({
+          index: currentIndexRaw,
+          length: db.length,
+        })
+
+        const currentInstance = db[currentIndex]
+
+        const maskSentenceResult: OutputMaskSentence = maskSentence({
+          sentence: currentInstance.fromPart,
+          easyMode: easy,
+          easierMode: easier,
+          charLimit: easiest ? 1 : 4,
+        })
+
+        const question = maskSentenceResult.visible
+          .map((visibleInstance, i) => ({
+            hidden: maskSentenceResult.hidden[i],
+            visible: visible? maskSentenceResult.hidden[i] : visibleInstance,
+          }))
+
+        const okCorrect = Array(question.length).fill(null)
+
+        const payload = {
+          currentIndex,
+          currentInstance,
+          okCorrect,
+          question,
+        }
+        observer.next(setNext(payload))
+
+        const MS = ready ?
+          NEXT_TICK :
+          SHORT_DELAY
+
+        delay(MS)
+          .then(() => {
+            const payload = {
+              currentIndex,
+              currentInstance,
+              okCorrect,
+              question,
+            }
+            observer.next(setNext(payload))
+
+            observer.next({ type: WRITE_SENTENCE_READY })
+            if (canSpeak) observer.next(sharedSpeakTo)
+
+            observer.complete()
+          })
+      })
+    })
