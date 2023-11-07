@@ -1,58 +1,38 @@
 # Vercel deployments
 
-## Solo jazz
-
-https://www.youtube.com/playlist?list=PLGXlRErl-0jYw_mnApUW9LzD99wsHVF-9
-
-## Speed reader
-
-- https://speed-reader.now.sh/
-
-
-> nitsshe
-
-- https://speed-reader.now.sh/?i=6
-
-> gogol
-
-- https://speed-reader.now.sh/?i=8?speed=400?alt=true?dark=false?progress=50
-
-> udhaus
-
-- https://speed-reader.now.sh/?i=30?speed=400?alt=true?dark=false?progress=50
-
-> woody.allen
-
-- https://speed-reader.now.sh/?i=43?speed=400?alt=true?dark=false?progress=50
-- https://speed-reader.now.sh/?i=44?speed=400?alt=true?dark=false?progress=50
-
-
-
-> select book from URL
-
-- https://speed-reader.now.sh/?i=2
-
-> progress
-
-- https://speed-reader.now.sh/?progress=50
-
-> progress
-
-- https://speed-reader.now.sh/?speed=300
-
-- https://speed-reader.now.sh/?speed=400
-
-- https://speed-reader.now.sh/?speed=500
-
-> light mode
-
-- https://speed-reader.now.sh/?dark=false
-
-> alternative mode - one or two markers
-
-- https://speed-reader.now.sh/?alt=true
-
 ## Chords
+
+https://chordu.com/chords-tabs-the-rolling-stones-rain-fall-down-official-promo-id_tJHnsz2NOfg
+
+https://chordu.com/chords-tabs-tea-for-one-remaster--id_c-PylmHxSTo
+
+https://chordu.com/chords-tabs-david-bowie-loving-the-alien-live-reality-tour-id_5DBwN2Ve9Mc
+
+https://chordu.com/chords-tabs-janis-joplin-little-girl-blue-id_rX8hOw31wCQ
+
+https://chordu.com/chords-tabs-robert-plant-all-your-love-id_Gjwv689fmhk
+
+https://chordu.com/chords-tabs-ahat-monolog-id_3IR8TRk5MSI
+
+https://chordu.com/chords-tabs-the-black-crowes-losing-my-mind-id_etRGIjofAog
+
+https://chordu.com/chords-tabs-willie-nelson-golden-earrings-id_DiRp5SP-rsg
+
+https://chordu.com/chords-tabs-gary-moore-parisienne-walkways-id_BziDx_lruXQ
+
+https://chordu.com/chords-tabs-grand-funk-railroad-heartbreaker-id_ieHkKs0ewLY
+
+https://chordu.com/chords-tabs-phil-lynott-spanish-guitar-id_-WBFBsZeYfg
+
+https://chordu.com/chords-tabs-b-b-king-buddy-guy-i-can-t-quit-you-baby-id_39W46dLA8BI
+
+https://chordu.com/chords-tabs-jimmy-page-and-the-black-crowes-17-23-shape-of-things-mpg-id_UhyCgcGnjjc
+
+https://chordu.com/chords-tabs-jimmy-page-and-the-black-crowes-9-23-oh-well-mpg-id_UKTGQKNxTDY
+
+https://chordu.com/chords-tabs-cream-strange-brew-1967--id_hftgytmgQgE
+
+https://chordu.com/chords-tabs-al-green-how-can-you-mend-a-broken-heart-id_lbn0qoqlDUs
 
 ### Queens Of The Stone Age - I Sat by the Ocean (Fox Uninvited Guest)
 
@@ -305,3 +285,53 @@ https://www.youtube.com/playlist?list=PLGXlRErl-0jYw_mnApUW9LzD99wsHVF-9
 ### You Are The Sunshine Of My Life
 
 [https://chordu.com/chords-tabs-you-are-the-sunshine-of-my-life-id_sp6hzycBsTI](https://chordu.com/chords-tabs-you-are-the-sunshine-of-my-life-id_sp6hzycBsTI)
+
+## Solo jazz
+
+https://www.youtube.com/playlist?list=PLGXlRErl-0jYw_mnApUW9LzD99wsHVF-9
+
+## Speed reader
+
+- https://speed-reader.now.sh/
+
+
+> nitsshe
+
+- https://speed-reader.now.sh/?i=6
+
+> gogol
+
+- https://speed-reader.now.sh/?i=8?speed=400?alt=true?dark=false?progress=50
+
+> udhaus
+
+- https://speed-reader.now.sh/?i=30?speed=400?alt=true?dark=false?progress=50
+
+> woody.allen
+
+- https://speed-reader.now.sh/?i=43?speed=400?alt=true?dark=false?progress=50
+- https://speed-reader.now.sh/?i=44?speed=400?alt=true?dark=false?progress=50
+
+> select book from URL
+
+- https://speed-reader.now.sh/?i=2
+
+> progress
+
+- https://speed-reader.now.sh/?progress=50
+
+> progress
+
+- https://speed-reader.now.sh/?speed=300
+
+- https://speed-reader.now.sh/?speed=400
+
+- https://speed-reader.now.sh/?speed=500
+
+> light mode
+
+- https://speed-reader.now.sh/?dark=false
+
+> alternative mode - one or two markers
+
+- https://speed-reader.now.sh/?alt=true
