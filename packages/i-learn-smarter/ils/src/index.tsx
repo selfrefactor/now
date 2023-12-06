@@ -104,30 +104,14 @@ class Root extends React.Component<Props, {}> {
     super(props)
     rootInitBee()
   }
-  public async initDatabase(password) {
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ password })
-  };
+  public async initDatabase() {
     const response = await window.fetch(API_URL)
-    // const response = await window.fetch(API_URL, requestOptions)
-
     const data = await response.json()
-    console.log(data, `data`)
     localStorage.setItem(DATABASE, JSON.stringify(data))
     return this.props.dispatch(init())
   }
   public async componentDidMount() {
-    const localPassword = localStorage.getItem(PASSWORD)
-    // const localDatabase = localStorage.getItem(DATABASE)
-    // if(localDatabase) return this.props.dispatch(init())
-    if(localPassword) return this.initDatabase(localPassword)
-
-    const password = prompt('Enter password!')
-    localStorage.setItem(PASSWORD, password)
-    this.initDatabase(password)
-    // this.props.dispatch(init())
+    this.initDatabase()
   }
 
   public componentDidCatch(e) {
