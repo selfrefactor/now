@@ -1,0 +1,32 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "shell",
+      "label": "test",
+      "command": "TZ=UTC node --expose-gc --no-compilation-cache ./node_modules/.bin/jest -w=1 --logHeapUsage --workerIdleMemoryLimit=512MB --testTimeout=15000 --forceExit -u --detectOpenHandles --bail",
+      "group": {
+        "kind": "none",
+        "isDefault": false
+      }
+    },
+    {
+      "type": "shell",
+      "label": "test - coverage",
+      "command": "TZ=UTC node --expose-gc --no-compilation-cache ./node_modules/.bin/jest -w=1 --logHeapUsage --workerIdleMemoryLimit=512MB --testTimeout=15000 --forceExit -u --detectOpenHandles --bail --coverage=true",
+      "group": {
+        "kind": "none",
+        "isDefault": false
+      }
+    },
+    {
+      "type": "shell",
+      "label": "lint",
+      "command": "yarn lint && yarn format",
+      "group": {
+        "kind": "none",
+        "isDefault": false
+      }
+    }
+  ]
+}
