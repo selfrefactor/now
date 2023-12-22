@@ -1,0 +1,10 @@
+coverage
+node_modules/
+dist/
+public/
+.cache/
+yarn-error*
+npm-debug*
+yarn-debug*
+.DS_Store
+.now

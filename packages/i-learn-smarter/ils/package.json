@@ -15,10 +15,10 @@
 	},
 	"license": "MIT",
 	"scripts": {
-		"in": "NODE_ENV=development CURRENT_COMPONENT='write-sentence' parcel -p 8080 index.html ",
-		"build": "CURRENT_COMPONENT='write-sentence' NODE_ENV=production parcel build index.html --no-minify --public-url / --out-dir public",
-		"move": "cp -TRv public/ ../write-sentence/public",
-		"deploy": "cd ../write-sentence && yarn out",
+		"in": "NODE_ENV=development CURRENT_COMPONENT='select-article' parcel -p 8080 index.html ",
+		"build": "CURRENT_COMPONENT='select-article' NODE_ENV=production parcel build index.html --no-minify --public-url / --out-dir public",
+		"move": "cp -TRv public/ ../select-article/public",
+		"deploy": "cd ../select-article && yarn out",
 		"out": "yarn build && yarn move && yarn deploy",
 		"d": "yarn out && run d"
 	},
