@@ -1,0 +1,14 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "shell",
+      "label": "Check duplication",
+      "command": "npx jscpd --pattern \"src/**/*.ts(x)?\" -r json -o duplication-report",
+      "group": {
+        "kind": "none",
+        "isDefault": false
+      }
+    },
+  ]
+}
