@@ -23,7 +23,7 @@ export function selectArticleStore(
   state: SelectArticleStore = initialState,
   action: Action,
 ): SelectArticleStore {
-
+  console.log(state)
   switch (action.type) {
     case SELECT_ARTICLE_INIT_READY:
       return {
