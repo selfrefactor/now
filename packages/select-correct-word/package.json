@@ -4,7 +4,8 @@
 		"dev": "vite --port=4000",
 		"dev:fix": "vite --force --port=4000",
 		"build:script": "tsc && vite build",
-		"test": "vitest watch --update --bail 1",
+		"test": "vitest",
+		"testx": "vitest watch --update --bail 1",
 		"test:dev": "vitest watch --update src/foo.spec.ts"
 	},
 	"version": "0.1.0",
