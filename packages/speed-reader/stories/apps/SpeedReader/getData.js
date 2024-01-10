@@ -23,6 +23,10 @@ function getFromLocalStorage (bookIndex){
   return data ? JSON.parse(data) : null
 }
 
+function parseResponse (response){
+  return JSON.parse(response.message).data
+}
+
 export async function initializeCache(password){
   if(getInitFlag()) return
   let hasError = false
@@ -31,7 +35,8 @@ export async function initializeCache(password){
     if(getFromLocalStorage(bookIndex)) return console.log( 'Already cached', bookIndex)
     try {
       const { data } = await post(`${ API_URL(bookIndex) }`, { password })
-      saveToLocalStorage(data, bookIndex)
+      let actualData = parseResponse(data)
+      saveToLocalStorage(actualData, bookIndex)
     } catch (error) {
       hasError = true
     }
@@ -48,8 +53,9 @@ export async function getData(bookIndex, password){
   let bookData
   try {
     const { data } = await post(`${ API_URL(bookIndex) }`, { password })
-    bookData = data
-    saveToLocalStorage(data, bookIndex)
+    let actualData = parseResponse(data)
+    bookData = actualData
+    saveToLocalStorage(actualData, bookIndex)
   } catch (error) {
     bookData = getFromLocalStorage(bookIndex)
     if(bookData) console.log( 'Using local data')
