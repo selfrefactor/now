@@ -30,7 +30,7 @@ export async function initializeCache(password){
     if(hasError) return
     if(getFromLocalStorage(bookIndex)) return console.log( 'Already cached', bookIndex)
     try {
-      const { data } = await post(`${ API_URL }/speed-reader/`, { id : bookIndex, password })
+      const { data } = await post(`${ API_URL(bookIndex) }`, { password })
       saveToLocalStorage(data, bookIndex)
     } catch (error) {
       hasError = true
@@ -47,7 +47,7 @@ export async function initializeCache(password){
 export async function getData(bookIndex, password){
   let bookData
   try {
-    const { data } = await post(`${ API_URL }/speed-reader/`, { id : bookIndex, password })
+    const { data } = await post(`${ API_URL(bookIndex) }`, { password })
     bookData = data
     saveToLocalStorage(data, bookIndex)
   } catch (error) {

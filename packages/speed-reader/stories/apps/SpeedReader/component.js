@@ -61,6 +61,11 @@ const bookIndexOption = {
     defaultValue : '1',
   }),
 }
+const password = initialGetLocalizeUrl({
+  key          : 'password',
+  urlKey       : 'password',
+  defaultValue : '',
+})
 const forceReloadOption = {
   label        : 'force.reload',
   type         : 'TOGGLE',
@@ -92,7 +97,6 @@ const speedOption = {
     defaultValue : '350',
   }),
 }
-// 
 const alternativeOption = {
   visibleLabel : 'alternative',
   label        : 'speed.reader.alternative',
