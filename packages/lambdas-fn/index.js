@@ -1,6 +1,9 @@
 const express = require('express')
 const app = express()
-// const data = require('./src/db.json')
+var bodyParser = require('body-parser')
+const { readBook } = require('./src/read-book')
+
+var jsonParser = bodyParser.json()
 
 const allowCors = fn => async (req, res) => {
   res.setHeader('Access-Control-Allow-Credentials', true)
@@ -18,32 +21,29 @@ const allowCors = fn => async (req, res) => {
   return await fn(req, res)
 }
 
-const dataRoute = (req, res) => {
+
+const dataRoute = async (req, res) => {
   const bookId = req.params.id;
-  res.json({
-    status  : 200,
-    message : JSON.stringify(
-      {data: {bookId}}, null, 2
-    ),
+  const password = req.body.password;
+  const vercelPassword = process.env.API_PASSWORD_KEY || '123456'
+  if(
+    password !== vercelPassword
+  ) return res.status(401).json({
+    status  : 401,
+    message : 'Unauthorized',
   })
-}
-const dataRoutex = (req, res) => {
-  const bookId = req.params.id;
-  const password = req.params.password;
-  const vercelPassword = process.env.API_PASSWORD_KEY;
+
+  let data = await readBook(bookId)
+
   res.json({
     status  : 200,
     message : JSON.stringify(
-      {data: {bookId, extra:{
-        vercelPassword,
-        password
-      }}}, null, 2
+      {data}, null, 2
     ),
   })
 }
 
-app.get('/books/:id', allowCors(dataRoute))
-app.post('/books/:id', allowCors(dataRoutex))
+app.post('/books/:id', jsonParser, allowCors(dataRoute))
 
 app.listen(process.env.PORT || 3000)
 
