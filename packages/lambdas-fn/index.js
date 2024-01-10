@@ -42,7 +42,19 @@ const dataRoute = async (req, res) => {
     ),
   })
 }
+const dataRoutex = async (req, res) => {
+  const bookId = req.params.id;
+  let data = await readBook(bookId)
 
+  res.json({
+    status  : 200,
+    message : JSON.stringify(
+      {data}, null, 2
+    ),
+  })
+}
+
+app.get('/books/:id', allowCors(dataRoutex))
 app.post('/books/:id', jsonParser, allowCors(dataRoute))
 
 app.listen(process.env.PORT || 3000)
