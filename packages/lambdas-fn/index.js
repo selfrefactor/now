@@ -29,22 +29,19 @@ const dataRoute = (req, res) => {
 }
 const dataRoutex = (req, res) => {
   const bookId = req.params.id;
+  const password = req.params.password;
+  const vercelPassword = process.env.API_PASSWORD_KEY;
   res.json({
     status  : 200,
     message : JSON.stringify(
-      {data: {bookId, extra:1}}, null, 2
+      {data: {bookId, extra:{
+        vercelPassword,
+        password
+      }}}, null, 2
     ),
   })
 }
-// const fn = (req, res) => {
-//   res.json({
-//     status  : 200,
-//     message : JSON.stringify(
-//       data, null, 2
-//     ),
-//   })
-// }
-// app.get('/', allowCors(fn))
+
 app.get('/books/:id', allowCors(dataRoute))
 app.post('/books/:id', allowCors(dataRoutex))
 
