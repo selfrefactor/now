@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 var bodyParser = require('body-parser')
+var cors = require('cors')
 const { readBook } = require('./src/read-book')
 
 var jsonParser = bodyParser.json()
@@ -53,6 +54,16 @@ const dataRoutex = async (req, res) => {
     ),
   })
 }
+const options = [
+  cors({
+    origin: '*',
+    methods: '*',
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+  })
+];
+
+app.use(options);
 
 app.get('/books/:id', allowCors(dataRoutex))
 app.post('/books/:id', jsonParser, allowCors(dataRoute))
