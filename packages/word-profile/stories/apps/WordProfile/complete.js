@@ -50,16 +50,6 @@ const recalculateFontOption = {
 }
 
 const evalStyled = 'outline: 1px solid pink'
-const centeredStyle = `
-text-align: center;
-`
-
-const labelStyle = `
-text-align: center;
-font-size: 70%;
-font-weight: 200;
-color: #78a;
-`
 
 const sortWords = words => words.sort((x, y) => x < y ? -1 : 1)
 
