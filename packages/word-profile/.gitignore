@@ -8,3 +8,4 @@ npm-debug*
 yarn-debug*
 .DS_Store
 .now
+.vercel

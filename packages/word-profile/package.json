@@ -1,6 +1,7 @@
 {
 	"scripts": {
 		"in": "NODE_ENV=development parcel -p 8080 index.html ",
+		"dev": "NODE_ENV=production parcel build index.html --no-minify",
 		"build": "NODE_ENV=production parcel build index.html --no-minify --public-url / --out-dir public",
 		"out": "now --prod"
 	},

@@ -52,7 +52,6 @@ export class SelectArticle extends React.PureComponent<SelectArticleProps, {}> {
       toPart,
       imageSrc,
     } = this.props.selectArticleStore.currentInstance
-    console.log(wordList)
     return (
       <Container>
 
