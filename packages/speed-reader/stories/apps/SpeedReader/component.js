@@ -193,6 +193,7 @@ export class SpeedReader extends React.Component{
 
   componentDidMount(){
     if (this.props.testString) return
+    if(!password) return alert('No password')
     getData(bookIndexOption.value, password).then(data => this.work(data))
   }
 
