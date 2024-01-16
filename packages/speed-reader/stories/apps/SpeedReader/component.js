@@ -6,7 +6,6 @@ import {
 import { defaultTo, delay, last, maybe, range, toDecimal } from 'rambdax'
 import { range as rangeModule } from 'rambdax'
 import React from 'react'
-import { takeArguments } from 'string-fn'
 import styled from 'styled-components'
 
 import { Cell, Grid } from '../../src/Grid/component'
@@ -57,15 +56,11 @@ const bookIndexOption = {
   choices      : rangeModule(0, 60).map(String),
   value        : initialGetLocalizeUrl({
     key          : 'book.index',
-    urlKey       : 'i',
+    urlKey       : 'index',
     defaultValue : '1',
   }),
 }
-const password = initialGetLocalizeUrl({
-  key          : 'password',
-  urlKey       : 'password',
-  defaultValue : '',
-})
+
 const forceReloadOption = {
   label        : 'force.reload',
   type         : 'TOGGLE',
@@ -132,6 +127,10 @@ function calculateActualSpeed(input){
 
 const isFocused = x => [ 10, 11 ].includes(x)
 
+function getPassword (){
+  return localStorage.getItem('password')
+}
+
 export class SpeedReader extends React.Component{
   constructor(props){
     super(props)
@@ -193,8 +192,13 @@ export class SpeedReader extends React.Component{
 
   componentDidMount(){
     if (this.props.testString) return
-    if(!password) return alert('No password')
-    getData(bookIndexOption.value, password).then(data => this.work(data))
+    if(!getPassword()){
+      let password = prompt('Please enter password')
+      console.log(password)
+      localStorage.setItem('password', password)
+      window.location.reload()
+    }
+    getData(bookIndexOption.value, getPassword()).then(data => this.work(data))
   }
 
   render(){
