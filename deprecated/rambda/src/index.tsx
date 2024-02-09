@@ -7,7 +7,7 @@ import './root/rxImports'
 import { MainWrapped } from './main/component'
 
 // EPICS
-import { rootEpic } from './root/epics/'
+import { rootEpic } from './root/epics'
 import { rootReducer } from './root/reducers'
 
 // IMPORTS

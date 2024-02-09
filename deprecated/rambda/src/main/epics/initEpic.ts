@@ -1,6 +1,6 @@
 import { ActionsObservable } from 'redux-observable'
 import { Observable } from 'rxjs/Observable'
-import { INIT } from './../../constants'
+import { INIT } from '../../constants'
 
 export const initEpic = (
   action$: ActionsObservable<InitAction>,

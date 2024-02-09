@@ -3,7 +3,8 @@ const app = express()
 var bodyParser = require('body-parser')
 var cors = require('cors')
 const { readBook } = require('./src/read-book')
-
+const REQUEST_PASSWORD = true
+// const REQUEST_PASSWORD = false
 var jsonParser = bodyParser.json()
 
 const dataRoute = async (req, res) => {
@@ -11,7 +12,8 @@ const dataRoute = async (req, res) => {
   const password = req.body.password;
   const vercelPassword = process.env.API_PASSWORD_KEY || '123456'
   if(
-    password !== vercelPassword
+    password !== vercelPassword &&
+    REQUEST_PASSWORD
   ) return res.status(401).json({
     status  : 401,
     message : 'Unauthorized',

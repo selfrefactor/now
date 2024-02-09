@@ -1,3 +1,1 @@
-https://zeit.co/docs/v2/build-step#using-environment-variables-and-secrets
-
-post request to https://lambdas-fn.now.sh/api/users with password in body
+curl -X POST -H "Content-Type: application/json" -d '{"key":"value"}' http://localhost:3000/books/4
