@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "out": "now --prod",
     "dev": "vite --port 4000",
     "build": "tsc && vite build",
     "preview": "vite preview"
