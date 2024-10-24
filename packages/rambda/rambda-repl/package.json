@@ -1,0 +1,50 @@
+{
+  "name": "rambda-repl",
+  "version": "0.1.0",
+  "description": "rambda-repl",
+  "main": "./dist/index.js",
+  "typings": "./src/typings.d.ts",
+  "repository": "git@github.com:selfrefactor/rambda-repl.git",
+  "author": "Dejan Toteff <deyan8284@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "rambdax": "^0.8.8"
+  },
+  "devDependencies": {
+    "@types/jest": "^22.0.1",
+    "@types/node": "^9.3.0",
+    "fs-extra": "^5.0.0",
+    "jest": "^22.0.6",
+    "klaw-sync": "^3.0.2",
+    "log": "https://github.com/selfrefactor/log#0.4.0",
+    "nodemon": "^1.14.11",
+    "ts-jest": "^22.0.1",
+    "tslint": "^5.9.1",
+    "typescript": "^2.7.0-insiders.20180108"
+  },
+  "scripts": {
+    "build": "tsc -p .",
+    "clean": "node files/clean",
+    "cover": "jest __tests__ --coverage",
+    "dev": "jest --watch",
+    "docs": "typedoc --hideGenerator --readme Readme.md --theme minimal --out docs src&&touch docs/.nojekyll",
+    "rename": "node files/rename",
+    "start": "nodemon dist/index.js",
+    "watch": "node files/watch",
+    "test": "jest"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json"
+    ]
+  }
+}
