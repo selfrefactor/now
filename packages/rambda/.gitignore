@@ -1,3 +1,4 @@
 .now
 .vercel
 yarn-error.log
+!dist

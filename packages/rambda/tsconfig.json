@@ -5,7 +5,7 @@
     "jsx":"react",
     "module":"commonjs",
     "noImplicitAny":false,
-    "outDir":"./dist/",
+    "outDir":"dists",
     "sourceMap":false,
     "strictNullChecks": false,
     "target":"es6",
@@ -21,7 +21,7 @@
     "./src/**/*"
   ],
   "exclude":[
-    "dist",
+    "dists",
     "src/**/*.spec.ts",
     "node_modules"
   ]
