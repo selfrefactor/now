@@ -1,6 +1,7 @@
 {
 	"scripts": {
 		"dev": "NODE_ENV=development parcel -p 8080 index.html ",
+		"serve": "serve -s dist -l 4037",
 		"build": "NODE_ENV=production parcel build index.html --no-minify"
 	},
 	"name": "word-profile",
