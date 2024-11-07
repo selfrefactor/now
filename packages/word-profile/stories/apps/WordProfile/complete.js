@@ -10,7 +10,7 @@ import * as React from 'react'
 import { Cell, Grid } from '../../src/Grid/component.js'
 import { Options } from '../../src/Options/component'
 import { Select } from '../../src/Select/component.js'
-import { wordProfileDataAnt } from '../ants/wordProfileData'
+import { WORD_LIST, wordProfileDataAnt } from '../ants/wordProfileData'
 import { wordProfileListAnt } from '../ants/wordProfileList'
 import { Navigation, recalculateFontSize, WordProfile } from './component'
 
@@ -59,7 +59,6 @@ export class WordProfileComplete extends React.Component{
     this.OPTIONS = [ randomOrderOption, recalculateFontOption ]
     this.state = {
       ready    : false,
-      password : getter('PASSWORD'),
       word     : undefined,
       index    : -1,
       wordList : [],
@@ -69,7 +68,6 @@ export class WordProfileComplete extends React.Component{
     this.selectChange = this.selectChange.bind(this)
     this.handleOptionsCallback = this.handleOptionsCallback.bind(this)
     this.nextStep = this.nextStep.bind(this)
-    this.missingPassword = this.missingPassword.bind(this)
     this.arrowLeft = this.arrowLeft.bind(this)
     this._setState = this._setState.bind(this)
   }
@@ -80,9 +78,7 @@ export class WordProfileComplete extends React.Component{
   }
 
   async componentDidMount(){
-    if (!this.state.password) return this.missingPassword()
-
-    const wordListRaw = await wordProfileListAnt(this.state.password)
+    const wordListRaw = WORD_LIST
     const initialIndex = random(0, wordListRaw.length - 1)
     const wordList = randomOrderOption.value ?
       shuffle(wordListRaw) :
@@ -91,7 +87,7 @@ export class WordProfileComplete extends React.Component{
     const currentWord = this.state.word ?
       this.state.word :
       wordList[ initialIndex ]
-    const data = await wordProfileDataAnt(currentWord, this.state.password)
+    const data = await wordProfileDataAnt(currentWord)
     this._setState({
       data,
       ready : true,
@@ -101,19 +97,11 @@ export class WordProfileComplete extends React.Component{
     })
   }
 
-  missingPassword(){
-    const password = window.prompt('Password is needed!')
-    if (!password) throw 'password'
-    setter('PASSWORD', password)
-
-    window.location.reload()
-  }
-
   async selectChange(selected){
-    const { wordList, password } = this.state
+    const { wordList } = this.state
     const newIndex = findIndex(x => x === selected, wordList)
 
-    const data = await wordProfileDataAnt(selected, password)
+    const data = await wordProfileDataAnt(selected)
 
     this._setState({
       data,
@@ -123,18 +111,17 @@ export class WordProfileComplete extends React.Component{
   }
 
   arrowLeft(){
-    console.log(1)
     this.nextStep('DEC')
   }
 
   async nextStep(indexMode){
-    const { wordList, index, password } = this.state
+    const { wordList, index } = this.state
 
     const indexMethod = indexMode === 'INC' ? nextIndex : prevIndex
 
     const newIndex = indexMethod(index, wordList)
     const currentWord = wordList[ newIndex ]
-    const data = await wordProfileDataAnt(currentWord, password)
+    const data = await wordProfileDataAnt(currentWord)
 
     this._setState({
       data,

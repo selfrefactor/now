@@ -1,9 +1,7 @@
 {
 	"scripts": {
-		"in": "NODE_ENV=development parcel -p 8080 index.html ",
-		"dev": "NODE_ENV=production parcel build index.html --no-minify",
-		"build": "NODE_ENV=production parcel build index.html --no-minify --public-url / --out-dir public",
-		"out": "now --prod"
+		"dev": "NODE_ENV=development parcel -p 8080 index.html ",
+		"build": "NODE_ENV=production parcel build index.html --no-minify"
 	},
 	"name": "word-profile",
 	"version": "1.0.0",
@@ -21,8 +19,6 @@
 	},
 	"license": "MIT",
 	"dependencies": {
-		"@sentry/browser": "^7.93.0",
-		"axios": "^0.19.0",
 		"client-helpers-fn": "0.1.0",
 		"rambdax": "^3.3.1",
 		"react": "^16.12.0",
@@ -39,7 +35,6 @@
 		"enzyme": "^3.10.0",
 		"enzyme-adapter-react-16": "^1.15.1",
 		"enzyme-to-json": "^3.4.3",
-		"jest": "^25.0.0",
 		"parcel-bundler": "^1.12.4",
 		"sass": "^1.23.7",
 		"typescript": "^3.8.0-dev.20191125"
