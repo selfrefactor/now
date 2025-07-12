@@ -2,7 +2,7 @@ import { SET_CODE, SET_RESULTS } from '../constants'
 
 const initialState: Store = {
   code: `
-  const result = R.mergeRight({a:1}, {b: () => 1})
+  const result = R.includes(1)([1,2,3])
   `.trim(),
   result: '',
   classNameStatus: 'vivify pullUp duration-250',
