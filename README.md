@@ -196,7 +196,7 @@ https://chordu.com/chords-tabs-al-green-how-can-you-mend-a-broken-heart-id_lbn0q
 
 ### No Quarter - Led Zeppelin
 
-[https://chordu.com/chords-tabs-no-quarter-led-zeppelin-id_JJm8fZ6WS5Y](https://chordu.com/chords-tabs-no-quarter-led-zeppelin-id_JJm8fZ6WS5Y)
+https://chordu.com/chords-tabs-no-quarter-id_RKOngTfTMs0
 
 ### Iron maiden - Brave new world studio version
 
