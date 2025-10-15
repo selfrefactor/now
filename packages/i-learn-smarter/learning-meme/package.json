@@ -2,7 +2,7 @@
 	"name": "learning-meme",
 	"version": "1.0.0",
 	"scripts": {
-		"out": "now --prod",
+		"out": "vercel --prod",
 		"build":"echo dummy script as vercel require build command script"
 	}
 }
