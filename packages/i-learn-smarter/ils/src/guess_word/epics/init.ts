@@ -18,7 +18,7 @@ export function createDB(store: ObservableStore): any {
   })
 
   const newDB = db.filter(filterFn)
-
+	// console.log(newDB, db)
   return newDB
 }
 

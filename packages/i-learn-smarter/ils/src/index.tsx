@@ -29,8 +29,8 @@ import { getComposeAnt } from './ants/getCompose'
 // COMPONENTS
 ///////////////////////////
 import { Notify } from '../notify/component'
-// import { ChooseWordWrapped } from './choose_word/component'
-// import { GuessWordWrapped } from './guess_word/component'
+import { ChooseWordWrapped } from './choose_word/component'
+import { GuessWordWrapped } from './guess_word/component'
 import { CarrierWrapped } from './root/carrier/component'
 import { LearningMemeWrapped } from './learning_meme/component'
 import { SelectArticleWrapped } from './select_article/component'
@@ -39,7 +39,9 @@ import { WriteSentenceWrapped } from './write_sentence/component'
 const AllComponents = {
   LearningMemeWrapped,
   SelectArticleWrapped,
-  WriteSentenceWrapped
+  WriteSentenceWrapped,
+	ChooseWordWrapped,
+	GuessWordWrapped,
 }
 
 const CURRENT_COMPONENT = process.env.CURRENT_COMPONENT ? process.env.CURRENT_COMPONENT : 'learning-meme'
@@ -48,6 +50,8 @@ const currentComponentKey = switcher(CURRENT_COMPONENT)
   .is('learning-meme', 'LearningMeme')
   .is('select-article', 'SelectArticle')
   .is('write-sentence', 'WriteSentence')
+	.is('choose-word', 'ChooseWord')
+	.is('guess-word', 'GuessWord')
   .default('learning.meme')
 
 const CurrentComponent = AllComponents[`${currentComponentKey}Wrapped`]
